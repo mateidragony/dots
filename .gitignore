@@ -1,0 +1,24 @@
+# blacklist all
+*
+
+# git
+!.gitignore
+!.gitconfig
+
+# editors
+!.emacs
+!.nanorc
+!.vimrc
+
+# shells
+!.zshrc
+!.bashrc
+!.bash_profile
+!.bash_logout
+
+# Xmodmap
+!.Xmodmap
+
+# nb
+!.nbrc
+

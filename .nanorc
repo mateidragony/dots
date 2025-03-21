@@ -1,0 +1,8 @@
+include /usr/share/nano/*.nanorc
+include /usr/share/nano/extra/*.nanorc
+set linenumbers
+set magic
+set matchbrackets "(<[{)>]}"
+set mouse
+set tabsize 4
+set softwrap

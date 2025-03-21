@@ -26,8 +26,28 @@
 !.config/
 .config/*
 
+# alacritty
+!.config/alacritty/
+!.config/alacritty/**
+
+# bspwm (archcraft)
+!.config/bspwm/
+!.config/bspwm/**
+
+# dunst
+!.config/dunst/
+!.config/dunst/**
+
+# rofi
+!.config/rofi/
+!.config/rofi/**
+
+# waybar
+!.config/waybar/
+!.config/waybar/**
+
 # hyprland
 !.config/hypr/
-!.config/hypr/*
 !.config/hypr/**
+
 

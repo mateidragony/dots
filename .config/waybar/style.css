@@ -1,0 +1,153 @@
+@import 'colors.css';
+
+* {
+    border: none;
+    border-radius: 0;
+    font-family: "JetBrainsMono Nerd Font", "Font Awesome 6 Free";
+    font-size: 12px;
+    min-height: 0;
+}
+
+window#waybar {
+    background-color: transparent;
+}
+
+window#waybar.hidden {
+    opacity: 0.2;
+}
+
+#workspaces {
+    margin: 0 5px;
+}
+
+#workspaces button {
+    padding: 0 6px;
+    margin: 0 2px;
+    border-radius: 6px;
+
+    opacity: 0.6;
+    background-color: @workspace-active;
+    color: @foreground-dark;
+}
+
+#workspaces button.empty {
+    opacity: 1;
+    background-color: transparent;
+    color: @foreground-bright;
+}
+
+#workspaces button.urgent {
+    opacity: 1;    
+    background-color: @workspace-urgent;
+    color: @foreground-bright;
+}
+
+#workspaces button.active {
+    opacity: 1;    
+    background-color: @workspace-active;
+    color: @foreground-dark;
+}
+
+#workspaces button:hover {
+    opacity: 1;    
+    background: @workspace-hover;
+    color: @foreground-bright;
+}
+
+
+#clock,
+#battery,
+#cpu,
+#memory,
+#temperature,
+#pulseaudio,
+#custom-media,#custom-scripts,
+#tray,
+#disk,
+#network{
+    padding: 0 10px;
+    margin: 0 5px;
+    border-radius: 6px;
+    
+    color: @foreground-dark;
+    background-color: @background;
+}
+
+#battery {
+    background-color: @battery-bg;
+}
+
+#battery.charging, #battery.plugged {
+    background-color: @battery-charging;
+}
+
+#battery.warning {
+    background-color: @battery-warning;
+}
+
+#battery.critical:not(.charging) {
+    background-color: @battery-critical-1;
+    animation-name: blink;
+    animation-duration: 0.25s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+@keyframes blink {
+    to {
+	background-color: @battery-critical-2;
+    }
+}
+
+#pulseaudio {
+    background-color: @audio-bg
+}
+
+#temperature {
+    background-color: @temperature-bg;
+}
+
+#temperature.warning {
+    background-color: @temperature-warning;
+    color: @foreground-bright;
+}
+
+#temperature.critical {
+    background-color: @temperature-critical;
+    color: @foreground-bright;
+}
+
+#disk.home {
+    background-color: @disk-home-bg;
+}
+
+#disk.root {
+    background-color: @disk-root-bg;
+}
+
+#memory {
+    background-color: @memory-bg;
+}
+
+#clock {
+    background-color: @clock-bg;
+    color: @foreground-dark;
+    font-weight: bold;
+    font-size: 13px;
+    /* border-radius: 1000px; */
+}
+
+#network {
+    background-color: @network-bg;
+}
+
+tooltip {
+    background-color: @tooltip-bg;
+    color: @foreground-light;
+    border: 1px solid @foreground-light;
+}
+
+tooltip label {
+    color: @foreground-bright;
+}

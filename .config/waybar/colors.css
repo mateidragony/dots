@@ -1,0 +1,41 @@
+@define-color background            #5B6465;
+@define-color foreground-bright     #fafafa;
+@define-color foreground-light      #f0f0f0;
+@define-color foreground-dark       #2c2b2d;
+
+/* Tool tips */
+@define-color tooltip-bg            #3b3f3f;
+
+/* Workspace */
+@define-color workspace-full        #d5c5e5;
+@define-color workspace-active      #c69fea;
+@define-color workspace-hover       #3e355b;
+@define-color workspace-urgent      #7c4545;
+
+/* Battery */
+@define-color battery-bg            #FFEEC8;
+@define-color battery-warning       #f7eaa8;
+@define-color battery-charging      #BEE8E3;
+@define-color battery-critical-1    #FFB7C4;
+@define-color battery-critical-2    #fca1b2;
+
+/* audio */
+@define-color audio-bg              #FAD8D4;
+
+/* Temperature */
+@define-color temperature-bg        #cce8b4;
+@define-color temperature-critical  #f7e08f;
+@define-color temperature-critical  #FFB7C4;
+
+/* Disk */
+@define-color disk-home-bg          #F1D3F0;
+@define-color disk-root-bg          #ffe1c6;
+
+/* Memory */
+@define-color memory-bg             #CCE2F1;
+
+/* Clock */
+@define-color clock-bg              #C5EAE6;
+
+/* Network */
+@define-color network-bg            #B5E3FD;

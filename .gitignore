@@ -50,4 +50,8 @@
 !.config/hypr/
 !.config/hypr/**
 
-
+# emacs
+!.emacs.d/
+.emacs.d/*
+!.emacs.d/themes/
+!.emacs.d/themes/**

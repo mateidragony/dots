@@ -54,7 +54,7 @@
 !.config/wlogout/
 !.config/wlogout/**
 
-# emacs
+# emacs directory
 !.emacs.d/
 .emacs.d/*
 !.emacs.d/themes/
@@ -63,3 +63,13 @@
 # icons
 !.icons/
 !.icons/**
+
+# local
+!.local/
+.local/*
+!.local/share/
+.local/share/*
+
+# backgrounds
+!.local/share/backgrounds/
+!.local/share/backgrounds/**

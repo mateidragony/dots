@@ -1,0 +1,78 @@
+#!/usr/bin/env bash
+
+# Import Current Theme
+DIR="$HOME/.config/rofi"
+RASI="$DIR/powermenu.rasi"
+CNFR="$DIR/confirm.rasi"
+
+# Theme Elements
+prompt="`hostname` (`echo $DESKTOP_SESSION`)"
+mesg="Uptime : `uptime -p | sed -e 's/up //g'`"
+
+option_1=""
+option_2=""
+option_3=""
+option_4=""
+option_5=""
+
+yes=' '
+no=' '
+
+
+# Rofi CMD
+rofi_cmd() {
+	rofi -dmenu \
+		-p "$prompt" \
+		-mesg "$mesg" \
+		-markup-rows \
+		-theme ${RASI}
+}
+
+# Pass variables to rofi dmenu
+run_rofi() {
+	echo -e "$option_1\n$option_2\n$option_3\n$option_4\n$option_5" | rofi_cmd
+}
+
+# Confirmation CMD
+confirm_cmd() {
+	rofi -dmenu \
+		-p 'Confirmation' \
+		-mesg 'Are you Sure?' \
+		-theme ${CNFR}
+}
+
+# Ask for confirmation
+confirm_exit() {
+	echo -e "$yes\n$no" | confirm_cmd
+}
+
+# Confirm and execute
+confirm_run () {	
+	selected="$(confirm_exit)"
+	if [[ "$selected" == "$yes" ]]; then
+        ${1} && ${2} && ${3}
+    else
+        exit
+    fi	
+}
+
+
+# Actions
+chosen="$(run_rofi)"
+case ${chosen} in
+    $option_1)
+		hyprlock
+        ;;
+    $option_2)
+	        confirm_run 'hyprctl dispatch exit'
+        ;;
+    $option_3)
+	        confirm_run 'pulsemixer --mute'  'systemctl suspend'
+        ;;
+    $option_4)
+	        confirm_run 'systemctl reboot'
+        ;;
+    $option_5)
+	        confirm_run 'systemctl poweroff'
+        ;;
+esac

@@ -38,6 +38,10 @@
 !.config/dunst/
 !.config/dunst/**
 
+# hyprland
+!.config/hypr/
+!.config/hypr/**
+
 # rofi
 !.config/rofi/
 !.config/rofi/**
@@ -46,12 +50,16 @@
 !.config/waybar/
 !.config/waybar/**
 
-# hyprland
-!.config/hypr/
-!.config/hypr/**
+# wlogout
+!.config/wlogout/
+!.config/wlogout/**
 
 # emacs
 !.emacs.d/
 .emacs.d/*
 !.emacs.d/themes/
 !.emacs.d/themes/**
+
+# icons
+!.icons/
+!.icons/**

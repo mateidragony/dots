@@ -22,3 +22,12 @@
 # nb
 !.nbrc
 
+# .config
+!.config/
+.config/*
+
+# hyprland
+!.config/hypr/
+!.config/hypr/*
+!.config/hypr/**
+

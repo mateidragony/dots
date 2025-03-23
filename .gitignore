@@ -59,6 +59,8 @@
 .emacs.d/*
 !.emacs.d/themes/
 !.emacs.d/themes/**
+!.emacs.d/scripts/
+!.emacs.d/scripts/**
 
 # icons
 !.icons/

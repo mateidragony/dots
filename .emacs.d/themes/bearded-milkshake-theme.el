@@ -7,7 +7,7 @@
 
   ;; color palette
   (milkshake-black        "#4f4239")
-  (milkshake-white        "#d1d8e1")
+  (milkshake-white        "#f2f2f2")
   (milkshake-gray         "#6d645e")
   (milkshake-dk-gray      "#586668")
   (milkshake-pink         "#cb27b0")

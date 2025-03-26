@@ -4,7 +4,7 @@
 iDIR="$HOME/.icons/dunst"
 notify_cmd="dunstify -u low -h string:x-dunst-stack-tag:obbacklight"
 
-# Get Volume
+# Get Brightness
 get_brightness() {
     value=`brightnessctl g`
     echo "$value / 1000" | bc
@@ -29,7 +29,7 @@ get_icon() {
 
 # Notify
 notify_user() {
-    ${notify_cmd} -i "$icon" "Volume : $(get_brightness)%"
+    ${notify_cmd} -i "$icon" "Brightness : $(get_brightness)%"
 }
 
 # bindel = ,XF86MonBrightnessUp, exec, brightnessctl s 3%+

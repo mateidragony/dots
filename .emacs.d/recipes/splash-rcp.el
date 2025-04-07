@@ -1,68 +1,6 @@
-;;; splash-screen.el --- An alternative splash screen -*- lexical-binding: t; -*-
-
-;; Copyright (C) 2020 Nicolas .P Rougier
-
-;; Author: Nicolas P. Rougier <nicolas.rougier@inria.fr>
-;; URL: https://github.com/rougier/emacs-splash
-;; Keywords: startup
-;; Version: 0.1
-;; Package-Requires: 
-
-;; This program is free software; you can redistribute it and/or modify
-;; it under the terms of the GNU General Public License as published by
-;; the Free Software Foundation, either version 3 of the License, or
-;; (at your option) any later version.
-
-;; This program is distributed in the hope that it will be useful,
-;; but WITHOUT ANY WARRANTY; without even the implied warranty of
-;; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-;; GNU General Public License for more details.
-
-;; You should have received a copy of the GNU General Public License
-;; along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
-;;; Commentary:
-;;
-;;  An alternative splash screen:
-;;
-;;  +–—————————––––––––––––––––––––––––––––————————————————————+
-;;  |                                                          |
-;;  |                                                          |
-;;  |                                                          |
-;;  |                                                          |
-;;  |                                                          |
-;;  |                                                          |
-;;  |                       www.gnu.org                        |
-;;  |                  GNU Emacs version XX.Y                  |
-;;  |                   a free/libre editor                    |
-;;  |                                                          |
-;;  |                                                          |
-;;  |                                                          |
-;;  |                                                          |
-;;  |                                                          |
-;;  |        GNU Emacs comes with ABSOLUTELY NO WARRANTY       |
-;;  |     Copyright (C) 2020 Free Software Foundation, Inc.    |
-;;  |                                                          |
-;;  +––––––––––––––––––––––––––––––––––––––————————————————————+
-;;
-;; Features:
-;;
-;;  - No logo, no moddeline, no scrollbars
-;;  - "q" or <esc> kills the splash screen
-;;  - Any other key open the about-emacs buffer
-;;  - With emacs-mac (Mituharu), splash screen is faded out after 3 seconds
-;;
-;; Note: The screen is not shown if there are opened file buffers. For
-;;       example, if you start emacs with a filename on the command
-;;       line, the splash is not shown.
-;;
-;; Usage:
-;; 
-;;  (require 'splash-screen)
-;;
+;;; splash-rcp.el --- An alternative splash screen
 ;;; Code:
 (require 'cl-lib)
-
 
 (defun ss-emacs-0 ()
     (insert (propertize "ㅤ          _____                    _____                    _____                    _____                    _____          ㅤ"  'face 'bold))
@@ -642,13 +580,12 @@
          (not (member "--file"      command-line-args))
          (not (member "--insert"    command-line-args))
          (not (member "--find-file" command-line-args))
-         (not inhibit-startup-screen)
-         )
+         (not inhibit-startup-screen))
     (progn
       (add-hook 'window-setup-hook 'splash-screen)
       (setq inhibit-startup-screen t 
             inhibit-startup-message t
             inhibit-startup-echo-area-message t)))
 
-(provide 'splash-screen)
-;;; splash-screen.el ends here
+(provide 'splash-rcp)
+;;; splash-rcp.el ends here

@@ -6,6 +6,10 @@
   )
 
 (use-package c-mode
+  :bind (("C-x <down>"   . hs-hide-block)
+	 ("C-x <up>"     . hs-show-block)
+	 ("C-x C-<down>" . hs-hide-all)
+	 ("C-x C-<up>"   . hs-show-all))
   :hook
   ((c-mode . irony-mode)
    (c-mode . company-mode))
@@ -15,6 +19,7 @@
   :config
   (rainbow-identifiers-mode 0)
   (rainbow-delimiters-mode 1)
+  (hs-minor-mode 1)
   )
 
 (use-package c++-mode

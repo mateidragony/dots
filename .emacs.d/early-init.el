@@ -4,25 +4,22 @@
 ;; Increase the GC threshold for faster startup
 ;; The default is 800 kilobytes.  Measured in bytes.
 ;; Set garbage collection threshold to 1GB.
-(setq gc-cons-threshold (if (display-graphic-p) 400000000 100000000)
+(setq gc-cons-threshold (if (display-graphic-p) (* 1024 1024 512) (* 1024 1024 128))
       gc-cons-percentage 0.5)
 
 ;; startup speed optimization.
-(defvar mc/emacs--file-name-handler-alist file-name-handler-alist)
-
 (setq file-name-handler-alist nil)
 
 (add-hook 'emacs-startup-hook
           (lambda ()
-            (setq gc-cons-threshold (* 1000 1000 8)
+            (setq gc-cons-threshold (* 1024 1024 8)
                   gc-cons-percentage 0.1
-                  file-name-handler-alist mc/emacs--file-name-handler-alist)))
+                  file-name-handler-alist file-name-handler-alist)))
 
-(eval-and-compile
-  (defun mc/garbage-collect-maybe ()
-    (unless (frame-focus-state)
-      (garbage-collect))))
-(add-function :after after-focus-change-function 'mc/garbage-collect-maybe)
+(add-function :after after-focus-change-function
+	      (lambda ()
+		(unless (frame-focus-state)
+		  (garbage-collect))))
 
 ;; Default locations is in system cache directory.
 (setq-default mc/emacs-config-directory (file-name-directory load-file-name)
@@ -66,6 +63,7 @@
 
 (modify-all-frames-parameters '((width                    . 100)
                                 (height                   . 100)
+				(background-color         . "#F4D39A")  ;; change if theme changes
                                 (alpha-background         . 100)
 				(cursor-color             . "#51afef")
                                 (font                     . "JetBrainsMono Nerd Font-10")

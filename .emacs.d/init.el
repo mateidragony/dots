@@ -34,10 +34,9 @@
 (require 'deduce-rcp)
 (require 'dired-rcp)
 (require 'json-rcp)
-(require 'prog-rcp)
 (require 'racket-rcp)
 (require 'shell-rcp)
-(require 'splash-screen-rcp)
+(require 'splash-rcp)
 (require 'theme-rcp)
 
 ;;; Commentary:

@@ -57,10 +57,13 @@
 # emacs directory
 !.emacs.d/
 .emacs.d/*
+!.emacs.d/init.el
 !.emacs.d/themes/
 !.emacs.d/themes/**
 !.emacs.d/scripts/
 !.emacs.d/scripts/**
+!.emacs.d/recipes/
+!.emacs.d/recipes/**
 
 # icons
 !.icons/

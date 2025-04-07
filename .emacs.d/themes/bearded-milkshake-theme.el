@@ -1,5 +1,12 @@
 (require 'autothemer)
 
+(setq default-frame-alist
+      (append
+       '((background-color . "#f4d39a")
+         (foreground-color . "#4f4239")
+         (cursor-color     . "#4f4239"))
+       default-frame-alist))
+
 (autothemer-deftheme
  bearded-milkshake "Emacs version of bearded milkshake for VSCode"
 
@@ -50,7 +57,9 @@
   (show-paren-match                   (:foreground milkshake-pink :background milkshake-selection :weight 'bold))
   (header-line                        (:background milkshake-dk-dk-bg))
   (mode-line                          (:background milkshake-dk-dk-bg))
+  (mode-line-active                   (:background milkshake-dk-dk-bg :box nil))
   (mode-line-inactive                 (:background milkshake-dk-dk-bg))
+  (mode-line-highlight                (:background milkshake-dk-dk-bg))
   (line-number                        (:foreground milkshake-gray))
   (shadow                             (:foreground milkshake-comment))
   (minibuffer-prompt                  (:foreground milkshake-blue :weight 'bold))
@@ -67,6 +76,10 @@
   (isearch-fail                       (:foreground milkshake-white :background milkshake-red))
   (success                            (:foreground milkshake-green))
   (completions-common-part            (:foreground milkshake-blue))
+
+  (window-divider                     (:foreground milkshake-dk-dk-bg :background milkshake-black))
+  (window-divider-first-pixel         (:inherit 'window-divider))
+  (window-divider-last-pixel          (:inherit 'window-divider))
   
   ;; Font lock
   (font-lock-string-face              (:foreground milkshake-green))
@@ -113,7 +126,7 @@
   (company-preview                         (:background milkshake-dk-bg))
   (company-preview-common                  (:foreground milkshake-blue))
   (company-preview-search                  (:foreground milkshake-blue))
-  (company-tooltip                         (:background milkshake-dk-dk-bg))
+  (company-tooltip                         (:background milkshake-dk-bg))
   (company-tooltip-annotation              (:foreground milkshake-orange))
   (company-tooltip-annotation-selection    (:foreground milkshake-orange))
   (company-tooltip-common                  (:foreground milkshake-blue))
@@ -121,11 +134,11 @@
   (company-tooltip-mouse                   (:background milkshake-lt-blue))
   (company-tooltip-quick-access-selection  (:foreground milkshake-orange)) 
   (company-tooltip-quick-access-selection  (:foreground milkshake-orange))
-  (company-tooltip-scrollbar-thumb         (:background milkshake-dk-bg))
+  (company-tooltip-scrollbar-thumb         (:background milkshake-dk-dk-dk-bg))
   (company-tooltip-scrollbar-track         (:background milkshake-dk-dk-bg))
-  (company-tooltip-search                  (:background milkshake-lt-blue))
-  (company-tooltip-search-selection        (:background milkshake-lt-blue))
-  (company-tooltip-selection               (:background milkshake-lt-blue))
+  (company-tooltip-search                  (:background milkshake-selection))
+  (company-tooltip-search-selection        (:background milkshake-selection))
+  (company-tooltip-selection               (:background milkshake-selection))
   (completions-highlight                   (:background milkshake-blue))
 
   ;; prog-mode
@@ -175,6 +188,18 @@
   (markdown-header-face-4                         (:foreground milkshake-red))
   (markdown-header-face-5                         (:foreground milkshake-pink))
   (markdown-link-face                             (:foreground milkshake-cyan :underline t))
+
+  ;; agda
+  (agda2-highlight-datatype-face                  (:foreground "#83d9ec"))
+  (agda2-highlight-field-face                     (:foreground "#4ff87a"))
+  (agda2-highlight-function-face                  (:foreground "#4ff87a" :weight 'heavy))
+  (agda2-highlight-inductive-constructor-face     (:foreground "#F92672"))
+  (agda2-highlight-keyword-face                   (:foreground "#ff79c6" :weight 'heavy))
+  (agda2-highlight-module-face                    (:foreground "#AE81FF"))
+  (agda2-highlight-number-face                    (:foreground "#AE81FF"))
+  (agda2-highlight-postulate-face                 (:foreground "#83d9ec"))
+  (agda2-highlight-primitive-face                 (:foreground "#d76aab"))
+  (agda2-highlight-primitive-type-face            (:foreground "#83d9ec"))
   ))
 
 

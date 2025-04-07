@@ -157,7 +157,6 @@ alias lsip='nmcli -p device show'
 alias calc='python3 -ic "from math import *"'
 alias duall='du -sh $(ls -A) | sort -hr'
 alias scratch='cd ~/scratch'
-alias emacs='emacs -nw'
 alias em='emacs -nw'
 
 mkcd ()

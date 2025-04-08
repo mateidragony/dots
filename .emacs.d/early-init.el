@@ -24,6 +24,7 @@
 ;; Default locations is in system cache directory.
 (setq-default mc/emacs-config-directory (file-name-directory load-file-name)
 	      custom-file               (expand-file-name "custom.el" user-emacs-directory))
+
 (load custom-file :noerror)
 
 (add-to-list 'exec-path "~/.cabal/bin/")
@@ -58,7 +59,8 @@
                make-backup-files                     nil
 	       completion-ignore-case                t
 	       read-file-name-completion-ignore-case t
-	       read-buffer-completion-ignore-case    t)
+	       read-buffer-completion-ignore-case    t
+	       bookmark-save-flag                    t)
 
 
 (modify-all-frames-parameters '((width                    . 100)
@@ -83,9 +85,13 @@
 (column-number-mode                 t)
 (global-font-lock-mode              1)
 (electric-pair-mode                 t)
+(recentf-mode                       1)
 (global-display-line-numbers-mode   1)
 (menu-bar-mode                     -1)
 (tool-bar-mode                     -1)
+
+(defvar mc/emacs-init-time nil
+  "The time it took, in seconds (as a float), for Emacs to start up.")
 
 ;; Make the initial buffer load faster by setting its mode to fundamental-mode
 (setq initial-major-mode 'fundamental-mode)

@@ -17,6 +17,7 @@
   ("<Paste>"        . clipboard-yank)
   :hook
   (after-save . executable-make-buffer-file-executable-if-script-p) ;; Make shebang (#!) file executable when saved
+  (kill-emacs . mc/quicksave-session)
   )
 
 (use-package display-line-numbers

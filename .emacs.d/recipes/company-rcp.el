@@ -4,8 +4,7 @@
 (require 'company-irony)
 
 (use-package company
-  :bind (("<ESC> <ESC>" . company-abort)
-	 ("<TAB>" . company-indent-or-complete-common))
+  :bind (("<ESC> <ESC>" . company-abort))
   :custom
   (lsp-completion-provider :capf)
   (company-minimum-prefix-length 1)

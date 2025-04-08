@@ -34,10 +34,14 @@
 (require 'deduce-rcp)
 (require 'dired-rcp)
 (require 'json-rcp)
+(require 'org-rcp)
+(require 'projectile-rcp)
 (require 'racket-rcp)
 (require 'shell-rcp)
 (require 'splash-rcp)
 (require 'theme-rcp)
+
+(setq mc/emacs-init-time (float-time (time-subtract (current-time) before-init-time)))
 
 ;;; Commentary:
 ;; Main init file

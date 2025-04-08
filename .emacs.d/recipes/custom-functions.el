@@ -62,6 +62,12 @@
   (find-file (expand-file-name "init.el" user-emacs-directory)))
 
 ;;;###autoload
+(defun mc/open-scratch ()
+  "Open init.el"
+  (interactive)
+  (switch-to-buffer (get-buffer-create "*scratch*")))
+
+;;;###autoload
 (defun mc/display-benchmark-h (&optional return-p)
   "Display a benchmark including number of packages loaded.
 

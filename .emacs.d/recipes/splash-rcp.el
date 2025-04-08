@@ -28,10 +28,10 @@
 
 
 (defvar dashboard-menu-sections
-  '(("Recently opened files"
+  '(("Open scratch buffer"
      :icon (nerd-icons-sucicon "nf-seti-default" :face 'dashboard-menu-title)
-     :action recentf-open-files
-     :key "C-c f")
+     :action mc/open-scratch
+     :key "C-c s")
     ("Reload last session"
      :icon (nerd-icons-octicon "nf-oct-history" :face 'dashboard-menu-title)
      :action mc/quickload-session
@@ -114,7 +114,7 @@
       (format " %s  "
 	      (or (nerd-icons-codicon "nf-cod-octoface" :face 'dashboard-footer-icon :height 1.3 :v-adjust -0.15)
 		  (propertize "github" 'face 'dashboard-footer)))
-      'action (lambda (_) (browse-url "https://github.com/hlissner/doom-emacs"))
+      'action (lambda (_) (browse-url "https://github.com/mateidragony"))
       'follow-link t
       'help-echo "Open mateidragony github page")
       (buffer-string))

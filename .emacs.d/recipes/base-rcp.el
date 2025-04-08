@@ -4,6 +4,8 @@
 
 (use-package emacs
   :demand t
+  :custom
+  (initial-scratch-message "")
   :config
   (defalias 'yes-or-no-p     'y-or-n-p)
   :bind

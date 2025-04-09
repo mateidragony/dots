@@ -4,6 +4,7 @@
 (use-package org
   :mode ("\\.org\\'" . org-mode)
   :custom
+  (org-directory "~/org")
   (org-todo-keywords '((sequence "TODO" "IN-PROGRESS" "WAITING" "DONE")))
   (org-todo-keyword-faces
    '(("TODO" . org-warning)
@@ -17,6 +18,7 @@
   (:map org-mode-map
 	("C-c a" . org-agenda))
   )
+
 
 (provide 'org-rcp)
 ;;; Commentary:

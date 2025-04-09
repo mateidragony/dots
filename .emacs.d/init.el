@@ -1,6 +1,7 @@
 ;;; init.el --- Main init
 ;;; Code:
 
+
 (eval-when-compile
   (require 'package)
   (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
@@ -34,6 +35,7 @@
 (require 'deduce-rcp)
 (require 'dired-rcp)
 (require 'json-rcp)
+(require 'modeline-rcp)
 (require 'org-rcp)
 (require 'projectile-rcp)
 (require 'racket-rcp)

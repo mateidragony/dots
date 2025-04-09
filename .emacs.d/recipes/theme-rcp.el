@@ -17,7 +17,7 @@
 
 (spacious-padding-mode 0)
 
-(setq window-divider-default-places t)
+(setq window-divider-default-places 'right-only)
 (setq window-divider-default-right-width 6)
 (setq window-divider-default-bottom-width 6)
 (window-divider-mode 1)

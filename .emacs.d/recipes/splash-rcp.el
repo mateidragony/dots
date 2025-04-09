@@ -163,10 +163,11 @@
   "Emacs splash screen"
   (let ((splash-buffer (get-buffer-create "*splash*")))
     (render-splash-screen splash-buffer)
-    (run-with-idle-timer 0 nil (lambda() (message nil)))
-    (switch-to-buffer splash-buffer)))
+    ;; (run-with-idle-timer 0 nil (lambda() (message nil)))
+    (when (equal (buffer-name) "*scratch*")
+      (switch-to-buffer splash-buffer))))
 
-(defun resize-splash-screen ()
+(defun resize-splash-screen (&optional _)
   (when (get-buffer "*splash*")
     (render-splash-screen "*splash*")))
 
@@ -182,6 +183,9 @@
       (setq inhibit-startup-screen  t 
             inhibit-startup-message t
             inhibit-startup-echo-area-message t)))
+
+(defun display-startup-echo-area-message ()
+  (message nil))
 
 (add-hook 'window-configuration-change-hook #'resize-splash-screen)
 (add-hook 'window-size-change-functions #'resize-splash-screen)

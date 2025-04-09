@@ -56,10 +56,10 @@
   (match                              (:background milkshake-selection))
   (show-paren-match                   (:foreground milkshake-pink :background milkshake-selection :weight 'bold))
   (header-line                        (:background milkshake-dk-dk-bg))
-  (mode-line                          (:background milkshake-dk-dk-bg))
-  (mode-line-active                   (:background milkshake-dk-dk-bg :box nil))
-  (mode-line-inactive                 (:background milkshake-dk-dk-bg))
-  (mode-line-highlight                (:background milkshake-dk-dk-bg))
+  (mode-line                          (:background milkshake-dk-dk-dk-bg))
+  (mode-line-active                   (:background milkshake-dk-dk-dk-bg))
+  (mode-line-inactive                 (:background milkshake-dk-dk-dk-bg))
+  (mode-line-highlight                (:background milkshake-dk-dk-dk-bg))
   (line-number                        (:foreground milkshake-gray))
   (shadow                             (:foreground milkshake-comment))
   (minibuffer-prompt                  (:foreground milkshake-blue :weight 'bold))
@@ -192,14 +192,20 @@
   ;; agda
   (agda2-highlight-datatype-face                  (:foreground "#83d9ec"))
   (agda2-highlight-field-face                     (:foreground "#4ff87a"))
-  (agda2-highlight-function-face                  (:foreground "#4ff87a" :weight 'heavy))
+  (agda2-highlight-function-face                  (:foreground "#4ff87a" :weight 'bold))
   (agda2-highlight-inductive-constructor-face     (:foreground "#F92672"))
-  (agda2-highlight-keyword-face                   (:foreground "#ff79c6" :weight 'heavy))
+  (agda2-highlight-keyword-face                   (:foreground "#ff79c6" :weight 'bold))
   (agda2-highlight-module-face                    (:foreground "#AE81FF"))
   (agda2-highlight-number-face                    (:foreground "#AE81FF"))
   (agda2-highlight-postulate-face                 (:foreground "#83d9ec"))
   (agda2-highlight-primitive-face                 (:foreground "#d76aab"))
   (agda2-highlight-primitive-type-face            (:foreground "#83d9ec"))
+  
+  ;; org
+  (org-agenda-structure                           (:foreground milkshake-black :weight 'bold))
+  (org-agenda-date                                (:foreground milkshake-blue))
+  (org-agenda-date-today                          (:foreground milkshake-purple :weight 'bold))
+  (org-agenda-date-weekend                        (:foreground milkshake-blue :weight 'bold))
   ))
 
 

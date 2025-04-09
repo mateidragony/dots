@@ -1,7 +1,6 @@
 ;;; init.el --- Main init
 ;;; Code:
 
-
 (eval-when-compile
   (require 'package)
   (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
@@ -27,6 +26,7 @@
 
 (require 'custom-functions)
 
+(require 'anzu-rcp)
 (require 'base-rcp)
 (require 'c-rcp)
 (require 'company-rcp)
@@ -34,14 +34,17 @@
 (require 'css-rcp)
 (require 'deduce-rcp)
 (require 'dired-rcp)
+(require 'js-rcp)
 (require 'json-rcp)
 (require 'modeline-rcp)
 (require 'org-rcp)
 (require 'projectile-rcp)
 (require 'racket-rcp)
+(require 'server-rcp)
 (require 'shell-rcp)
 (require 'splash-rcp)
 (require 'theme-rcp)
+(require 'web-rcp)
 
 (setq mc/emacs-init-time (float-time (time-subtract (current-time) before-init-time)))
 

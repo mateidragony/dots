@@ -77,6 +77,29 @@ If RETURN-P, return the message as a string instead of displaying it."
            (- (length load-path) (length (get 'load-path 'initial-value)))
            mc/emacs-init-time))
 
+;;;###autoload
+(defun mc/isearch-forward ()
+  "Do isearch. If region is active, search for the text in region."
+  (interactive)
+  (if (use-region-p)
+      (let ((search-text (buffer-substring-no-properties (region-beginning) (region-end))))
+	(goto-char (region-beginning))
+        (deactivate-mark)
+        (isearch-mode t)
+        (isearch-yank-string search-text))
+    (isearch-forward)))
+
+;;;###autoload
+(defun mc/query-replace ()
+  "Do `query-replace`. If region is active, use the text in region as the default."
+  (interactive)
+  (if (use-region-p)
+      (let ((search-text (buffer-substring-no-properties (region-beginning) (region-end))))
+        (goto-char (region-beginning))
+        (deactivate-mark)
+        (anzu-query-replace search-text (read-string (format "Replace \"%s\" with: " search-text))))
+    (call-interactively #'anzu-query-replace)))
+
 (provide 'custom-functions)
 ;;; Commentary:
 ;;

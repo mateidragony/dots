@@ -61,7 +61,8 @@
 	       read-file-name-completion-ignore-case t
 	       read-buffer-completion-ignore-case    t
 	       bookmark-save-flag                    t
-	       mode-line-format                      nil)
+	       mode-line-format                      nil
+	       suggest-key-bindings                  nil)
 
 
 (modify-all-frames-parameters '((width                    . 100)

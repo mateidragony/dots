@@ -2,6 +2,7 @@
 ;;; Code:
 
 (use-package projectile
+  :ensure t
   :bind (("C-c p" . projectile-command-map))
   :custom
   (projectile-project-search-path '("~/Documents/projects/"))

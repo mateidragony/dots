@@ -17,9 +17,12 @@
   ("C-c C-<up>"     . enlarge-window)
   ("<Copy>"         . kill-ring-save)
   ("<Paste>"        . clipboard-yank)
+  ("C-s"            . mc/isearch-forward)
+  ("M-%"            . mc/query-replace)
   :hook
   (after-save . executable-make-buffer-file-executable-if-script-p) ;; Make shebang (#!) file executable when saved
   (kill-emacs . mc/quicksave-session)
+  (kill-emacs . live-server-kill)
   )
 
 (use-package display-line-numbers

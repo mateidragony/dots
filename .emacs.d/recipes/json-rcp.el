@@ -2,6 +2,7 @@
 ;;; Code:
 
 (use-package json
+  :ensure t
   :mode ("\\.jsonc\\'" . json-mode)
   )
 

@@ -2,6 +2,7 @@
 ;;; Code:
 
 (use-package org
+  :ensure t
   :mode ("\\.org\\'" . org-mode)
   :custom
   (org-directory "~/org")

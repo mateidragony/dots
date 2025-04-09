@@ -53,8 +53,9 @@
  ((default                            (:foreground milkshake-black :background milkshake-bg))
   (cursor                             (:background milkshake-red))
   (region                             (:background milkshake-selection))
-  (match                              (:background milkshake-selection))
-  (show-paren-match                   (:foreground milkshake-pink :background milkshake-selection :weight 'bold))
+  (match                              (:inherit 'region))
+  (highlight                          (:inherit 'region))
+  (show-paren-match                   (:inherit 'region :foreground milkshake-pink :weight 'bold))
   (header-line                        (:background milkshake-dk-dk-bg))
   (mode-line                          (:background milkshake-dk-dk-dk-bg))
   (mode-line-active                   (:background milkshake-dk-dk-dk-bg))
@@ -122,7 +123,7 @@
   (rainbow-identifiers-identifier-15  (:foreground milkshake-variable-3))
 
   ;; company
-  (company-template-field                  (:background milkshake-selection))
+  (company-template-field                  (:inherit 'region))
   (company-preview                         (:background milkshake-dk-bg))
   (company-preview-common                  (:foreground milkshake-blue))
   (company-preview-search                  (:foreground milkshake-blue))
@@ -136,9 +137,9 @@
   (company-tooltip-quick-access-selection  (:foreground milkshake-orange))
   (company-tooltip-scrollbar-thumb         (:background milkshake-dk-dk-dk-bg))
   (company-tooltip-scrollbar-track         (:background milkshake-dk-dk-bg))
-  (company-tooltip-search                  (:background milkshake-selection))
-  (company-tooltip-search-selection        (:background milkshake-selection))
-  (company-tooltip-selection               (:background milkshake-selection))
+  (company-tooltip-search                  (:inherit 'region))
+  (company-tooltip-search-selection        (:inherit 'region))
+  (company-tooltip-selection               (:inherit 'region))
   (completions-highlight                   (:background milkshake-blue))
 
   ;; prog-mode
@@ -155,7 +156,7 @@
   (sh-quoted-exec                     (:foreground milkshake-purple))
   
   ;; coq
-  (proof-queue-face                               (:background milkshake-selection))
+  (proof-queue-face                               (:inherit 'region))
   (proof-locked-face                              (:background milkshake-lt-blue :underline nil))
   (proof-tactics-name-face                        (:foreground milkshake-orange :underline nil))
   (coq-solve-tactics-face                         (:foreground milkshake-red))
@@ -206,6 +207,15 @@
   (org-agenda-date                                (:foreground milkshake-blue))
   (org-agenda-date-today                          (:foreground milkshake-purple :weight 'bold))
   (org-agenda-date-weekend                        (:foreground milkshake-blue :weight 'bold))
+
+  ;; web
+  (web-mode-doctype-face                          (:inherit 'font-lock-comment-face))
+  (web-mode-html-tag-face                         (:foreground milkshake-pink))
+  (web-mode-html-attr-name-face                   (:foreground milkshake-orange))
+
+  ;; anzu
+  (anzu-mode-line                                 (:foreground milkshake-pink :weight 'bold))
+  (anzu-mode-line-no-match                        (:inherit 'anzu-mode-line))
   ))
 
 

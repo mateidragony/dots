@@ -3,6 +3,7 @@
 
 (use-package css
   :mode ("\\.rasi\\'" . css-mode)
+  :hook ((css-mode . lsp-mode))
   )
 
 (provide 'css-rcp)

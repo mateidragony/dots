@@ -2,6 +2,7 @@
 ;;; Code:
 
 (use-package racket-mode
+  :ensure t
   :bind (("C-c C-l" . racket-run-module-at-point)
 	 ("C-c C-k" . racket-repl-clear-leaving-last-prompt))
   :hook (racket-mode . racket-xp-mode)

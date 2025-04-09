@@ -1,6 +1,9 @@
 ;;; coq-rcp.el --- Coq configuration
 ;;; Code:
 
+(use-package company-coq
+  :ensure t)
+
 (use-package coq
   :bind
   ("M-<down>" . scroll-up-line)

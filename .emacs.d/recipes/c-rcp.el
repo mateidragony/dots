@@ -2,6 +2,7 @@
 ;;; Code:
 
 (use-package irony
+  :ensure t
   :hook (irony-mode . irony-cdb-autosetup-compile-options)
   )
 

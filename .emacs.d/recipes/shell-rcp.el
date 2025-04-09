@@ -2,6 +2,7 @@
 ;;; Code:
 
 (use-package shell
+  :ensure t
   :bind ("C-c C-k" . comint-clear-buffer)
   )
 

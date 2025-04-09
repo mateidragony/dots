@@ -1,6 +1,9 @@
 ;;; theme-rcp.el --- Emacs theme configuration
 ;;; Code:
 
+(use-package autothemer
+  :ensure t)
+
 (setq theme 'bearded-milkshake)
 (load-theme theme t)
 

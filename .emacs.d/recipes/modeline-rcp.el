@@ -66,6 +66,7 @@
     (`racket-mode             "🎾")
     (`sh-mode                 "🐢")
     (`shell-mode              "🐢")
+    (`web-mode                "🌐")
     (t                        "📄")))
 
 (defun mc/major-mode-icon ()
@@ -111,6 +112,7 @@
     (`racket-mode             "󰶠 ")
     (`sh-mode                 " ")
     (`shell-mode              " ")
+    (`web-mode                " ")
     (t                        "󰦨 ")))
 
 (defun mc/major-mode-name ()
@@ -139,6 +141,15 @@
 (defface modeline-highlighted-ro '((t (:foreground "#f2f2f2" :background "#e45649" :weight bold)))
   "Face used for editing mode (its always insert mode :D)")
 
+(defface modeline-inactive-insert '((t (:foreground "#4f4239" :background "#efc075" :weight bold)))
+  "Face used for editing mode")
+
+(defface modeline-inactive-modified '((t (:foreground "#4f4239" :background "#efc075" :weight bold)))
+  "Face used for editing mode (its always insert mode :D)")
+
+(defface modeline-inactive-ro '((t (:foreground "#4f4239" :background "#efc075" :weight bold)))
+  "Face used for editing mode (its always insert mode :D)")
+
 (defface modeline-lighter-bg '((t (:background "#f4cb89")))
   "Lighter background for modeline")
 
@@ -151,9 +162,15 @@
   (list
    ;; insert or read-only
    (cond
-    (buffer-read-only    (propertize " READ ONLY " 'face 'modeline-highlighted-ro))
-    ((buffer-modified-p) (propertize " *INSERT* " 'face 'modeline-highlighted-modified))
-    (t                   (propertize " INSERT "  'face 'modeline-highlighted-insert)))
+    (buffer-read-only (propertize " READ ONLY " 'face (if (mc/line-selected-window-active-p)
+							  'modeline-highlighted-ro
+							'modeline-inactive-ro)))
+    ((buffer-modified-p) (propertize " *INSERT* " 'face (if (mc/line-selected-window-active-p)
+							    'modeline-highlighted-modified
+							  'modeline-inactive-modified)))
+    (t (propertize " INSERT "  'face (if (mc/line-selected-window-active-p)
+					 'modeline-highlighted-insert
+				       'modeline-inactive-insert))))
    ;; git version control
    (when-let (vc vc-mode)
      (list 
@@ -163,21 +180,35 @@
    (propertize " %b" 'face 'modeline-buffer-name
                'help-echo (buffer-file-name))
    ;; file size
-   " (%I) "
+   " | %I"
+   ;; anzu number of search matches
+   (let ((anzu-line (format-mode-line anzu--mode-line-format)))
+     (if (> (length anzu-line) 0)
+	 (concat " | " anzu-line)
+       ""))
    ))
 
 (defun mode-line-right ()
   (list
-   ;; encoding
-   " %Z |"
+   ;; live server
+   (if live-server-port
+       (concat "󰀂 port: " live-server-port " | ")
+     (concat "󰯡 server off | "))
    ;; the current major mode
-   (concat " " (mc/major-mode-icon-emoji) " " (mc/major-mode-name) "  ")
+   (concat (mc/major-mode-icon-emoji) " " (mc/major-mode-name) "  ")
    ;; line column
    (propertize " %p " 'face 'modeline-lighter-bg)
    (cond
-    (buffer-read-only    (propertize "  %l:%c  " 'face 'modeline-highlighted-ro))
-    ((buffer-modified-p) (propertize "  %l:%c  " 'face 'modeline-highlighted-modified))
-    (t                   (propertize "  %l:%c  "  'face 'modeline-highlighted-insert)))
+
+    (buffer-read-only (propertize "  %l:%c  " 'face (if (mc/line-selected-window-active-p)
+							  'modeline-highlighted-ro
+							'modeline-inactive-ro)))
+    ((buffer-modified-p) (propertize "  %l:%c  " 'face (if (mc/line-selected-window-active-p)
+							    'modeline-highlighted-modified
+							  'modeline-inactive-modified)))
+    (t (propertize "  %l:%c  "  'face (if (mc/line-selected-window-active-p)
+					 'modeline-highlighted-insert
+				       'modeline-inactive-insert))))
    ))
 
 (defun mode-line-middle-space ()

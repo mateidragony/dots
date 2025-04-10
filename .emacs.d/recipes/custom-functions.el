@@ -91,18 +91,23 @@ If RETURN-P, return the message as a string instead of displaying it."
 
 ;;;###autoload
 (defun mc/query-replace ()
-  "Do `query-replace`. If region is active, use the text in region as the default."
+  "Do `anzu-query-replace-at-cursor` without regex"
   (interactive)
-  (if (use-region-p)
-      (let ((search-text (buffer-substring-no-properties (region-beginning) (region-end))))
-        (goto-char (region-beginning))
-        (deactivate-mark)
-        (anzu-query-replace search-text (read-string (format "Replace \"%s\" with: " search-text))))
-    (call-interactively #'anzu-query-replace)))
+  (call-interactively #'anzu-query-replace)
+  ;; (if (use-region-p)
+  ;;     (let ((search-text (buffer-substring-no-properties (region-beginning) (region-end))))
+  ;;       (goto-char (region-beginning))
+  ;;       (deactivate-mark)
+  ;;       (anzu-isearch-query-replace search-text))
+  ;;   )
+  )
+
+
+
 
 (provide 'custom-functions)
 ;;; Commentary:
 ;;
-;;; functions_my.el ends here
+;;; custom-functions.el ends here
 
 

@@ -7,6 +7,8 @@
   (anzu-cons-mode-line-p nil)
   )
 
+(global-set-key [remap query-replace] 'anzu-query-replace)
+(global-set-key [remap isearch-query-replace] 'anzu-isearch-query-replace)
 (global-anzu-mode 1)
 
 (provide 'anzu-rcp)

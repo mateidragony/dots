@@ -62,7 +62,8 @@
 	       read-buffer-completion-ignore-case    t
 	       bookmark-save-flag                    t
 	       mode-line-format                      nil
-	       suggest-key-bindings                  nil)
+	       suggest-key-bindings                  nil
+	       tab-width                             4)
 
 
 (modify-all-frames-parameters '((width                    . 100)
@@ -83,14 +84,15 @@
 (set-default-coding-systems 'utf-8) ;; Set default coding system (especially for Windows)
 
 
-(blink-cursor-mode                  1)
+(blink-cursor-mode                  t)
 (column-number-mode                 t)
-(global-font-lock-mode              1)
+(global-font-lock-mode              t)
 (electric-pair-mode                 t)
-(recentf-mode                       1)
-(global-display-line-numbers-mode   1)
-(menu-bar-mode                     -1)
-(tool-bar-mode                     -1)
+(recentf-mode                       t)
+(global-display-line-numbers-mode   t)
+(global-visual-line-mode            t)
+(menu-bar-mode                      -1)
+(tool-bar-mode                      -1)
 
 (defvar mc/emacs-init-time nil
   "The time it took, in seconds (as a float), for Emacs to start up.")

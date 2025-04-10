@@ -13,7 +13,7 @@
    ((eq theme 'bearded-arc)
     (face-remap-add-relative 'font-lock-comment-delimiter-face '(:foreground "#ffb75e"))
     (face-remap-add-relative 'font-lock-comment-face           '(:foreground "#ffb75e")))
-   ((eq theme 'bearded-milkshake)
+   ((eq theme 'colorful-sepia)
     (face-remap-add-relative 'font-lock-comment-delimiter-face '(:foreground "#c57600"))
     (face-remap-add-relative 'font-lock-comment-face           '(:foreground "#c57600"))))
   )

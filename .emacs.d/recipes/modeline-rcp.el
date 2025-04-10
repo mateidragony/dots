@@ -132,28 +132,23 @@
     (`mhtml-mode              "html")
     (t                        (downcase mode-name))))
 
-(defface modeline-highlighted-insert '((t (:foreground "#f2f2f2" :background "#7522d3" :weight bold)))
+(defface modeline-active-insert   '((t (:foreground "#f2f2f2" :background "#7522d3" :weight bold :box (:line-width 1 :color "#7522d3"))))
   "Face used for editing mode")
-
-(defface modeline-highlighted-modified '((t (:foreground "#f2f2f2" :background "#9c52f2" :weight bold)))
+(defface modeline-active-modified '((t (:inherit 'modeline-active-insert :background "#8e3bed" :box (:line-width 1 :color "#8e3bed"))))
+  "Face used for editing mode (its always insert mode :D)")
+(defface modeline-active-ro       '((t (:inherit 'modeline-active-insert :background "#e45649" :box (:line-width 1 :color "#e45649"))))
   "Face used for editing mode (its always insert mode :D)")
 
-(defface modeline-highlighted-ro '((t (:foreground "#f2f2f2" :background "#e45649" :weight bold)))
-  "Face used for editing mode (its always insert mode :D)")
-
-(defface modeline-inactive-insert '((t (:foreground "#4f4239" :background "#efc075" :weight bold)))
+(defface modeline-inactive-insert   '((t (:foreground "#4f4239" :background "#efc075" :weight bold)))
   "Face used for editing mode")
-
-(defface modeline-inactive-modified '((t (:foreground "#4f4239" :background "#efc075" :weight bold)))
+(defface modeline-inactive-modified '((t (:inherit 'modeline-inactive-insert)))
+  "Face used for editing mode (its always insert mode :D)")
+(defface modeline-inactive-ro       '((t (:inherit 'modeline-inactive-insert)))
   "Face used for editing mode (its always insert mode :D)")
 
-(defface modeline-inactive-ro '((t (:foreground "#4f4239" :background "#efc075" :weight bold)))
-  "Face used for editing mode (its always insert mode :D)")
-
-(defface modeline-lighter-bg '((t (:background "#f4cb89")))
+(defface modeline-lighter-bg        '((t (:background "#f4cb89")))
   "Lighter background for modeline")
-
-(defface modeline-buffer-name '((t (:weight bold)))
+(defface modeline-buffer-name       '((t (:weight bold)))
   "Face used for modeline buffer name")
 
 ;; percentage in file
@@ -163,13 +158,13 @@
    ;; insert or read-only
    (cond
     (buffer-read-only (propertize " READ ONLY " 'face (if (mc/line-selected-window-active-p)
-							  'modeline-highlighted-ro
+							  'modeline-active-ro
 							'modeline-inactive-ro)))
     ((buffer-modified-p) (propertize " *INSERT* " 'face (if (mc/line-selected-window-active-p)
-							    'modeline-highlighted-modified
+							    'modeline-active-modified
 							  'modeline-inactive-modified)))
     (t (propertize " INSERT "  'face (if (mc/line-selected-window-active-p)
-					 'modeline-highlighted-insert
+					 'modeline-active-insert
 				       'modeline-inactive-insert))))
    ;; git version control
    (when-let (vc vc-mode)
@@ -201,13 +196,13 @@
    (cond
 
     (buffer-read-only (propertize "  %l:%c  " 'face (if (mc/line-selected-window-active-p)
-							  'modeline-highlighted-ro
+							  'modeline-active-ro
 							'modeline-inactive-ro)))
     ((buffer-modified-p) (propertize "  %l:%c  " 'face (if (mc/line-selected-window-active-p)
-							    'modeline-highlighted-modified
+							    'modeline-active-modified
 							  'modeline-inactive-modified)))
     (t (propertize "  %l:%c  "  'face (if (mc/line-selected-window-active-p)
-					 'modeline-highlighted-insert
+					 'modeline-active-insert
 				       'modeline-inactive-insert))))
    ))
 

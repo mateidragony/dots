@@ -4,7 +4,7 @@
 (use-package autothemer
   :ensure t)
 
-(setq theme 'bearded-milkshake)
+(setq theme 'colorful-sepia)
 (load-theme theme t)
 
 (use-package spacious-padding

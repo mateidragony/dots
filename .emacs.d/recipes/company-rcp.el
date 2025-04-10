@@ -6,7 +6,8 @@
 (use-package lsp-mode
   :ensure t
   :custom
-  (lsp-headerline-breadcrumb-enable nil))
+  (lsp-headerline-breadcrumb-enable nil)
+  (tab-width 4))
 
 (use-package company
   :ensure t

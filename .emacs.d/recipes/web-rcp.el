@@ -5,7 +5,7 @@
   :ensure t
   :mode ("\\.html\\'" . web-mode)
   :hook ((web-mode . emmet-mode)
-	 (web-mode . company-mode)
+	 (web-mode . lsp-mode)
 	 (web-mode . auto-rename-tag-mode))
   )
 

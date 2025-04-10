@@ -139,7 +139,7 @@
 (defface modeline-active-ro       '((t (:inherit 'modeline-active-insert :background "#e45649" :box (:line-width 1 :color "#e45649"))))
   "Face used for editing mode (its always insert mode :D)")
 
-(defface modeline-inactive-insert   '((t (:foreground "#4f4239" :background "#efc075" :weight bold)))
+(defface modeline-inactive-insert   '((t (:foreground "#4f4239" :background "#efc075" :weight bold :box (:line-width 1 :color "#efc075"))))
   "Face used for editing mode")
 (defface modeline-inactive-modified '((t (:inherit 'modeline-inactive-insert)))
   "Face used for editing mode (its always insert mode :D)")

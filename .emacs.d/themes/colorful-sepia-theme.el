@@ -30,13 +30,13 @@
   (cs-lt-red       "#fca1a4")
   (cs-red          "#9b0a12")
   (cs-dk-red       "#e35535") 
-  (cs-orange       "#bd4507")
+  (cs-orange       "#a86514")
   (cs-teal         "#4e9297")
   (cs-dk-teal      "#306468")
   (cs-lt-cyan      "#d2dbbd")
   (cs-cyan         "#00c1bc")
   (cs-dk-cyan      "#099e99")
-  (cs-yellow       "#d47307")
+  (cs-yellow       "#e5cb22")
   
   (cs-bg           "#f4d39a")
   (cs-lt-bg        "#f2dea9")
@@ -53,20 +53,21 @@
   (cs-variable-6   "#f7a8b5"))
  
  ;; Customize faces
- ((default                            (:foreground cs-black :background cs-bg))
-  (cursor                             (:background cs-black))
-  (region                             (:background cs-selection))
-  (match                              (:inherit 'region))
-  (highlight                          (:inherit 'region))
-  (show-paren-match                   (:inherit 'region :foreground cs-pink :weight 'bold))
-  (header-line                        (:background cs-dk-bg))
-  (line-number                        (:foreground cs-gray))
-  (shadow                             (:foreground cs-comment))
-  (minibuffer-prompt                  (:foreground cs-blue :weight 'bold))
-  (warning                            (:foreground cs-orange :weight 'bold))
+ ((cursor                             (:background cs-black))
+  (default                            (:foreground cs-black :background cs-bg))
   (error                              (:foreground cs-red :weight 'bold))
-  (success                            (:foreground cs-green))
+  (header-line                        (:background cs-dk-bg))
   (help-key-binding                   (:foreground cs-black :background cs-lt-bg :box t))
+  (highlight                          (:inherit 'region))
+  (line-number                        (:foreground cs-gray))
+  (match                              (:inherit 'region))
+  (minibuffer-prompt                  (:foreground cs-blue :weight 'bold))
+  (region                             (:background cs-selection))
+  (shadow                             (:foreground cs-comment))
+  (show-paren-match                   (:inherit 'region :foreground cs-pink :weight 'bold))
+  (success                            (:foreground cs-green))
+  (tooltip                            (:inherit 'variable-pitch :foreground cs-white :background cs-black))
+  (warning                            (:foreground cs-orange :weight 'bold))
   
   ;; agda
   (agda2-highlight-datatype-face                  (:foreground "#83d9ec"))
@@ -95,6 +96,7 @@
   (anzu-mode-line-no-match            (:inherit 'anzu-mode-line))
   (anzu-replace-highlight             (:inherit 'isearch))
   (anzu-replace-to                    (:inherit 'font-lock-comment-face))
+
 
   ;; company
   (company-template-field                         (:inherit 'region))
@@ -147,7 +149,7 @@
   (eww-valid-certificate              (:foreground cs-green :weight 'bold))
   
   ;; flymake
-  (flymake-warning                    (:background cs-dk-red :underline nil))
+  (flymake-warning                    (:underline (:color cs-orange :style 'wave)))
   
   ;; Font lock
   (font-lock-string-face              (:foreground cs-green))
@@ -176,6 +178,20 @@
   (isearch-group-1                    (:inherit 'isearch))
   (isearch-group-2                    (:inherit 'isearch))
   (lazy-highlight                     (:background cs-lt-blue))
+
+  ;; lsp ui
+  (lsp-ui-doc-background              (:inherit 'default))
+  (lsp-ui-doc-header                  (:background cs-blue :foreground cs-white))
+  (lsp-ui-peek-filename               (:foreground cs-red))
+  (lsp-ui-peek-footer                 (:background cs-dk-dk-bg))
+  (lsp-ui-peek-header                 (:inherit 'lsp-ui-peek-footer))
+  (lsp-ui-peek-highlight              (:background cs-yellow :box (:color cs-lt-red)))
+  (lsp-ui-peek-list                   (:background cs-dk-bg))
+  (lsp-ui-peek-peek                   (:inherit 'lsp-ui-peek-list))
+  (lsp-ui-peek-selection              (:background cs-selection))
+  (lsp-ui-sideline-code-action        (:foreground cs-orange))
+  (lsp-ui-sideline-symbol             (:foreground cs-gray :box (:color cs-gray)))
+  (lv-separator                       (:background cs-gray))
   
   ;; markdown
   (markdown-header-face-1             (:foreground cs-purple))

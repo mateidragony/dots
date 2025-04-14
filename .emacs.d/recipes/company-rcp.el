@@ -3,12 +3,6 @@
 
 (require 'company-irony)
 
-(use-package lsp-mode
-  :ensure t
-  :custom
-  (lsp-headerline-breadcrumb-enable nil)
-  (tab-width 4))
-
 (use-package company
   :ensure t
   :bind (("<ESC> <ESC>" . company-abort))
@@ -20,13 +14,7 @@
   (company-format-margin-function #'company-text-icons-margin)
   (company-frontends '(company-preview-frontend company-pseudo-tooltip-frontend))
   :config
-  (add-to-list 'company-backends 'company-irony-c-headers)
-  (add-to-list 'company-backends 'company-irony)
-  (add-to-list 'company-backends 'company-css)
-  (add-to-list 'company-backends 'company-web-html)
-  (add-to-list 'company-backends 'company-yasnippet)
-  (add-to-list 'company-backends 'company-capf)
-  )
+  (add-to-list 'company-backends 'company-web-html))
 
 (provide 'company-rcp)
 ;;; Commentary:

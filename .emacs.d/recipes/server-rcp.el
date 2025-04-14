@@ -1,37 +1,56 @@
 ;;; server-rcp.el --- Emacs live server functions
 ;;; Code:
 
-(defvar live-server-port nil)
+(defvar live-server-port nil
+  "Port number of active live server")
+(defvar live-server-pid nil
+  "Process id of active live server")
+
+
+(defun live-server-ready-p ()
+  "Return the port number from the 'Local' browser-sync line in the output buffer."
+  (with-current-buffer "*live-server*"
+	(let ((content (buffer-string)))
+	  (when (string-match "Local:.*?localhost:\\([0-9]+\\)\n" content)
+		(substring content (match-beginning 1) (match-end 1))))))
 
 ;;;###autoload
 (defun live-server-start ()
   "Start live server in current directory"
   (interactive)
-  (call-process-shell-command
-   "browser-sync start --server --no-ui --port 12345 --no-open --watch > .live-server-output &"
-   nil 0)
-  (let ((url ""))
-    (while (eq 0 (length url))
-      (setq url (shell-command-to-string "awk '/Local:/ {print $2}' .live-server-output")))
-    (setq url (string-trim url))
-    (call-process-shell-command "rm .live-server-output" nil 0)
-    (message (format "Live server started at %s" url))
-    (browse-url (format "%s/%s" url (file-name-nondirectory (buffer-file-name))))
-    (setq live-server-port
-	  (if (string-match ":[0-9]+$" url)
-	      (substring url (1+ (match-beginning 0)))
-	    nil))
-    ))
+  (if live-server-pid
+	  (message "Live server already active!")
+	(progn
+	  (with-current-buffer (get-buffer-create "*live-server*")
+		(erase-buffer))
+	  (let ((proc (make-process
+				   :name "live-server"
+				   :buffer "*live-server*"
+				   :command '("browser-sync" "start" "--server" "--no-ui"
+							  "--no-open" "--watch")
+				   :noquery t
+				   :stderr nil)))
+		(setq live-server-pid (process-id proc))
+		(sleep-for 0 10)
+		(while (not live-server-port)
+		  (setq live-server-port (live-server-ready-p))
+		  (sleep-for 0 10))
+		(message live-server-port)
+		(message "Live server started at port: %s" live-server-port)
+		(browse-url (format "http://localhost:%s/%s" live-server-port (file-name-nondirectory (buffer-file-name))))))))
 
 
 ;;;###autoload
 (defun live-server-kill ()
   "Kill emacs live server"
   (interactive)
-  (message (if (eq 0 (call-process-shell-command "pkill -f \"node /usr/bin/browser-sync\"" nil nil))
-	       "Live server successfully killed"
-	     "Something went wrong..."))
-  (setq live-server-port nil))
+  (if live-server-pid
+	  (progn
+		(call-process-shell-command (format "kill %s" live-server-pid))
+		(message "Live server successfully killed"))
+	(message "No active live server!"))
+  (setq live-server-port nil)
+  (setq live-server-pid nil))
 
 (provide 'server-rcp)
 ;;; Commentary:

@@ -5,8 +5,8 @@
   :ensure t
   :mode ("\\.html\\'" . web-mode)
   :hook ((web-mode . emmet-mode)
-	 (web-mode . lsp-mode)
-	 (web-mode . auto-rename-tag-mode))
+		 (web-mode . lsp-mode)
+		 (web-mode . auto-rename-tag-mode))
   )
 
 (provide 'web-rcp)

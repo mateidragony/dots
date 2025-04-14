@@ -1,19 +1,12 @@
 ;;; c-rcp.el --- C configuration
 ;;; Code:
 
-(use-package irony
-  :ensure t
-  :hook (irony-mode . irony-cdb-autosetup-compile-options)
-  )
-
 (use-package c-mode
   :bind (("C-x <down>"   . hs-hide-block)
-	 ("C-x <up>"     . hs-show-block)
-	 ("C-x C-<down>" . hs-hide-all)
-	 ("C-x C-<up>"   . hs-show-all))
-  :hook
-  ((c-mode . irony-mode)
-   (c-mode . company-mode))
+		 ("C-x <up>"     . hs-show-block)
+		 ("C-x C-<down>" . hs-hide-all)
+		 ("C-x C-<up>"   . hs-show-all))
+  :hook (c-mode . lsp-mode)
   :custom
   (comment-start "//")
   (comment-end "")
@@ -24,14 +17,10 @@
   )
 
 (use-package c++-mode
-  :hook
-  ((c++-mode . irony-mode)
-   (c++-mode . company-mode)))
+  :hook (c++-mode . lsp-mode))
 
 (use-package objc-mode
-  :hook
-  ((objc-mode . irony-mode)
-   (objc-mode . company-mode)))
+  :hook (objc-mode . lsp-mode))
 
 (provide 'c-rcp)
 ;;; Commentary:

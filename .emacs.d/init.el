@@ -36,6 +36,7 @@
 (require 'dired-rcp)
 (require 'js-rcp)
 (require 'json-rcp)
+(require 'lsp-rcp)
 (require 'modeline-rcp)
 (require 'org-rcp)
 (require 'projectile-rcp)
@@ -45,6 +46,7 @@
 (require 'splash-rcp)
 (require 'theme-rcp)
 (require 'web-rcp)
+(require 'yas-rcp)
 
 (setq mc/emacs-init-time (float-time (time-subtract (current-time) before-init-time)))
 

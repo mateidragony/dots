@@ -3,7 +3,10 @@
 
 (use-package css
   :mode ("\\.rasi\\'" . css-mode)
-  :hook ((css-mode . lsp-mode))
+  :hook ((css-mode . lsp-mode)
+		 (css-mode . hs-minor-mode))
+  :config
+  (yas-minor-mode nil)
   )
 
 (provide 'css-rcp)

@@ -93,14 +93,7 @@ If RETURN-P, return the message as a string instead of displaying it."
 (defun mc/query-replace ()
   "Do `anzu-query-replace-at-cursor` without regex"
   (interactive)
-  (call-interactively #'anzu-query-replace)
-  ;; (if (use-region-p)
-  ;;     (let ((search-text (buffer-substring-no-properties (region-beginning) (region-end))))
-  ;;       (goto-char (region-beginning))
-  ;;       (deactivate-mark)
-  ;;       (anzu-isearch-query-replace search-text))
-  ;;   )
-  )
+  (call-interactively #'anzu-query-replace))
 
 
 

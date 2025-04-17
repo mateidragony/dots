@@ -29,7 +29,8 @@
   (cs-green        "#088d17")
   (cs-lt-red       "#fca1a4")
   (cs-red          "#9b0a12")
-  (cs-dk-red       "#e35535") 
+  (cs-dk-red       "#e35535")
+  (cs-dk-dk-red    "#6d070c")
   (cs-orange       "#a86514")
   (cs-teal         "#4e9297")
   (cs-dk-teal      "#306468")
@@ -43,6 +44,7 @@
   (cs-dk-bg        "#f2d993")
   (cs-dk-dk-bg     "#e8bd78")
   (cs-selection    "#f998b8")
+  (cs-selection-2  "#e8c6f2")
   (cs-comment      "#7b7071")
 
   (cs-variable-1   "#99d6ff")
@@ -58,11 +60,12 @@
   (error                              (:foreground cs-red :weight 'bold))
   (header-line                        (:background cs-dk-bg))
   (help-key-binding                   (:foreground cs-black :background cs-lt-bg :box t))
-  (highlight                          (:inherit 'region))
+  (highlight                          (:inherit 'region))  
   (line-number                        (:foreground cs-gray))
   (match                              (:inherit 'region))
   (minibuffer-prompt                  (:foreground cs-blue :weight 'bold))
   (region                             (:background cs-selection))
+  (secondary-selection                (:background cs-selection-2))
   (shadow                             (:foreground cs-comment))
   (show-paren-match                   (:inherit 'region :foreground cs-pink :weight 'bold))
   (success                            (:foreground cs-green))
@@ -96,7 +99,6 @@
   (anzu-mode-line-no-match            (:inherit 'anzu-mode-line))
   (anzu-replace-highlight             (:inherit 'isearch))
   (anzu-replace-to                    (:inherit 'font-lock-comment-face))
-
 
   ;; company
   (company-template-field                         (:inherit 'region))
@@ -137,7 +139,7 @@
   (custom-invalid                     (:foreground cs-white :background cs-red))
   (custom-variable-obsolete           (:foreground cs-blue))
   (custom-variable-tag                (:foreground cs-blue :weight 'bold))
-
+  
   ;; eww
   (eww-form-checkbox                  (:inherit 'custom-button))
   (eww-form-file                      (:inherit 'custom-button-mouse))
@@ -200,6 +202,7 @@
   (markdown-header-face-4             (:foreground cs-red))
   (markdown-header-face-5             (:foreground cs-pink))
   (markdown-link-face                 (:inherit 'link))
+  (markdown-highlighting-face         (:inherit 'secondary-selection :weight 'bold))
 
   ;; modeline
   (mode-line                          (:background cs-dk-dk-bg))
@@ -226,15 +229,19 @@
 
   ;; org
   (org-agenda-structure               (:foreground cs-black :weight 'bold))
-  (org-agenda-date                    (:foreground cs-blue))
-  (org-agenda-date-today              (:foreground cs-purple :weight 'bold))
-  (org-agenda-date-weekend            (:foreground cs-blue :weight 'bold))
+  (org-agenda-date                    (:foreground cs-blue :weight 'bold))
+  (org-agenda-date-today              (:inherit 'org-agenda-date :foreground cs-purple))
+  (org-agenda-date-weekend            (:inherit 'org-agenda-date :weight 'normal :foreground cs-blue))
   (org-agenda-current-time            (:foreground cs-pink))
   (org-agenda-clocking                (:background cs-yellow))
-  (org-date-selected                  (:background cs-red))
+  (org-date-selected                  (:background cs-red :foreground cs-white :weight 'bold))
   (org-mode-line-clock-overrun        (:background cs-red))
   (org-tag                            (:inherit 'font-lock-comment-face))
-
+  (org-super-agenda-header            (:weight 'bold))
+  (org-imminent-deadline              (:foreground cs-dk-dk-red))
+  (org-upcoming-deadline              (:foreground cs-black))
+  (org-upcoming-distant-deadline      (:foreground cs-black))
+  
   ;; prog-mode
   (compilation-info                   (:foreground cs-green))
 
@@ -278,6 +285,38 @@
   (sh-heredoc                         (:foreground cs-orange))
   (sh-quoted-exec                     (:foreground cs-purple))
 
+  ;; shr
+  (shr-mark                           (:inherit 'secondary-selection :weight 'bold))
+  (shr-selected-link                  (:inherit 'shr-mark))
+
+  ;; sidebar
+  (sidebar-added                      (:foreground cs-green))
+  (sidebar-branch                     (:inherit 'sidebar-primary-color))
+  (sidebar-buffers-headers-face       (:foreground cs-purple :height 1.4))
+  (sidebar-changed                    (:foreground cs-orange))
+  (sidebar-dir                        (:foreground cs-black :weight 'bold))
+  (sidebar-empty-face                 (:foreground cs-black))
+  (sidebar-file                       (:foreground cs-black))
+  (sidebar-header-line                (:inherit 'sidebar-primary-color))
+  (sidebar-icon-branch                (:inherit 'sidebar-primary-color))
+  (sidebar-icon-header-directory      (:inherit 'sidebar-primary-color))
+  (sidebar-icon-header-project        (:inherit 'sidebar-primary-color))
+  (sidebar-icon-remote-branch         (:inherit 'sidebar-primary-color))
+  (sidebar-ignored-dir                (:inherit 'sidebar-untracked))
+  (sidebar-ignored-file               (:inherit 'sidebar-untracked))
+  (sidebar-match                      (:foreground cs-green))
+  (sidebar-not-updated                (:foreground cs-red))
+  (sidebar-powerline                  (:background cs-selection))
+  (sidebar-primary-color              (:foreground cs-white :background cs-blue))
+  (sidebar-remote-branch              (:inherit 'sidebar-primary-color))
+  (sidebar-renamed                    (:inherit 'sidebar-changed))
+  (sidebar-select-header              (:inherit 'sidebar-primary-color))
+  (sidebar-select-line                (:inherit 'sidebar-primary-color))
+  (sidebar-suffix-path-header         (:foreground cs-gray))
+  (sidebar-untracked                  (:inherit 'font-lock-comment-face))
+  (sidebar-updated                    (:foreground cs-green))
+  
+  
   ;; tab bar
   (tab-bar                            (:inherit 'variable-pitch :foreground cs-black :background cs-lt-bg))
   (tab-line                           (:inherit 'tab-bar :underline t))

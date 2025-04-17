@@ -33,13 +33,15 @@
 (require 'coq-rcp)
 (require 'css-rcp)
 (require 'deduce-rcp)
-(require 'dired-rcp)
+(require 'eww-rcp)
+(require 'java-rcp)
 (require 'js-rcp)
 (require 'json-rcp)
 (require 'lsp-rcp)
 (require 'modeline-rcp)
 (require 'org-rcp)
 (require 'projectile-rcp)
+(require 'python-rcp)
 (require 'racket-rcp)
 (require 'server-rcp)
 (require 'shell-rcp)
@@ -55,4 +57,5 @@
 ;; Local Variables:
 ;; End:
 ;;; init.el ends here
-(put 'upcase-region 'disabled nil)
+;; (put 'upcase-region 'disabled nil)
+;; (put 'downcase-region 'disabled nil)

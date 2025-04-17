@@ -58,7 +58,7 @@
     (`makefile-imake-mode     "Ⓜ️")
     (`makefile-makepp-mode    "Ⓜ️")
     (`makefile-gmake-mode     "Ⓜ️")
-    (`markdown-mode           "📉")
+    (`markdown-mode           "👇")
     (`mhtml-mode              "🌐")
     (`objc-mode               "🌊")
     (`org-mode                "🦄")
@@ -168,14 +168,14 @@
    ;; insert or read-only
    (cond
     (buffer-read-only (propertize " READ ONLY " 'face (if (mc/line-selected-window-active-p)
-							  'modeline-active-ro
-							'modeline-inactive-ro)))
+														  'modeline-active-ro
+														'modeline-inactive-ro)))
     ((buffer-modified-p) (propertize " *INSERT* " 'face (if (mc/line-selected-window-active-p)
-							    'modeline-active-modified
-							  'modeline-inactive-modified)))
+															'modeline-active-modified
+														  'modeline-inactive-modified)))
     (t (propertize " INSERT "  'face (if (mc/line-selected-window-active-p)
-					 'modeline-active-insert
-				       'modeline-inactive-insert))))
+										 'modeline-active-insert
+									   'modeline-inactive-insert))))
    ;; git version control
    (when-let (vc vc-mode)
      (list 
@@ -189,7 +189,7 @@
    ;; anzu number of search matches
    (let ((anzu-line (format-mode-line anzu--mode-line-format)))
      (if (> (length anzu-line) 0)
-	 (concat " | " anzu-line)
+		 (concat " | " anzu-line)
        ""))
    ))
 
@@ -206,28 +206,28 @@
    (cond
 
     (buffer-read-only (propertize "  %l:%c  " 'face (if (mc/line-selected-window-active-p)
-							  'modeline-active-ro
-							'modeline-inactive-ro)))
+														'modeline-active-ro
+													  'modeline-inactive-ro)))
     ((buffer-modified-p) (propertize "  %l:%c  " 'face (if (mc/line-selected-window-active-p)
-							    'modeline-active-modified
-							  'modeline-inactive-modified)))
+														   'modeline-active-modified
+														 'modeline-inactive-modified)))
     (t (propertize "  %l:%c  "  'face (if (mc/line-selected-window-active-p)
-					 'modeline-active-insert
-				       'modeline-inactive-insert))))
+										  'modeline-active-insert
+										'modeline-inactive-insert))))
    ))
 
 (defun mode-line-middle-space ()
   (let ((r-length (- (length (format-mode-line (mode-line-right))) 0)))
     (propertize " "
-		'display `((space :align-to (- right ,r-length))))
+				'display `((space :align-to (- right ,r-length))))
     ))
 
 ;; mode line config
 (setq-default mode-line-format
               (list
                '(:eval (mode-line-left))
-	       '(:eval (mode-line-middle-space))
-	       '(:eval (mode-line-right))))
+			   '(:eval (mode-line-middle-space))
+			   '(:eval (mode-line-right))))
 
 (provide 'modeline-rcp)
 ;;; Commentary:

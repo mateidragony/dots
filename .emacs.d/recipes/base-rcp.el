@@ -15,6 +15,10 @@
   ("C-c C-<right>"  . enlarge-window-horizontally)
   ("C-c C-<down>"   . shrink-window)
   ("C-c C-<up>"     . enlarge-window)
+  ("C-x C-1"        . delete-other-windows) ;; fat-finger
+  ("C-x C-2"        . split-window-below)   ;; fat-finger
+  ("C-x C-3"        . split-window-right)   ;; fat-finger
+  ("C-x C-o"        . other-window)         ;; fat-finger
   ("<Copy>"         . kill-ring-save)
   ("<Paste>"        . clipboard-yank)
   ("C-s"            . mc/isearch-forward)
@@ -27,10 +31,9 @@
 
 (use-package display-line-numbers
   :demand t
+  :hook (prog-mode text-mode fundamental-mode)
   :custom
   (display-line-numbers-type t)
-  :config
-  (global-display-line-numbers-mode t)
   )
 
 (use-package fringe

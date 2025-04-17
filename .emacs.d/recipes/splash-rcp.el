@@ -3,7 +3,6 @@
 ;;; Code:
 (require 'cl-lib)
 (require 'nerd-icons)
-(require 'centered-window)
 
 (setq ss-functions (list #'ss-emacs-0 #'ss-emacs-1 #'ss-emacs-2))
 (defvar ss-ascii (nth (random (length ss-functions)) ss-functions))
@@ -52,7 +51,7 @@
     ("Open private configuration"
      :icon (nerd-icons-octicon "nf-oct-tools" :face 'dashboard-menu-title)
      :action mc/open-config
-     :key "C-c c")
+     :key "C-c f")
     ("Open documentation"
      :icon (nerd-icons-octicon "nf-oct-book" :face 'dashboard-menu-title)
      :action info
@@ -78,24 +77,24 @@
       (when (and (fboundp action)
                  (or (null when)
                      (eval when t)))
-	(let* ((icon (if (stringp icon) icon (eval icon t)))
-	       (interactive-action `(lambda (_) (call-interactively  #',action)))
-	       (section-str
-		(format
-		 (format "%s%%-10s" (if icon "%3s  " "%3s"))
-		 (with-temp-buffer
-		   (insert-text-button
-		    label
-		    'action interactive-action
-		    'face (or face 'dashboard-menu-title)
-		    'follow-link t
-		    'help-echo (format "%s (%s)" label
-				       (propertize (symbol-name action) 'face 'dashboard-menu-desc)))
-		   (format "%-37s" (buffer-string)))
-		 (propertize key 'face 'dashboard-menu-desc))))
-	  (local-set-key (kbd key) (lambda () (interactive) (call-interactively action)))
-	  (splash-screen-center window-width (- (length section-str) 1))
-	  (insert icon "  " section-str "\n\n"))))))
+		(let* ((icon (if (stringp icon) icon (eval icon t)))
+			   (interactive-action `(lambda (_) (call-interactively  #',action)))
+			   (section-str
+				(format
+				 (format "%s%%-10s" (if icon "%3s  " "%3s"))
+				 (with-temp-buffer
+				   (insert-text-button
+					label
+					'action interactive-action
+					'face (or face 'dashboard-menu-title)
+					'follow-link t
+					'help-echo (format "%s (%s)" label
+									   (propertize (symbol-name action) 'face 'dashboard-menu-desc)))
+				   (format "%-37s" (buffer-string)))
+				 (propertize key 'face 'dashboard-menu-desc))))
+		  (local-set-key (kbd key) (lambda () (interactive) (call-interactively action)))
+		  (splash-screen-center window-width (- (length section-str) 1))
+		  (insert icon "  " section-str "\n\n"))))))
 
 (defun render-dashboard-loaded-widget (window-width)
   (let ((benchmark-str (mc/display-benchmark-h 'return)))
@@ -112,19 +111,19 @@
    (with-temp-buffer
      (insert-text-button
       (format " %s  "
-	      (or (nerd-icons-codicon "nf-cod-octoface" :face 'dashboard-footer-icon :height 1.3 :v-adjust -0.15)
-		  (propertize "github" 'face 'dashboard-footer)))
+			  (or (nerd-icons-codicon "nf-cod-octoface" :face 'dashboard-footer-icon :height 1.3 :v-adjust -0.15)
+				  (propertize "github" 'face 'dashboard-footer)))
       'action (lambda (_) (browse-url "https://github.com/mateidragony"))
       'follow-link t
       'help-echo "Open mateidragony github page")
-      (buffer-string))
+     (buffer-string))
    "\n"))
 
 (defun render-splash-screen (splash-buffer)
   (interactive)
   (let* ((window-height     (- (window-body-height nil) 1))
          (window-width      (window-body-width nil))
-	 (emacs-img         (create-image "~/Pictures/emacs.png" 'png nil :scale 0.5)))
+		 (emacs-img         (create-image "~/Pictures/emacs.png" 'png nil :scale 0.5)))
     (with-current-buffer splash-buffer
       ;; Buffer local settings
       (read-only-mode 0)
@@ -141,10 +140,10 @@
       (insert-char ?\n (round (/ window-height 7)))
       ;; emacs logo
       (if (display-graphic-p)
-	  (progn
-	    (splash-screen-center window-width (car (image-size emacs-img)))
-	    (insert-image emacs-img  "Emacs logo"))
-	(render-dashboard-ascii-widget))
+		  (progn
+			(splash-screen-center window-width (car (image-size emacs-img)))
+			(insert-image emacs-img  "Emacs logo"))
+		(render-dashboard-ascii-widget))
       ;; dashboard menu widget
       (insert-char ?\n 2)
       (render-dashboard-menu-widget window-width)

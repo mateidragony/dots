@@ -5,7 +5,7 @@
 ;; The default is 800 kilobytes.  Measured in bytes.
 ;; Set garbage collection threshold to 1GB.
 (setq gc-cons-threshold (if (display-graphic-p) (* 1024 1024 512) (* 1024 1024 128))
-      gc-cons-percentage 0.5)
+      gc-cons-percentage 0.8)
 
 ;; startup speed optimization.
 (setq file-name-handler-alist nil)
@@ -32,6 +32,7 @@
 (add-to-list 'load-path (expand-file-name "themes/"  mc/emacs-config-directory))
 (add-to-list 'load-path (expand-file-name "recipes/" mc/emacs-config-directory))
 
+
 (let ((default-directory "~/.emacs.d/load/")) (normal-top-level-add-subdirs-to-load-path))
 
 (let ((path-from-shell (replace-regexp-in-string "[ \t\n]*$" ""
@@ -45,18 +46,18 @@
 
 
 (setq-default  auto-window-vscroll                   nil
-	       byte-compile-warnings                 '(not obsolete lexical)
-	       frame-inhibit-implied-resize          t
-	       frame-resize-pixelwise                t  ;; Default frame configuration: full screen
-	       inhibit-x-resources                   t
-	       package-enable-at-startup             t
-	       process-adaptive-read-buffering       nil ;; speadup emacs
-	       site-run-file                         nil
-	       warning-suppress-log-types            '((comp) (bytecomp)))
+     	       byte-compile-warnings                 '(not obsolete lexical)
+	           frame-inhibit-implied-resize          t
+	           frame-resize-pixelwise                t  ;; Default frame configuration: full screen
+    	       inhibit-x-resources                   t
+    	       package-enable-at-startup             t
+    	       process-adaptive-read-buffering       nil ;; speadup emacs
+			   site-run-file                         nil
+			   warning-suppress-log-types            '((comp) (bytecomp)))
 
-(setq          x-select-enable-clipboard             t
-               custom-safe-themes                    t
-               make-backup-files                     nil
+(setq      x-select-enable-clipboard             t
+           custom-safe-themes                    t
+           make-backup-files                     nil
 	       completion-ignore-case                t
 	       read-file-name-completion-ignore-case t
 	       read-buffer-completion-ignore-case    t
@@ -68,9 +69,9 @@
 
 (modify-all-frames-parameters '((width                    . 100)
                                 (height                   . 100)
-				(background-color         . "#F4D39A")  ;; change if theme changes
+								(background-color         . "#F4D39A")  ;; change if theme changes
                                 (alpha-background         . 100)
-				(cursor-color             . "#51afef")
+								(cursor-color             . "#51afef")
                                 (font                     . "JetBrainsMono Nerd Font-10")
                                 (fullscreen               . maximized)
                                 (inhibit-double-buffering . t)
@@ -89,7 +90,6 @@
 (global-font-lock-mode              t)
 (electric-pair-mode                 t)
 (recentf-mode                       t)
-(global-display-line-numbers-mode   t)
 (global-visual-line-mode            t)
 (menu-bar-mode                      -1)
 (tool-bar-mode                      -1)

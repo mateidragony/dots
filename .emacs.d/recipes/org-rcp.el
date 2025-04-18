@@ -1,8 +1,6 @@
 ;;; org-rcp.el --- Org configuration
 ;;; Code:
 
-
-
 (use-package org
   :ensure t
   :mode ("\\.org\\'" . org-mode)
@@ -79,14 +77,21 @@
 
   (org-agenda-todo-keyword-format "%-12s")
   (org-agenda-deadline-leaders '("Due today" "Due in %d days" ""))
-  (org-agenda-scheduled-leaders '("" "S%3d: "))
+  (org-agenda-scheduled-leaders '("For today" "%d days from now"))
   (org-agenda-prefix-format   
-   '((agenda . " %-10:c  %-15s %?t ")
+   '((agenda . "  %-16s %?-14t ")
      (timeline . "% s")
-     (todo . " %i %e ")
+     (todo . " %i %s %e ")
      (tags . " %i %e ")
      (search . " %i %e ")
 	 ))
+  (org-agenda-custom-commands
+   '(("a" "Agenda daily view"
+      ((agenda "" ((org-agenda-span 'day)))))
+	 ("o" "Overview of day agenda and tasks"
+      ((agenda "" ((org-agenda-span 'day)))
+	   (todo "")))))
+  
   )
 
 (use-package org-fancy-priorities
@@ -94,11 +99,10 @@
   :hook
   (org-mode . org-fancy-priorities-mode)
   :custom
-  (org-fancy-priorities-list '((?A . "‼ ")
-							   (?B . "󰜷 ")
-							   (?C . "󰜮 ")
-							   (?D . "󰅟 "))))
-
+  (org-fancy-priorities-list '((?A . " ‼  ")
+							   (?B . " 󰜷  ")
+							   (?C . " 󰜮  ")
+							   (?D . " 󰅟  "))))
 
 
 (use-package org-super-agenda

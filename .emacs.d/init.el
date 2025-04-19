@@ -46,6 +46,7 @@
 (require 'server-rcp)
 (require 'shell-rcp)
 (require 'splash-rcp)
+(require 'tex-rcp)
 (require 'theme-rcp)
 (require 'web-rcp)
 (require 'yas-rcp)

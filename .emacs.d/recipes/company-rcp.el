@@ -38,7 +38,7 @@
   (company-transformers '(company-sort-prefer-same-case-prefix
 						  company-sort-by-occurrence))
   :config
-  (add-to-list 'company-backends '(company-capf company-yasnippet company-web-html))
+  (add-to-list 'company-backends '(company-capf company-yasnippet company-web-html ))
   )
 
 

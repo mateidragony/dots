@@ -183,6 +183,9 @@
   (isearch-group-2                    (:inherit 'isearch))
   (lazy-highlight                     (:background cs-lt-blue))
 
+  ;; latex
+  (font-latex-math-face               (:foreground cs-green))
+  
   ;; lsp ui
   (lsp-ui-doc-background              (:inherit 'default))
   (lsp-ui-doc-header                  (:background cs-blue :foreground cs-white))

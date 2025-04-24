@@ -15,6 +15,7 @@
   ;; color palette
   (cs-black        "#4f4239")
   (cs-white        "#f2f2f2")
+  (cs-lt-lt-gray   "#cbc3bd")
   (cs-lt-gray      "#9b938d")
   (cs-gray         "#6d645e")
   (cs-dk-gray      "#586668")
@@ -183,6 +184,9 @@
   (isearch-group-2                    (:inherit 'isearch))
   (lazy-highlight                     (:background cs-lt-blue))
 
+  ;; latex
+  (font-latex-math-face               (:foreground cs-green))
+  
   ;; lsp ui
   (lsp-ui-doc-background              (:inherit 'default))
   (lsp-ui-doc-header                  (:background cs-blue :foreground cs-white))
@@ -307,21 +311,20 @@
   (sidebar-icon-header-directory      (:inherit 'sidebar-primary-color))
   (sidebar-icon-header-project        (:inherit 'sidebar-primary-color))
   (sidebar-icon-remote-branch         (:inherit 'sidebar-primary-color))
-  (sidebar-ignored-dir                (:inherit 'sidebar-untracked))
-  (sidebar-ignored-file               (:inherit 'sidebar-untracked))
+  (sidebar-ignored-dir                (:inherit 'font-lock-comment-face))
+  (sidebar-ignored-file               (:inherit 'sidebar-ignored-dir))
   (sidebar-match                      (:foreground cs-green))
-  (sidebar-not-updated                (:foreground cs-red))
+  (sidebar-not-updated                (:foreground cs-orange))
   (sidebar-powerline                  (:background cs-selection))
   (sidebar-primary-color              (:foreground cs-white :background cs-blue))
   (sidebar-remote-branch              (:inherit 'sidebar-primary-color))
   (sidebar-renamed                    (:inherit 'sidebar-changed))
   (sidebar-select-header              (:inherit 'sidebar-primary-color))
   (sidebar-select-line                (:inherit 'sidebar-primary-color))
-  (sidebar-suffix-path-header         (:foreground cs-gray))
-  (sidebar-untracked                  (:inherit 'font-lock-comment-face))
+  (sidebar-suffix-path-header         (:foreground cs-lt-lt-gray))
+  (sidebar-untracked                  (:foreground cs-green))
   (sidebar-updated                    (:foreground cs-green))
-  
-  
+    
   ;; tab bar
   (tab-bar                            (:inherit 'variable-pitch :foreground cs-black :background cs-lt-bg))
   (tab-line                           (:inherit 'tab-bar :underline t))

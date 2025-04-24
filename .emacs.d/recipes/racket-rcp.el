@@ -3,8 +3,9 @@
 
 (use-package racket-mode
   :ensure t
-  :bind (("C-c C-l" . racket-run-module-at-point)
-	 ("C-c C-k" . racket-repl-clear-leaving-last-prompt))
+  :bind (:map racket-mode-map
+		 ("C-c C-l" . racket-run-module-at-point)
+		 ("C-c C-k" . racket-repl-clear-leaving-last-prompt))
   :hook (racket-mode . racket-xp-mode)
   :config
   (rainbow-delimiters-mode 1)

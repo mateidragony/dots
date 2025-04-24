@@ -31,7 +31,8 @@
 (add-to-list 'custom-theme-load-path (expand-file-name "themes/"  mc/emacs-config-directory))
 (add-to-list 'load-path (expand-file-name "themes/"  mc/emacs-config-directory))
 (add-to-list 'load-path (expand-file-name "recipes/" mc/emacs-config-directory))
-
+(add-to-list 'load-path (expand-file-name "load/"  mc/emacs-config-directory))
+(add-to-list 'load-path "~/.local/share/icons-in-terminal/")
 
 (let ((default-directory "~/.emacs.d/load/")) (normal-top-level-add-subdirs-to-load-path))
 
@@ -84,15 +85,14 @@
 (set-window-scroll-bars (minibuffer-window) nil nil)
 (set-default-coding-systems 'utf-8) ;; Set default coding system (especially for Windows)
 
-
 (blink-cursor-mode                  t)
 (column-number-mode                 t)
 (global-font-lock-mode              t)
 (electric-pair-mode                 t)
 (recentf-mode                       t)
-(global-visual-line-mode            t)
 (menu-bar-mode                      -1)
 (tool-bar-mode                      -1)
+(global-prettify-symbols-mode       -1)
 
 (defvar mc/emacs-init-time nil
   "The time it took, in seconds (as a float), for Emacs to start up.")

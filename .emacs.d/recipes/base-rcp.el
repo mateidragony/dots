@@ -23,6 +23,7 @@
   ("<Paste>"        . clipboard-yank)
   ("C-s"            . mc/isearch-forward)
   ("M-%"            . mc/query-replace)
+  ("C-`"            . mc/toggle-shell)
   :hook
   (after-save . executable-make-buffer-file-executable-if-script-p) ;; Make shebang (#!) file executable when saved
   (kill-emacs . mc/quicksave-session)
@@ -52,6 +53,10 @@
   :config
   (rainbow-delimiters-mode t)
   )
+
+(use-package shell
+  :config
+  (setq comint-process-echoes t))
 
 (provide 'base-rcp)
 ;;; Commentary:

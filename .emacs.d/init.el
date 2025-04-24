@@ -45,6 +45,7 @@
 (require 'racket-rcp)
 (require 'server-rcp)
 (require 'shell-rcp)
+(require 'sidebar-rcp)
 (require 'splash-rcp)
 (require 'tex-rcp)
 (require 'theme-rcp)

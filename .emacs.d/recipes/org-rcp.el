@@ -116,21 +116,13 @@
             :todo "TODAY")
      (:name "Important "
             :priority>= "B")
-     ;; classes
-     (:order-multi (2 (:name "Introduction to verification "
-                             :and (:tag "classes" :tag "p515"))
-					  (:name "Number theory "
-                             :and (:tag "classes" :tag "m405"))
-					  (:name "Javascript "
-                             :and (:tag "classes" :tag "i365"))
-					  (:name "Sports and rhetoric "
-                             :and (:tag "classes" :tag "r211"))))
-	 ;; ta
-	 (:order-multi (3 (:name "Data structures (TA) "
-                             :and (:tag "ta" :tag "c343"))
-					  (:name "Operating systems (TA) "
-                             :and (:tag "classes" :tag "p436"))))
-     (:name "Blocked tasks "
+	 (:name "Classes"
+			:order 2
+			:tag "classes")
+	 (:name "TA"
+			:order 3
+			:tag "ta")
+	 (:name "Blocked tasks "
 			:todo "BLOCKED" :order 8)
      (:name "Less important "
 			:priority "C"

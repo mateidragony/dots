@@ -96,6 +96,38 @@ If RETURN-P, return the message as a string instead of displaying it."
   (call-interactively #'anzu-query-replace))
 
 
+;;;###autoload
+(defun mc/close-shell ()
+  "Find the window with the *shell* buffer and close it if it exists"
+  (interactive)
+  (when-let ((shell-buffer (get-buffer "*shell*")))
+	(dolist (win (get-buffer-window-list shell-buffer nil t))
+      (when (window-live-p win)
+        (delete-window win)))))
+
+;;;###autoload
+(defun mc/open-shell ()
+  "If the *shell* buffer exists, display it. Otherwise, create it"
+  (interactive)
+  (let ((shell-buffer (get-buffer "*shell*")))
+	(cond
+	 (shell-buffer
+	  (display-buffer shell-buffer)
+	  (select-window (get-buffer-window shell-buffer t)))
+	 (t
+	  (display-buffer (get-buffer-create "*shell*"))
+	  (select-window (get-buffer-window (get-buffer "*shell*") t))
+	  (shell)))))
+
+;;;###autoload
+(defun mc/toggle-shell ()
+  "Toggle the *shell* buffer to be open or closed"
+  (interactive)
+  (let ((shell-buffer (get-buffer "*shell*")))
+	(cond
+	 ((and shell-buffer (get-buffer-window shell-buffer t))
+	  (mc/close-shell))
+	 (t (mc/open-shell)))))
 
 
 (provide 'custom-functions)

@@ -22,6 +22,7 @@
   (cs-pink         "#cb27b0")
   (cs-lt-blue      "#c0dded")
   (cs-blue         "#0076c5")
+  (cs-dk-blue      "#0b4d7a")
   (cs-lt-lt-purple "#d2c5bd")
   (cs-lt-purple    "#c69fea")
   (cs-purple       "#7522d3")
@@ -186,6 +187,9 @@
 
   ;; latex
   (font-latex-math-face               (:foreground cs-green))
+  (font-latex-bold-face               (:foreground cs-dk-teal :inherit 'bold))
+  (font-latex-italic-face             (:foreground cs-dk-teal :inherit 'italic))
+  (font-latex-sectioning-5-face       (:foreground cs-pink :weight 'bold :inherit 'variable-pitch))
   
   ;; lsp ui
   (lsp-ui-doc-background              (:inherit 'default))

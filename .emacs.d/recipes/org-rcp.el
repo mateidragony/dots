@@ -59,12 +59,13 @@
 	 (?D . (:foreground "#0076c5" :weight bold))))  ;; blue
 
   (org-todo-keywords
-   '((sequence "TODO(t)" "PLANNING(p)" "IN-PROGRESS(i@/!)" "BLOCKED(b@)" "|" "DONE(d!)" "WONT-DO(w@/!)")))
+   '((sequence "TODO(t)" "PLANNING(p)" "IN-PROGRESS(i@/!)" "BLOCKED(b@)" "WAITING(w@!)" "|" "DONE(d!)" "WONT-DO(x@/!)")))
   (org-todo-keyword-faces
    '(("TODO"        . (:foreground "#9b0a12" :weight bold))   ;; red
 	 ("PLANNING"    . (:foreground "#a331bc" :weight bold))   ;; pink
      ("IN-PROGRESS" . (:foreground "#09629e" :weight bold))   ;; cyan
      ("BLOCKED"     . (:foreground "#6d070c" :weight bold))   ;; dark red
+	 ("WAITING"     . (:foreground "#450d68" :weight bold))   ;; dark purple
      ("DONE"        . (:foreground "#088d17" :weight bold))   ;; green
 	 ("WONT-DO"     . (:foreground "#6d645e" :weight bold)))) ;; gray
   

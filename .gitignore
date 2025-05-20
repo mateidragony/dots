@@ -75,3 +75,7 @@
 # backgrounds
 !.local/share/backgrounds/
 !.local/share/backgrounds/**
+
+# images
+!.local/share/images/
+!.local/share/images/**

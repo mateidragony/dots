@@ -24,6 +24,10 @@
   ("C-s"            . mc/isearch-forward)
   ("M-%"            . mc/query-replace)
   ("C-`"            . mc/toggle-shell)
+  ("C-x <down>"     . hs-hide-block)
+  ("C-x <up>"       . hs-show-block)
+  ("C-c C-x <down>" . hs-hide-all)
+  ("C-c C-x C-<up>" . hs-show-all)
   :hook
   (after-save . executable-make-buffer-file-executable-if-script-p) ;; Make shebang (#!) file executable when saved
   (kill-emacs . mc/quicksave-session)

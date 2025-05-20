@@ -123,7 +123,7 @@
   (interactive)
   (let* ((window-height     (- (window-body-height nil) 1))
          (window-width      (window-body-width nil))
-		 (emacs-img         (create-image "~/Pictures/emacs.png" 'png nil :scale 0.5)))
+		 (emacs-img         (create-image "~/.local/share/images/emacs.png" 'png nil :scale 0.5)))
     (with-current-buffer splash-buffer
       ;; Buffer local settings
       (read-only-mode 0)

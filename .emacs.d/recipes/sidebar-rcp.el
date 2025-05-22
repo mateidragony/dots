@@ -2,6 +2,7 @@
 ;;; Code:
 
 (use-package sidebar
+  :ensure t
   ;; :hook
   ;; ((sidebar-buffers-mode . visual-line-mode))
   :bind

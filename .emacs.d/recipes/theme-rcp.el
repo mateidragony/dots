@@ -8,6 +8,7 @@
 (load-theme theme t)
 
 (use-package spacious-padding
+  :ensure t
   :custom
   (setq spacious-padding-widths
       '( :internal-border-width 1

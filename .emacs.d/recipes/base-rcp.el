@@ -24,10 +24,6 @@
   ("C-s"            . mc/isearch-forward)
   ("M-%"            . mc/query-replace)
   ("C-`"            . mc/toggle-shell)
-  ("C-x <down>"     . hs-hide-block)
-  ("C-x <up>"       . hs-show-block)
-  ("C-c C-x <down>" . hs-hide-all)
-  ("C-c C-x C-<up>" . hs-show-all)
   :hook
   (after-save . executable-make-buffer-file-executable-if-script-p) ;; Make shebang (#!) file executable when saved
   (kill-emacs . mc/quicksave-session)
@@ -47,12 +43,20 @@
   (fringe-mode '(8 . 1))
   )
 
+(use-package nerd-icons
+  :ensure t
+  :demand t)
+
+(use-package persp-mode
+  :ensure t)
+
 (use-package prog-mode
   :hook
   (prog-mode . mc/highlight-todos)
   )
 
 (use-package rainbow-delimiters
+  :ensure t
   :demand t
   :config
   (rainbow-delimiters-mode t)

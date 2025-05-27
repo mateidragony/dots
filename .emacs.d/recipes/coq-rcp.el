@@ -1,9 +1,11 @@
 ;;; coq-rcp.el --- Coq configuration
 ;;; Code:
 
+(use-package proof-general
+  :ensure t)
+
 (use-package company-coq
-  :ensure t
-  )
+  :ensure t)
 
 (use-package coq
   :hook

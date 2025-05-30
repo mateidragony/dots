@@ -11,15 +11,7 @@
    (racket-mode . company-mode))
   :config
   (rainbow-delimiters-mode 1)
-  ;; racket remap comment faces to orange (based off of theme)
-  (cond
-   ((eq theme 'bearded-arc)
-    (face-remap-add-relative 'font-lock-comment-delimiter-face '(:foreground "#ffb75e"))
-    (face-remap-add-relative 'font-lock-comment-face           '(:foreground "#ffb75e")))
-   ((eq theme 'colorful-sepia)
-    (face-remap-add-relative 'font-lock-comment-delimiter-face '(:foreground "#c57600"))
-    (face-remap-add-relative 'font-lock-comment-face           '(:foreground "#c57600"))))
-  )
+)
 
 (use-package racket-xp
   :custom

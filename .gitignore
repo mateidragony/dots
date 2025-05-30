@@ -55,6 +55,8 @@
 .emacs.d/*
 !.emacs.d/init.el
 !.emacs.d/early-init.el
+!.emacs.d/icons/
+!.emacs.d/icons/**
 !.emacs.d/themes/
 !.emacs.d/themes/**
 !.emacs.d/scripts/

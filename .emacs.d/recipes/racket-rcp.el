@@ -6,7 +6,9 @@
   :bind (:map racket-mode-map
 		 ("C-c C-l" . racket-run-module-at-point)
 		 ("C-c C-k" . racket-repl-clear-leaving-last-prompt))
-  :hook (racket-mode . racket-xp-mode)
+  :hook
+  ((racket-mode . racket-xp-mode)
+   (racket-mode . company-mode))
   :config
   (rainbow-delimiters-mode 1)
   ;; racket remap comment faces to orange (based off of theme)

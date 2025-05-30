@@ -8,6 +8,7 @@
   (tab-width 4))
 
 (use-package lsp-ui
+  :ensure t
   :after lsp-mode
   :commands lsp-ui-mode
   :init

@@ -105,6 +105,14 @@ If RETURN-P, return the message as a string instead of displaying it."
       (when (window-live-p win)
         (delete-window win)))))
 
+(defun mc/display-buffer-smart-split (buffer)
+  "Display BUFFER in a new window split in a smart direction from current window"
+  (let ((window (split-window (selected-window) nil
+							  (if (> (window-body-width) (+ 100 (window-body-height)))
+								  'right 'below))))
+	(set-window-buffer window buffer)
+	window))
+
 ;;;###autoload
 (defun mc/open-shell ()
   "If the *shell* buffer exists, display it. Otherwise, create it"
@@ -112,10 +120,10 @@ If RETURN-P, return the message as a string instead of displaying it."
   (let ((shell-buffer (get-buffer "*shell*")))
 	(cond
 	 (shell-buffer
-	  (display-buffer shell-buffer)
+	  (mc/display-buffer-smart-split shell-buffer)
 	  (select-window (get-buffer-window shell-buffer t)))
 	 (t
-	  (display-buffer (get-buffer-create "*shell*"))
+	  (mc/display-buffer-smart-split (get-buffer-create "*shell*"))
 	  (select-window (get-buffer-window (get-buffer "*shell*") t))
 	  (shell)))))
 

@@ -24,11 +24,18 @@
   ("C-s"            . mc/isearch-forward)
   ("M-%"            . mc/query-replace)
   ("C-`"            . mc/toggle-shell)
+  ("C-x <left>"     . switch-to-prev-buffer)
+  ("C-x <right>"    . switch-to-next-buffer)
   :hook
   (after-save . executable-make-buffer-file-executable-if-script-p) ;; Make shebang (#!) file executable when saved
   (kill-emacs . mc/quicksave-session)
   (kill-emacs . live-server-kill)
   )
+
+(use-package window
+  :demand t
+  :custom
+  (switch-to-prev-buffer-skip-regexp '("\\*")))
 
 (use-package display-line-numbers
   :demand t

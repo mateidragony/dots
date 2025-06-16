@@ -138,6 +138,7 @@ If RETURN-P, return the message as a string instead of displaying it."
 	 (t (mc/open-shell)))))
 
 
+
 (provide 'custom-functions)
 ;;; Commentary:
 ;;

@@ -49,6 +49,7 @@
 (require 'splash-rcp)
 (require 'tex-rcp)
 (require 'theme-rcp)
+(require 'vterm-rcp)
 (require 'web-rcp)
 (require 'yas-rcp)
 

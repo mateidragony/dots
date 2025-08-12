@@ -98,9 +98,9 @@ If RETURN-P, return the message as a string instead of displaying it."
 
 ;;;###autoload
 (defun mc/close-shell ()
-  "Find the window with the *shell* buffer and close it if it exists"
+  "Find the window with the *vterm* buffer and close it if it exists"
   (interactive)
-  (when-let ((shell-buffer (get-buffer "*shell*")))
+  (when-let ((shell-buffer (get-buffer "*vterm*")))
 	(dolist (win (get-buffer-window-list shell-buffer nil t))
       (when (window-live-p win)
         (delete-window win)))))
@@ -115,23 +115,23 @@ If RETURN-P, return the message as a string instead of displaying it."
 
 ;;;###autoload
 (defun mc/open-shell ()
-  "If the *shell* buffer exists, display it. Otherwise, create it"
+  "If the *vterm* buffer exists, display it. Otherwise, create it"
   (interactive)
-  (let ((shell-buffer (get-buffer "*shell*")))
+  (let ((shell-buffer (get-buffer "*vterm*")))
 	(cond
 	 (shell-buffer
 	  (mc/display-buffer-smart-split shell-buffer)
 	  (select-window (get-buffer-window shell-buffer t)))
 	 (t
-	  (mc/display-buffer-smart-split (get-buffer-create "*shell*"))
-	  (select-window (get-buffer-window (get-buffer "*shell*") t))
+	  (mc/display-buffer-smart-split (get-buffer-create "*vterm*"))
+	  (select-window (get-buffer-window (get-buffer "*vterm*") t))
 	  (shell)))))
 
 ;;;###autoload
 (defun mc/toggle-shell ()
-  "Toggle the *shell* buffer to be open or closed"
+  "Toggle the *vterm* buffer to be open or closed"
   (interactive)
-  (let ((shell-buffer (get-buffer "*shell*")))
+  (let ((shell-buffer (get-buffer "*vterm*")))
 	(cond
 	 ((and shell-buffer (get-buffer-window shell-buffer t))
 	  (mc/close-shell))

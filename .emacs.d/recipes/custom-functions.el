@@ -125,7 +125,7 @@ If RETURN-P, return the message as a string instead of displaying it."
 	 (t
 	  (mc/display-buffer-smart-split (get-buffer-create "*vterm*"))
 	  (select-window (get-buffer-window (get-buffer "*vterm*") t))
-	  (shell)))))
+	  (vterm)))))
 
 ;;;###autoload
 (defun mc/toggle-shell ()

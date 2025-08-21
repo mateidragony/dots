@@ -16,6 +16,12 @@
 !.bash_profile
 !.bash_logout
 
+# omz
+!.oh-my-zsh
+.oh-my-zsh/*
+!.oh-my-zsh/cutom
+!.oh-my-zsh/cutom/**
+
 # Xmodmap
 !.Xmodmap
 

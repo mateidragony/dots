@@ -1,32 +1,21 @@
 # blacklist all
 *
 
-# git
+# gitignore
 !.gitignore
-!.gitconfig
 
 # editors
 !.emacs
 !.nanorc
-!.vimrc
 
-# shells
+# zsh
 !.zshrc
-!.bashrc
-!.bash_profile
-!.bash_logout
 
 # omz
 !.oh-my-zsh/
 .oh-my-zsh/*
 !.oh-my-zsh/custom/
 !.oh-my-zsh/custom/**
-
-# Xmodmap
-!.Xmodmap
-
-# nb
-!.nbrc
 
 # .config
 !.config/
@@ -51,10 +40,6 @@
 # waybar
 !.config/waybar/
 !.config/waybar/**
-
-# wlogout
-!.config/wlogout/
-!.config/wlogout/**
 
 # eww
 !.config/eww/
@@ -81,9 +66,6 @@
 !.icons/default/**
 !.icons/dunst
 !.icons/dunst/**
-!.icons/wlogout
-!.icons/wlogout/**
-
 
 # local
 !.local/

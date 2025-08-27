@@ -33,6 +33,7 @@
 (add-to-list 'load-path (expand-file-name "recipes/" mc/emacs-config-directory))
 (add-to-list 'load-path (expand-file-name "load/"  mc/emacs-config-directory))
 (add-to-list 'load-path "~/.local/share/icons-in-terminal/")
+(add-to-list 'load-path (expand-file-name "~/.emacs.d/emacs-livedown"))
 
 (let ((default-directory "~/.emacs.d/load/")) (normal-top-level-add-subdirs-to-load-path))
 
@@ -43,8 +44,7 @@
     (setq exec-path (split-string path-from-shell path-separator)))
 
 (load-file (let ((coding-system-for-read 'utf-8))
-                (shell-command-to-string "$HOME/.cabal/bin/agda-mode locate")))
-
+                (shell-command-to-string "agda --emacs-mode locate")))
 
 (setq-default  auto-window-vscroll                   nil
      	       byte-compile-warnings                 '(not obsolete lexical)
@@ -73,7 +73,7 @@
 								(background-color         . "#F4D39A")  ;; change if theme changes
                                 (alpha-background         . 100)
 								(cursor-color             . "#51afef")
-                                (font                     . "JetBrainsMono Nerd Font-10")
+                                (font                     . "JetBrainsMono Nerd Font-12")
                                 (fullscreen               . maximized)
                                 (inhibit-double-buffering . t)
                                 (internal-border-width    . 1)

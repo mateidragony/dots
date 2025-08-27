@@ -15,7 +15,7 @@
    ("M-<up>"   . scroll-down-line)
    )
   :custom
-  (org-directory                 "~/org")
+  (org-directory                 "~/Org")
   (org-log-done                  'time)
   (org-return-follows-link       t)
   (org-support-shift-select      t)
@@ -71,7 +71,7 @@
   
   (org-capture-templates
    '(("g" "General To-Do"
-      entry (file+headline "~/org/todos.org" "General Tasks")
+      entry (file+headline "~/Org/todos.org" "General Tasks")
       "* TODO [#C] %?\n:Created: %U\n "
       :empty-lines 1)
 	 ))

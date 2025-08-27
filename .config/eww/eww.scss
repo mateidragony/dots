@@ -1,0 +1,67 @@
+/** Global *******************************************/
+*{
+	all: unset;
+	font-family: feather;
+	font-family: 'JetBrains Mono';
+}
+
+.genwin {
+	background-color: rgb(24, 24, 37, 0.75);
+	border-radius: 16px;
+}
+
+
+/** Time ***************************************/
+.time_hour, .time_min {
+	color: #89B4FA;
+	font-size : 70px;
+	font-weight : bold;
+}
+.time_hour {
+	margin : 15px 0px 0px 20px;
+}
+.time_min {
+	margin : 0px 0px 10px 0px;
+}
+
+.time_mer {
+	color: #A6E3A1;
+	font-size : 30px;
+	font-weight : bold;
+	margin : 20px 20px 0px 0px;
+}
+
+.time_day {
+	color: #FAB387;
+	font-size : 25px;
+	font-weight : normal;
+	margin : 0px 20px 20px -20px;
+}
+
+
+/** Weather ***************************************/
+.iconweather {
+	font-family: Iosevka Nerd Font;
+	font-size : 100px;
+	font-weight : normal;
+	margin : 15px 0px 0px 30px;
+}
+
+.label_temp {
+	color : #89DCEB;
+	font-size : 60px;
+	font-weight : bold;
+	margin : 15px 30px 0px 0px;
+}
+
+.label_stat {
+	color : #F38BA8;
+	font-size : 30px;
+	font-weight : bold;
+}
+
+.label_quote {
+	color : #cdd6f4;
+	font-size : 14px;
+	font-weight : normal;
+}

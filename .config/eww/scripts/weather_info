@@ -1,0 +1,239 @@
+#!/bin/bash
+
+key_file="$HOME/.config/eww/scripts/weather_key.private"
+cache_dir="$HOME/.cache/eww/weather"
+cache_weather_stat=${cache_dir}/weather-stat
+cache_weather_degree=${cache_dir}/weather-degree
+cache_weather_quote=${cache_dir}/weather-quote
+cache_weather_hex=${cache_dir}/weather-hex
+cache_weather_icon=${cache_dir}/weather-icon
+
+KEY=$(cat "$key_file")
+COORD=$(curl -s ipinfo.io | jq -r '.loc')
+
+declare -A day_icons
+day_icons["Sunny"]=" "
+day_icons["Partly cloudy"]=" "
+day_icons["Cloudy"]=" "
+day_icons["Overcast"]=" "
+day_icons["Fog"]=" "
+day_icons["Light rain"]=" "
+day_icons["Moderate rain"]=" "
+day_icons["Heavy rain"]=" "
+day_icons["Light sleet"]=" "
+day_icons["Moderate sleet"]=" "
+day_icons["Light snow"]=" "
+day_icons["Moderate snow"]=" "
+day_icons["Heavy snow"]=" "
+day_icons["Light ice"]=" "
+day_icons["Moderate ice"]=" "
+day_icons["Heavy ice"]=" "
+day_icons["Thunder"]="󰖓 "
+
+declare -A day_quotes
+day_quotes["Sunny"]="It's a sunny day, gonna be fun! \nGo outside and touch grass or something..."
+day_quotes["Partly cloudy"]="It's partly cloudy today \nGo out and enjoy both shade and shine..."
+day_quotes["Cloudy"]="It's cloudy, sort of gloomy \nYou'd better get a book to read..."
+day_quotes["Overcast"]="The sky’s all gray and overcast \nMight be good to stay in with a cup of tea..."
+day_quotes["Fog"]="Forecast says it's misty \nMake sure you don't get lost on your way..."
+day_quotes["Light rain"]="It's rainy, it's a great day! \nGet some ramen and watch as the rain falls..."
+day_quotes["Moderate rain"]="It’s raining steadily \nDon’t forget your umbrella, or you’ll regret it later..."
+day_quotes["Heavy rain"]="It’s pouring outside! \nPerfect excuse to stay in and binge your favorite show..."
+day_quotes["Light sleet"]="It’s sleeting lightly \nCrunchy steps ahead—walk carefully..."
+day_quotes["Moderate sleet"]="It’s sleet and slush everywhere \nBoots are your best friend today..."
+day_quotes["Light snow"]="It’s gonna snow today \nYou’d better wear thick clothes and make a snowman as well!"
+day_quotes["Moderate snow"]="Snow is falling steadily \nThe world’s turning white—time for snowball fights..."
+day_quotes["Heavy snow"]="It’s a snowstorm out there! \nBundle up and keep your hot cocoa ready..."
+day_quotes["Light ice"]="There’s a thin glaze of ice today \nWalk slowly, the ground’s trickier than it looks..."
+day_quotes["Moderate ice"]="Ice is building up everywhere \nStep carefully, or you’ll end up slipping..."
+day_quotes["Heavy ice"]="Everything’s frozen solid \nBest stay inside unless you’re feeling adventurous..."
+day_quotes["Thunder"]="There’s storm forecast today \nMake sure you don’t get blown away..."
+
+declare -A day_colors
+day_colors["Sunny"]="#e5c890"
+day_colors["Partly cloudy"]="#99d1db"
+day_colors["Cloudy"]="#babbf1"
+day_colors["Overcast"]="#babbf1"
+day_colors["Fog"]="#babbf1"
+day_colors["Light rain"]="#8caaee"
+day_colors["Moderate rain"]="#8caaee"
+day_colors["Heavy rain"]="#8caaee"
+day_colors["Light sleet"]="#babbf1"
+day_colors["Moderate sleet"]="#babbf1"
+day_colors["Light snow"]="#99d1db"
+day_colors["Moderate snow"]="#99d1db"
+day_colors["Heavy snow"]="#99d1db"
+day_colors["Light ice"]="#babbf1"
+day_colors["Moderate ice"]="#babbf1"
+day_colors["Heavy ice"]="#babbf1"
+day_colors["Thunder"]="#ef9f76"
+
+declare -A night_icons
+night_icons["Sunny"]=""
+night_icons["Partly cloudy"]=" "
+night_icons["Cloudy"]=" "
+night_icons["Overcast"]=" "
+night_icons["Fog"]=" "
+night_icons["Light rain"]=" "
+night_icons["Moderate rain"]=" "
+night_icons["Heavy rain"]=" "
+night_icons["Light sleet"]=" "
+night_icons["Moderate sleet"]=" "
+night_icons["Light snow"]=" "
+night_icons["Moderate snow"]=" "
+night_icons["Heavy snow"]=" "
+night_icons["Light ice"]=" "
+night_icons["Moderate ice"]=" "
+night_icons["Heavy ice"]=" "
+night_icons["Thunder"]=" "
+
+declare -A night_quotes
+night_quotes["Sunny"]="It’s a clear night \nYou might want to take an evening stroll to relax..."
+night_quotes["Partly cloudy"]="It’s a partly cloudy night \nThe moon’s peeking through the gaps—worth a look..."
+night_quotes["Cloudy"]="It's a cloudy night \nHow about some hot chocolate and a warm bed?"
+night_quotes["Overcast"]="The night sky’s completely hidden \nMaybe light a candle and make it cozy indoors..."
+night_quotes["Fog"]="The night is misty and strange \nDon’t wander too far or you might lose your way..."
+night_quotes["Light rain"]="It’s drizzling tonight \nRaindrops on the window make the best lullaby..."
+night_quotes["Moderate rain"]="It’s raining through the night \nTuck in warm, the patter will sing you to sleep..."
+night_quotes["Heavy rain"]="It’s pouring outside! \nStay dry and let the storm be your nighttime soundtrack..."
+night_quotes["Light sleet"]="A little sleet is tapping your window \nBest to stay tucked under the blanket..."
+night_quotes["Moderate sleet"]="The night’s filled with sleet \nPerfect time for a story..."
+night_quotes["Light snow"]="It’s gonna snow tonight \nMake sure you get up early tomorrow to see the sights..."
+night_quotes["Moderate snow"]="Snow is falling quietly \nThe night feels magical under the white glow..."
+night_quotes["Heavy snow"]="It’s a blizzard out there \nBetter stay inside, it’s a night for hibernation..."
+night_quotes["Light ice"]="The night’s coated with a slick of ice \nCareful if you step out, it’s slippery..."
+night_quotes["Moderate ice"]="The air’s freezing and the ground’s iced over \nBest to wait till morning for safer paths..."
+night_quotes["Heavy ice"]="The world’s frozen under heavy ice tonight \nStay wrapped up, it’s no night for travel..."
+night_quotes["Thunder"]="There’s gonna be storms tonight \nMake sure you’re warm in bed and the windows are shut..."
+
+declare -A night_colors
+night_colors["Sunny"]="#babbf1"
+night_colors["Partly cloudy"]="#99d1db"
+night_colors["Cloudy"]="#babbf1"
+night_colors["Overcast"]="#babbf1"
+night_colors["Fog"]="#babbf1"
+night_colors["Light rain"]="#8caaee"
+night_colors["Moderate rain"]="#8caaee"
+night_colors["Heavy rain"]="#8caaee"
+night_colors["Light sleet"]="#babbf1"
+night_colors["Moderate sleet"]="#babbf1"
+night_colors["Light snow"]="#99d1db"
+night_colors["Moderate snow"]="#99d1db"
+night_colors["Heavy snow"]="#99d1db"
+night_colors["Light ice"]="#babbf1"
+night_colors["Moderate ice"]="#babbf1"
+night_colors["Heavy ice"]="#babbf1"
+night_colors["Thunder"]="#ef9f76"
+
+get_weather_description() {
+	# https://www.weatherapi.com/docs/conditions.json
+	case $1 in
+		"Sunny")                                       echo "Sunny";;
+		"Partly Cloudy")                               echo "Partly cloudy";;
+		"Cloudy")                                      echo "Cloudy";;
+		"Overcast")                                    echo "Overcast";;
+		"Fog")                                         echo "Fog";;
+		"Freezing Fog")                                echo "Fog";;
+		"Mist")                                        echo "Fog";;
+		"Light Rain")                                  echo "Light rain";;
+		"Patchy Rain Nearby")                          echo "Light rain";;
+		"Patchy Light Drizzle")                        echo "Light rain";;
+		"Light Drizzle")                               echo "Light rain";;
+		"Patchy Light Rain")                           echo "Light rain";;
+		"Light Rain Shower")                           echo "Light rain";;
+		"Light Freezing Rain")                         echo "Light rain";;
+		"Patchy Freezing Drizzle Nearby")              echo "Light rain";;
+		"Moderate Rain")                               echo "Moderate rain";;
+		"Freezing Drizzle")                            echo "Moderate rain";;
+		"Moderate Rain At Times")                      echo "Moderate rain";;
+		"Moderate Or Heavy Freezing Rain")             echo "Moderate rain";;
+		"Moderate Or Heavy Rain Shower")               echo "Moderate rain";;
+		"Heavy Rain")                                  echo "Heavy rain";;
+		"Torrential Rain Shower")                      echo "Heavy rain";;
+		"Heavy Freezing Drizzle")                      echo "Heavy rain";;
+		"Heavy Rain At Times")                         echo "Heavy rain";;
+		"Light Sleet")                                 echo "Light sleet";;
+		"Light Sleet Showers")                         echo "Light sleet";;
+		"Patchy Sleet Nearby")                         echo "Light sleet";;
+		"Moderate Or Heavy Sleet")                     echo "Moderate sleet";;
+		"Moderate Or Heavy Sleet Showers")             echo "Moderate sleet";;
+		"Light Snow")                                  echo "Light snow";;
+		"Patchy Snow Nearby")                          echo "Light snow";;
+		"Patchy Light Snow")                           echo "Light snow";;
+		"Light Snow Showers")                          echo "Light snow";;
+		"Moderate Snow")                               echo "Moderate snow";;
+		"Patchy Moderate Snow")                        echo "Moderate snow";;
+		"Moderate Or Heavy Snow Showers")              echo "Moderate snow";;
+		"Heavy Snow")                                  echo "Heavy snow";;
+		"Blowing Snow")                                echo "Heavy snow";;
+		"Blizzard")                                    echo "Heavy snow";;
+		"Patchy Heavy Snow")                           echo "Heavy snow";;
+		"Light Showers Of Ice Pellets")                echo "Light ice";;
+		"Moderate Or Heavy Showers Of Ice Pellets")    echo "Moderate ice";;
+		"Ice Pellets")                                 echo "Heavy ice";;
+		"Thundery Outbreaks In Nearby")                echo "Thunder";;
+		"Patchy Light Rain In Area With Thunder")      echo "Thunder";;
+		"Moderate Or Heavy Rain In Area With Thunder") echo "Thunder";;
+		"Patchy Light Snow In Area With Thunder")      echo "Thunder";;
+		"Moderate Or Heavy Snow In Area With Thunder") echo "Thunder";;
+		*)                                             echo $1;;
+	esac
+}
+
+is_daytime() {
+    hour=$(date +%H)
+    if [ "$hour" -ge 4 ] && [ "$hour" -lt 20 ]; then
+        return 0
+    else
+        return 1
+    fi
+}
+
+get_weather_data() {
+	# weather=`cat $cache_dir/weather`
+	url="http://api.weatherapi.com/v1/current.json?key=$KEY&q=$COORD"
+	weather=`curl -sf $url`
+
+	if [ ! -z "$weather" ]; then
+		weather_temp=`echo "$weather" | jq ".current.temp_c" | cut -d "." -f 1`
+		weather_description=`echo "$weather" | jq -r ".current.condition.text" | head -1 | sed -e "s/\b\(.\)/\u\1/g"`
+		weather_description=$(get_weather_description "$weather_description")
+
+		if is_daytime; then
+			echo "$weather_description"                   > ${cache_weather_stat}
+			echo "$weather_temp""°C"                      > ${cache_weather_degree}
+			echo "${day_icons[$weather_description]}"     > ${cache_weather_icon}
+			echo -e "${day_quotes[$weather_description]}" > ${cache_weather_quote}
+			echo "${day_colors[$weather_description]}"    > ${cache_weather_hex}
+		else
+			echo "$weather_description"                     > ${cache_weather_stat}
+			echo "$weather_temp""°C"                        > ${cache_weather_degree}
+			echo "${night_icons[$weather_description]}"     > ${cache_weather_icon}
+			echo -e "${night_quotes[$weather_description]}" > ${cache_weather_quote}
+			echo "${night_colors[$weather_description]}"    > ${cache_weather_hex}
+		fi
+	else
+		echo "Weather Unavailable" > ${cache_weather_stat}
+		echo " " > ${cache_weather_icon}
+		echo -e "Ah well, no weather huh? \nEven if there's no weather, it's gonna be a great day!" > ${cache_weather_quote}
+		echo "-""°C" > ${cache_weather_degree}
+		echo "#cdd6f4" > ${cache_weather_hex}
+	fi
+}
+
+## Execute
+if [[ "$1" == "--getdata" ]]; then
+	get_weather_data
+elif [[ "$1" == "--icon" ]]; then
+	cat ${cache_weather_icon}
+elif [[ "$1" == "--temp" ]]; then
+	cat ${cache_weather_degree}
+elif [[ "$1" == "--hex" ]]; then
+	cat ${cache_weather_hex}
+elif [[ "$1" == "--stat" ]]; then
+	cat ${cache_weather_stat}
+elif [[ "$1" == "--quote" ]]; then
+	cat ${cache_weather_quote} | head -n1
+elif [[ "$1" == "--quote2" ]]; then
+	cat ${cache_weather_quote} | tail -n1
+fi

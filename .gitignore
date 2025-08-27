@@ -56,6 +56,10 @@
 !.config/wlogout/
 !.config/wlogout/**
 
+# eww
+!.config/eww/
+!.config/eww/**
+
 # emacs directory
 !.emacs.d/
 .emacs.d/*
@@ -94,3 +98,6 @@
 # images
 !.local/share/images/
 !.local/share/images/**
+
+# Always ignore
+*.private

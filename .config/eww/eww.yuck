@@ -1,0 +1,63 @@
+;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Vars
+;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; time
+(defpoll HOUR :interval "5s" `date +\"%H\"`)
+(defpoll MIN  :interval "5s" `date +\"%M\"`)
+(defpoll DAY  :interval "5s" `date +\"%A\"`)
+(defpoll DATE :interval "5s" `date +\"%B %d\"`)
+
+;; weather
+(defpoll WDATA  :interval "15m" `scripts/weather_info --getdata`)
+(defpoll ICON   :interval "15m" `scripts/weather_info --icon`)
+(defpoll STAT   :interval "15m" `scripts/weather_info --stat`)
+(defpoll TEMP   :interval "15m" `scripts/weather_info --temp`)
+(defpoll HEX    :interval "15m" `scripts/weather_info --hex`)
+(defpoll QUOTE  :interval "15m" `scripts/weather_info --quote`)
+(defpoll QUOTE2 :interval "15m" `scripts/weather_info --quote2`)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Widgets
+;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; time
+(defwidget clock [] 
+	(box :class "genwin" :orientation "h" :space-evenly true :vexpand "false" :hexpand "false" 
+		(box :orientation "h" :spacing 0
+			(label :class "time_hour" :valign "start" :wrap "true" :limit-width 25 :text HOUR)
+			(label :class "time_min" :valign "end" :wrap "true" :limit-width 25 :text MIN))
+		(box :orientation "v" :spacing 0 
+			(label :class "time_mer" :valign "start" :halign "end" :wrap "true" :limit-width 25 :text DAY)
+			(label :class "time_day" :valign "end" :halign "end" :wrap "true" :limit-width 25 :text DATE))))
+
+;; weather
+(defwidget weather [] 
+	(box :class "genwin" 
+		(box :orientation "v" :spacing 10 :space-evenly "false" :vexpand "false" :hexpand "false" 
+			(box :orientation "h" :vexpand "false" :hexpand "false" 
+				(label :class "iconweather" :halign "start" :style "color: ${HEX};" :text ICON)
+				(label :class "label_temp" :halign "end" :text TEMP))
+			(box :orientation "v" :spacing 10 :halign "center" :space-evenly "false" :vexpand "false" :hexpand "false" 
+				(label :class "label_stat" :text STAT)
+				(label :class "label_quote" :text QUOTE)
+				(label :class "label_quote" :text QUOTE2)))))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Windows
+;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(defwindow clock
+		   :stacking "bg"
+		   :focusable "false"
+		   :monitor 0
+	       :geometry (geometry :x 100 :y 150 :width 450 :height 150)
+		   (clock))
+
+;; weather
+(defwindow weather
+		   :stacking "bg"
+		   :focusable "false"
+		   :monitor 0
+	       :geometry (geometry :x 100 :y 325 :width 500 :height 280)
+		   (weather))

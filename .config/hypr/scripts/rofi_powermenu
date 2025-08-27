@@ -2,21 +2,22 @@
 
 # Import Current Theme
 DIR="$HOME/.config/rofi"
-RASI="$DIR/powermenu.rasi"
+RASI="$DIR/powermenu-2.rasi"
 CNFR="$DIR/confirm.rasi"
 
 # Theme Elements
 prompt="`hostname` (`echo $DESKTOP_SESSION`)"
 mesg="Uptime : `uptime -p | sed -e 's/up //g'`"
 
-option_1=""
-option_2=""
-option_3=""
-option_4=""
-option_5=""
 
-yes=' '
-no=' '
+option_1=""
+option_2=""
+option_3=""
+option_4=""
+option_5=""
+
+yes=''
+no=''
 
 
 # Rofi CMD
@@ -67,7 +68,7 @@ case ${chosen} in
 	confirm_run 'hyprctl dispatch exit'
         ;;
     $option_3)
-	confirm_run 'pulsemixer --mute'  'systemctl suspend'
+	confirm_run  'systemctl hibernate'
         ;;
     $option_4)
 	confirm_run 'systemctl reboot'

@@ -1,41 +1,40 @@
-@define-color background            #5B6465;
-@define-color foreground-bright     #fafafa;
-@define-color foreground-light      #f0f0f0;
-@define-color foreground-dark       #2c2b2d;
+@define-color background            #45475a;
+@define-color foreground-bright     #cdd6f4;
+@define-color foreground-light      #bac2de;
+@define-color foreground-dark       #11111b;
 
 /* Tool tips */
-@define-color tooltip-bg            #3b3f3f;
+@define-color tooltip-bg            #313244;
 
 /* Workspace */
 @define-color workspace-full        #d5c5e5;
-@define-color workspace-active      #c69fea;
-@define-color workspace-hover       #3e355b;
+@define-color workspace-active      #74c7ec;
+@define-color workspace-hover       #096189;
 @define-color workspace-urgent      #7c4545;
 
 /* Battery */
-@define-color battery-bg            #FFEEC8;
+@define-color battery-bg            #f9e2af;
 @define-color battery-warning       #f7eaa8;
 @define-color battery-charging      #BEE8E3;
 @define-color battery-critical-1    #FFB7C4;
 @define-color battery-critical-2    #fca1b2;
 
 /* audio */
-@define-color audio-bg              #FAD8D4;
+@define-color audio-bg              #f38ba8;
 
 /* Temperature */
-@define-color temperature-bg        #cce8b4;
-@define-color temperature-critical  #f7e08f;
-@define-color temperature-critical  #FFB7C4;
+@define-color temperature-bg        #a6e3a1;
+@define-color temperature-critical  #f9e2af;
+@define-color temperature-critical  #eba0ac;
 
 /* Disk */
-@define-color disk-home-bg          #F1D3F0;
-@define-color disk-root-bg          #ffe1c6;
+@define-color disk-root-bg          #cba6f7;
 
 /* Memory */
-@define-color memory-bg             #CCE2F1;
+@define-color memory-bg             #89dceb;
 
 /* Clock */
-@define-color clock-bg              #C5EAE6;
+@define-color clock-bg              #fab387;
 
 /* Network */
-@define-color network-bg            #B5E3FD;
+@define-color network-bg            #89b4fa;

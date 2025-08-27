@@ -11,7 +11,7 @@
     
     "modules-left": ["hyprland/workspaces"],
     "modules-center": ["clock"],
-    "modules-right": ["memory", "disk#root", "disk#home", "temperature", "pulseaudio", "network", "battery"],
+    "modules-right": ["memory", "disk#root", "temperature", "pulseaudio", "network", "battery"],
 
     "hyprland/workspaces": {
         "disable-scroll": true,
@@ -45,13 +45,6 @@
 
     "disk#root": {
 	"path": "/",
-	"interval": 30,
-	"format": "󰆼 {specific_free:0.2f} GB",
-	"unit": "GB"
-    },
-
-    "disk#home": {
-	"path": "/home",
 	"interval": 30,
 	"format": "󰆼 {specific_free:0.2f} GB",
 	"unit": "GB"
@@ -99,7 +92,7 @@
     },
 
     "network": {
-	"interface": "wlan0",
+	"interface": "wlp2s0",
 	"format": "{ifname}",
 	"format-wifi": "{icon} {essid}",
 	"format-icons" : ["󰤯 ", "󰤟 ", "󰤢 ", "󰤥 ", "󰤨 "],

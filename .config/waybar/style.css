@@ -33,7 +33,7 @@ window#waybar.hidden {
 #workspaces button.empty {
     opacity: 1;
     background-color: transparent;
-    color: @foreground-bright;
+    color: @foreground-dark;
 }
 
 #workspaces button.urgent {
@@ -65,7 +65,7 @@ window#waybar.hidden {
 #tray,
 #disk,
 #network{
-    padding: 0 10px;
+    padding: 6px 11px;
     margin: 0 5px;
     border-radius: 6px;
     
@@ -118,10 +118,6 @@ window#waybar.hidden {
     color: @foreground-bright;
 }
 
-#disk.home {
-    background-color: @disk-home-bg;
-}
-
 #disk.root {
     background-color: @disk-root-bg;
 }
@@ -134,7 +130,6 @@ window#waybar.hidden {
     background-color: @clock-bg;
     color: @foreground-dark;
     font-weight: bold;
-    font-size: 13px;
     /* border-radius: 1000px; */
 }
 

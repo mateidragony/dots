@@ -72,7 +72,14 @@
 
 # icons
 !.icons/
-!.icons/**
+.icons/*
+!.icons/default
+!.icons/default/**
+!.icons/dunst
+!.icons/dunst/**
+!.icons/wlogout
+!.icons/wlogout/**
+
 
 # local
 !.local/

@@ -170,7 +170,6 @@ alias clipboard="xclip -selection clipboard"
 
 alias class="cd ~/Projects/Class-Notes/FA24/"
 
-[ -f "/home/mateidragony/.ghcup/env" ] && . "/home/mateidragony/.ghcup/env" # ghcup-env
 
 alias deduce="python ~/Projects/deduce-stuff/deduce/deduce.py"
 
@@ -184,3 +183,6 @@ alias zip="~/scripts/zip.sh"
 # This section can be safely removed at any time if needed.
 [[ ! -r '/home/mateidragony/.opam/opam-init/init.zsh' ]] || source '/home/mateidragony/.opam/opam-init/init.zsh' > /dev/null 2> /dev/null
 # END opam configuration
+unsetopt PROMPT_SP
+
+[ -f "/home/mateidragony/.ghcup/env" ] && . "/home/mateidragony/.ghcup/env" # ghcup-env

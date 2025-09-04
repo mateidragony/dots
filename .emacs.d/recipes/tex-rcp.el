@@ -6,6 +6,8 @@
 
 (use-package pdf-tools
   :defer t
+  :custom
+  (doc-view-resolution 200)
   :config
   (pdf-tools-install)
   )

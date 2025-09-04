@@ -75,7 +75,7 @@ plugins=(git)
 
 source $ZSH/oh-my-zsh.sh
 
-export EDITOR="emacs -nw"
+export EDITOR="nano"
 
 # User configuration
 

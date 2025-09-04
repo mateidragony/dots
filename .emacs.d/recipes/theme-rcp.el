@@ -4,7 +4,7 @@
 (use-package autothemer
   :ensure t)
 
-(setq theme 'colorful-sepia)
+(setq theme 'colorful-dark)
 (load-theme theme t)
 
 (use-package spacious-padding

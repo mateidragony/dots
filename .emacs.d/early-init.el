@@ -1,4 +1,5 @@
 ;;; early-init.el --- Pre init config
+;; This file and many recipes based off of https://github.com/Crandel/home/tree/master/.config/emacs
 ;;; Code:
 
 ;; Increase the GC threshold for faster startup
@@ -70,9 +71,9 @@
 
 (modify-all-frames-parameters '((width                    . 100)
                                 (height                   . 100)
-								(background-color         . "#F4D39A")  ;; change if theme changes
+								(background-color         . "#221f35")  ;; change if theme changes
                                 (alpha-background         . 100)
-								(cursor-color             . "#51afef")
+								(cursor-color             . "#e1cdf4")
                                 (font                     . "JetBrainsMono Nerd Font-12")
                                 (fullscreen               . maximized)
                                 (inhibit-double-buffering . t)

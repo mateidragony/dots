@@ -30,10 +30,10 @@
 	 ("fun"     . nil)
 	 ("config"  . nil)
 	 (:startgroup . nil)
-	 ("p515" . nil)
-	 ("m405" . nil)
-	 ("i365" . nil)
-	 ("r211" . nil)
+	 ("q370" . nil)
+	 ("b557" . nil)
+	 ("e315" . nil)
+	 ("m403" . nil)
 	 (:endgroup . nil)
 	 (:startgroup . nil)
 	 ("c343" . nil)
@@ -61,13 +61,13 @@
   (org-todo-keywords
    '((sequence "TODO(t)" "PLANNING(p)" "IN-PROGRESS(i@/!)" "BLOCKED(b@)" "WAITING(w@!)" "|" "DONE(d!)" "WONT-DO(x@/!)")))
   (org-todo-keyword-faces
-   '(("TODO"        . (:foreground "#9b0a12" :weight bold))   ;; red
-	 ("PLANNING"    . (:foreground "#a331bc" :weight bold))   ;; pink
-     ("IN-PROGRESS" . (:foreground "#09629e" :weight bold))   ;; cyan
-     ("BLOCKED"     . (:foreground "#6d070c" :weight bold))   ;; dark red
-	 ("WAITING"     . (:foreground "#450d68" :weight bold))   ;; dark purple
-     ("DONE"        . (:foreground "#088d17" :weight bold))   ;; green
-	 ("WONT-DO"     . (:foreground "#6d645e" :weight bold)))) ;; gray
+   '(("TODO"        . (:inherit 'org-todo-keyword-todo))
+	 ("PLANNING"    . (:inherit 'org-todo-keyword-planning))
+     ("IN-PROGRESS" . (:inherit 'org-todo-keyword-in-progress))
+     ("BLOCKED"     . (:inherit 'org-todo-keyword-blocked))
+	 ("WAITING"     . (:inherit 'org-todo-keyword-waiting))
+     ("DONE"        . (:inherit 'org-todo-keyword-done))
+	 ("WONT-DO"     . (:inherit 'org-todo-keyword-wont-do))))
   
   (org-capture-templates
    '(("g" "General To-Do"

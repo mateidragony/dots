@@ -7,6 +7,12 @@
          (cursor-color     . "#4f4239"))
        default-frame-alist))
 
+(defface mode-line-active-insert      '((t)) "Mode-line active editing face")
+(defface mode-line-active-modified    '((t)) "Mode-line active editing modified face")
+(defface mode-line-active-ro          '((t)) "Mode-line active read-only face")
+(defface mode-line-inactive           '((t)) "Mode-line inactive face")
+(defface mode-line-lighter-bg         '((t)) "Mode-line lighter face")
+
 (autothemer-deftheme
  colorful-sepia "Colorful sepia theme for emacs"
 
@@ -23,13 +29,14 @@
   (cs-lt-blue      "#c0dded")
   (cs-blue         "#0076c5")
   (cs-dk-blue      "#0b4d7a")
-  (cs-lt-lt-purple "#d2c5bd")
-  (cs-lt-purple    "#c69fea")
+  (cs-lt-lt-purple "#c69fea")
+  (cs-lt-purple    "#8e3bed")
   (cs-purple       "#7522d3")
   (cs-dk-purple    "#4d079e")
   (cs-lt-green     "#acdb99")
   (cs-green        "#088d17")
-  (cs-lt-red       "#fca1a4")
+  (cs-lt-lt-red    "#fca1a4")
+  (cs-lt-red       "#e45649")
   (cs-red          "#9b0a12")
   (cs-dk-red       "#e35535")
   (cs-dk-dk-red    "#6d070c")
@@ -44,7 +51,8 @@
   (cs-dk-yellow    "#af8136")
   
   (cs-bg           "#f4d39a")
-  (cs-lt-bg        "#f2dea9")
+  (cs-lt-lt-bg     "#f2dea9")
+  (cs-lt-bg        "#f4cb89")
   (cs-dk-bg        "#f2d993")
   (cs-dk-dk-bg     "#e8bd78")
   (cs-selection    "#f998b8")
@@ -63,7 +71,7 @@
   (default                            (:foreground cs-black :background cs-bg))
   (error                              (:foreground cs-red :weight 'bold))
   (header-line                        (:background cs-dk-bg))
-  (help-key-binding                   (:foreground cs-black :background cs-lt-bg :box t))
+  (help-key-binding                   (:foreground cs-black :background cs-lt-lt-bg :box t))
   (highlight                          (:inherit 'region))  
   (line-number                        (:foreground cs-gray))
   (match                              (:inherit 'region))
@@ -106,10 +114,10 @@
 
   ;; company
   (company-template-field                         (:inherit 'region))
-  (company-preview                                (:background cs-lt-bg))
+  (company-preview                                (:background cs-lt-lt-bg))
   (company-preview-common                         (:foreground cs-blue))
   (company-preview-search                         (:foreground cs-blue))
-  (company-tooltip                                (:background cs-lt-bg))
+  (company-tooltip                                (:background cs-lt-lt-bg))
   (company-tooltip-annotation                     (:foreground cs-orange))
   (company-tooltip-annotation-selection           (:foreground cs-orange))
   (company-tooltip-common                         (:foreground cs-blue))
@@ -131,7 +139,7 @@
   (company-coq-features/code-folding-bullet-face  (:underline nil))
 
   ;; custom
-  (custom-button                      (:foreground cs-black :background cs-lt-bg :box (:line-width 2 :color cs-lt-gray :style 'released-button)))
+  (custom-button                      (:foreground cs-black :background cs-lt-lt-bg :box (:line-width 2 :color cs-lt-gray :style 'released-button)))
   (custom-button-mouse                (:inherit 'custom-button :background cs-dk-dk-bg))
   (custom-button-pressed              (:inherit 'custom-button :background cs-dk-bg :box (:line-width 2 :color cs-lt-gray :style 'pressed-button)))
   (custom-changed                     (:foreground cs-white :background cs-blue))
@@ -176,10 +184,10 @@
   (smerge-lower                       (:background cs-lt-lt-purple))
   (smerge-refined-changed             (:foreground cs-black))
   (smerge-refined-added               (:background cs-lt-green))
-  (smerge-refined-removed             (:background cs-lt-red))
+  (smerge-refined-removed             (:background cs-lt-lt-red))
 
   ;; isearch
-  (isearch                            (:foreground cs-black :background cs-lt-purple))
+  (isearch                            (:foreground cs-black :background cs-lt-lt-purple))
   (isearch-fail                       (:foreground cs-white :background cs-red))
   (isearch-group-1                    (:inherit 'isearch))
   (isearch-group-2                    (:inherit 'isearch))
@@ -197,7 +205,7 @@
   (lsp-ui-peek-filename               (:foreground cs-red))
   (lsp-ui-peek-footer                 (:background cs-dk-dk-bg))
   (lsp-ui-peek-header                 (:inherit 'lsp-ui-peek-footer))
-  (lsp-ui-peek-highlight              (:background cs-yellow :box (:color cs-lt-red)))
+  (lsp-ui-peek-highlight              (:background cs-yellow :box (:color cs-lt-lt-red)))
   (lsp-ui-peek-list                   (:background cs-dk-bg))
   (lsp-ui-peek-peek                   (:inherit 'lsp-ui-peek-list))
   (lsp-ui-peek-selection              (:background cs-selection))
@@ -330,11 +338,11 @@
   (sidebar-updated                    (:foreground cs-green))
     
   ;; tab bar
-  (tab-bar                            (:inherit 'variable-pitch :foreground cs-black :background cs-lt-bg))
+  (tab-bar                            (:inherit 'variable-pitch :foreground cs-black :background cs-lt-lt-bg))
   (tab-line                           (:inherit 'tab-bar :underline t))
   
   ;; toolbar
-  (tool-bar                           (:foreground cs-black :background cs-lt-bg :box (:line-width 2 :color cs-dk-bg :style 'released-button)))
+  (tool-bar                           (:foreground cs-black :background cs-lt-lt-bg :box (:line-width 2 :color cs-dk-bg :style 'released-button)))
   
   ;; web
   (web-mode-doctype-face              (:inherit 'font-lock-comment-face))
@@ -342,16 +350,20 @@
   (web-mode-html-attr-name-face       (:foreground cs-orange))
 
   ;; widget
-  (widget-field                       (:foreground cs-black :background cs-lt-bg :box (:color cs-lt-gray)))
+  (widget-field                       (:foreground cs-black :background cs-lt-lt-bg :box (:color cs-lt-gray)))
   (widget-single-line-field           (:inherit 'widget-field))
 
   ;; window dividers
   (window-divider                     (:foreground cs-dk-bg :background cs-black))
   (window-divider-first-pixel         (:inherit 'window-divider))
   (window-divider-last-pixel          (:inherit 'window-divider))
+
+  (mode-line-active-insert            (:foreground cs-white :background cs-purple :weight 'bold :box (:line-width 1 :color cs-purple)))
+  (mode-line-active-modified          (:inherit 'mode-line-active-insert :background cs-lt-purple :box (:line-width 1 :color cs-lt-purple)))
+  (mode-line-active-ro                (:inherit 'mode-line-active-insert :background cs-lt-red :box (:line-width 1 :color cs-lt-red)))
+  (mode-line-inactive                 (:foreground cs-black :background cs-dk-dk-bg :weight 'bold :box (:line-width 1 :color cs-dk-dk-bg)))
+  (mode-line-lighter-bg               (:background cs-lt-bg))
   ))
-
-
 
 (provide-theme 'colorful-sepia)
 

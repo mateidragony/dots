@@ -105,18 +105,6 @@
   (agda2-highlight-postulate-face                 (:inherit 'font-lock-keyword-face))
   (agda2-highlight-primitive-face                 (:inherit 'font-lock-constant-face))
   (agda2-highlight-primitive-type-face            (:inherit 'font-lock-type-face))
-
-  (font-lock-string-face              (:foreground cd-green))
-  (font-lock-keyword-face             (:foreground cd-purple))
-  (font-lock-comment-face             (:foreground cd-comment :slant 'italic))
-  (font-lock-comment-delimiter-face   (:foreground cd-comment :slant 'italic))
-  (font-lock-function-name-face       (:foreground cd-pink :weight 'bold))
-  (font-lock-constant-face            (:foreground cd-orange))
-  (font-lock-variable-name-face       (:foreground cd-blue :weight 'bold))
-  (font-lock-builtin-face             (:foreground cd-purple))
-  (font-lock-warning-face             (:foreground cd-red :weight 'bold))
-  (font-lock-type-face                (:foreground cd-purple))
-
   
   ;; ansi
   (ansi-color-black                               (:foreground cd-black :background cd-black))
@@ -137,9 +125,9 @@
   ;; company
   (company-template-field                         (:inherit 'region))
   (company-preview                                (:background cd-lt-lt-bg))
-  (company-preview-common                         (:foreground cd-blue))
+  (company-preview-common                         (:foregraound cd-blue))
   (company-preview-search                         (:foreground cd-blue))
-  (company-tooltip                                (:background cd-lt-lt-bg))
+  (company-tooltip                                (:background cd-dk-bg))
   (company-tooltip-annotation                     (:foreground cd-orange))
   (company-tooltip-annotation-selection           (:foreground cd-orange))
   (company-tooltip-common                         (:foreground cd-blue))
@@ -189,15 +177,15 @@
   
   ;; Font lock
   (font-lock-string-face              (:foreground cd-green))
-  (font-lock-keyword-face             (:foreground cd-blue))
+  (font-lock-keyword-face             (:foreground cd-purple))
   (font-lock-comment-face             (:foreground cd-comment :slant 'italic))
   (font-lock-comment-delimiter-face   (:foreground cd-comment :slant 'italic))
-  (font-lock-function-name-face       (:foreground cd-purple :weight 'bold))
-  (font-lock-constant-face            (:foreground cd-pink))
-  (font-lock-variable-name-face       (:foreground cd-pink :weight 'bold))
-  (font-lock-builtin-face             (:foreground cd-blue))
+  (font-lock-function-name-face       (:foreground cd-pink :weight 'bold))
+  (font-lock-constant-face            (:foreground cd-orange))
+  (font-lock-variable-name-face       (:foreground cd-blue :weight 'bold))
+  (font-lock-builtin-face             (:foreground cd-purple))
   (font-lock-warning-face             (:foreground cd-red :weight 'bold))
-  (font-lock-type-face                (:foreground cd-purple))
+  (font-lock-type-face                (:foreground cd-blue))
 
   ;; git merge
   (smerge-base                        (:background cd-dk-bg))
@@ -260,7 +248,7 @@
   (package-name                       (:inherit 'link))
   
   ;; lsp
-  (lsp-face-highlight-read            (:background cd-lt-blue))
+  (lsp-face-highlight-read            (:background cd-dk-blue))
   (lsp-installation-buffer-face       (:foreground cd-green))
 
   ;; nerd icons

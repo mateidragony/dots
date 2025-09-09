@@ -10,11 +10,11 @@
   (add-to-list 'package-archives '("org" . "https://orgmode.org/elpa/") t)
   (setq gnutls-algorithm-priority  "NORMAL:-VERS-TLS1.3" ;; bug fix for gnu
         package-enable-at-startup  nil
-        package-archive-priorities '(("melpa"        . 200)
-                                     ("elpa"         . 100)
-                                     ("org"          . 75)
-                                     ("nongnu"       . 65)
-                                     ("gnu"          . 50)))  ;; Higher values are searched first.
+        package-archive-priorities '(("melpa-stable"  . 200)
+                                     ("melpa"         . 100)
+                                     ("elpa"          . 75)
+                                     ("org"           . 65)
+                                     ("nongnu"        . 50)))  ;; Higher values are searched first.
 
   (require 'use-package)
   (put 'use-package 'lisp-indent-function 1)

@@ -165,6 +165,7 @@ alias pacman='sudo pacman'
 alias dir='ls -l'
 
 alias silo="ssh mcloteau@silo.soic.indiana.edu"
+alias shulin="ssh batei@23.125.194.231"
 
 alias clipboard="xclip -selection clipboard"
 
@@ -173,7 +174,7 @@ alias class="cd ~/Projects/Class-Notes/FA24/"
 
 alias deduce="python ~/Projects/deduce-stuff/deduce/deduce.py"
 
-alias zip="~/scripts/zip.sh"
+alias zip="~/Scripts/zip.sh"
 
 
 # BEGIN opam configuration

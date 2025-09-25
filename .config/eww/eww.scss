@@ -65,3 +65,70 @@
 	font-size : 14px;
 	font-weight : normal;
 }
+
+
+/** Todo ***************************************/
+
+.tasks {
+	padding: 10px 20px;
+}
+
+.status {
+	font-size: 13px;
+}
+
+.todo {
+	color: #e45649
+}
+
+.planning {
+	color: #e261cd;
+}
+
+.progress {
+	color: #3aa2e8;
+}
+
+.blocked {
+	color: #a80d15;
+}
+
+.waiting {
+	color: #b479f7;
+}
+
+.done {
+	color: #23c436;
+}
+
+.wont {
+	color: #7f849c;
+}
+
+.urgent {
+	color: #9b0a12;	
+}
+
+.high {
+	color: #c9431e;
+}
+
+.low {
+	color: #088d17;
+}
+
+.bluesky {
+	color: #0076c5;
+}
+
+
+.title {
+	color: #cdd6f4;
+	font-size: 13px;
+}
+
+.tags {
+	color: #7f849c;
+	font-style: italic;
+	font-size: 12px;
+}

@@ -17,31 +17,63 @@
 (defpoll QUOTE  :interval "15m" `scripts/weather_info --quote`)
 (defpoll QUOTE2 :interval "15m" `scripts/weather_info --quote2`)
 
+;; todo
+(defpoll TODO :interval "10s" `scripts/org-agenda.sh`)
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Widgets
 ;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; time
 (defwidget clock [] 
-	(box :class "genwin" :orientation "h" :space-evenly true :vexpand "false" :hexpand "false" 
-		(box :orientation "h" :spacing 0
-			(label :class "time_hour" :valign "start" :wrap "true" :limit-width 25 :text HOUR)
-			(label :class "time_min" :valign "end" :wrap "true" :limit-width 25 :text MIN))
-		(box :orientation "v" :spacing 0 
-			(label :class "time_mer" :valign "start" :halign "end" :wrap "true" :limit-width 25 :text DAY)
-			(label :class "time_day" :valign "end" :halign "end" :wrap "true" :limit-width 25 :text DATE))))
+		   (box :class "genwin" :orientation "h" :space-evenly true :vexpand "false" :hexpand "false" 
+				(box :orientation "h" :spacing 0
+					 (label :class "time_hour" :valign "start" :wrap "true" :limit-width 25 :text HOUR)
+					 (label :class "time_min" :valign "end" :wrap "true" :limit-width 25 :text MIN))
+				(box :orientation "v" :spacing 0 
+					 (label :class "time_mer" :valign "start" :halign "end" :wrap "true" :limit-width 25 :text DAY)
+					 (label :class "time_day" :valign "end" :halign "end" :wrap "true" :limit-width 25 :text DATE))))
 
 ;; weather
 (defwidget weather [] 
-	(box :class "genwin" 
-		(box :orientation "v" :spacing 10 :space-evenly "false" :vexpand "false" :hexpand "false" 
-			(box :orientation "h" :vexpand "false" :hexpand "false" 
-				(label :class "iconweather" :halign "start" :style "color: ${HEX};" :text ICON)
-				(label :class "label_temp" :halign "end" :text TEMP))
-			(box :orientation "v" :spacing 10 :halign "center" :space-evenly "false" :vexpand "false" :hexpand "false" 
-				(label :class "label_stat" :text STAT)
-				(label :class "label_quote" :text QUOTE)
-				(label :class "label_quote" :text QUOTE2)))))
+		   (box :class "genwin" 
+				(box :orientation "v" :spacing 10 :space-evenly "false" :vexpand "false" :hexpand "false" 
+					 (box :orientation "h" :vexpand "false" :hexpand "false" 
+						  (label :class "iconweather" :halign "start" :style "color: ${HEX};" :text ICON)
+						  (label :class "label_temp" :halign "end" :text TEMP))
+					 (box :orientation "v" :spacing 10 :halign "center" :space-evenly "false" :vexpand "false" :hexpand "false" 
+						  (label :class "label_stat" :text STAT)
+						  (label :class "label_quote" :text QUOTE)
+						  (label :class "label_quote" :text QUOTE2)))))
+
+;; todo
+(defwidget todo []
+		   (box :class "genwin"
+				(label :text TODO)))
+
+(defwidget task [status priority title tags deadline]
+  (box :class "task"
+       :orientation "h"
+	   :space-evenly "false"
+       (box :width 110 :orientation "h" :space-evenly "false"
+			(label :class "status ${status[1]}" :halign "center" :text "${status[0]}"))
+       (box :width 30 :orientation "h" :space-evenly "false"
+			(label :class "priority ${priority[1]}" :text "${priority[0]}"))
+       (box :width 275 :orientation "h" :space-evenly "false"
+			(label :class "title" :halign "start" :text title))
+       (box :width 100 :orientation "h" :space-evenly "false"
+			(label :halign "end" :class "tags" :text deadline))))
+
+(defwidget tasks [items]
+  (box :orientation "v"
+       :class "genwin tasks"
+       (for item in items
+         (task :status   "${item.status}"
+               :priority "${item.priority}"
+               :title    "${item.title}"
+               :tags     "${item.tags}"
+			   :deadline "${item.deadline}"))))
+
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Windows
@@ -61,3 +93,14 @@
 		   :monitor 0
 	       :geometry (geometry :x 100 :y 325 :width 500 :height 280)
 		   (weather))
+
+;; todo
+(defvar myjson
+  "[[1,2,3,4], [1354,23,325,42], [10,20,30,40], [11,22,33,44]]")
+
+(defwindow todo
+		   :stacking "bg"
+		   :focusable "false"
+		   :monitor 0
+		   :geometry (geometry :x 100 :y 630 :width 515)
+		   (tasks :items TODO))

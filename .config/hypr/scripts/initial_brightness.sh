@@ -5,9 +5,9 @@ NIGHT=20
 
 hour=$(date +%H)
 if [ "$hour" -ge $MORNING ] && [ "$hour" -lt $NIGHT ]; then
-    brightnessctl set 15000
+    brightnessctl set 40%
 else
-    brightnessctl set 5000
+    brightnessctl set 15%
 fi
 
 

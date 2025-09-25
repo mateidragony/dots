@@ -25,9 +25,9 @@
 !.config/alacritty/
 !.config/alacritty/**
 
-# dunst
-!.config/dunst/
-!.config/dunst/**
+# swaync
+!.config/swaync/
+!.config/swaync/**
 
 # hyprland
 !.config/hypr/
@@ -64,8 +64,8 @@
 .icons/*
 !.icons/default
 !.icons/default/**
-!.icons/dunst
-!.icons/dunst/**
+!.icons/notifications
+!.icons/notifications/**
 
 # local
 !.local/

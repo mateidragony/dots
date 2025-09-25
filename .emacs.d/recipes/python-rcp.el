@@ -1,7 +1,11 @@
 ;;; python-rcp.el --- Python configuration
 ;;; Code:
 
-(add-hook 'python-mode-hook 'lsp-mode)
+(use-package python
+  :ensure t
+  :hook (python-mode . lsp-mode)
+  :custom
+  (python-indent-offset 2))
 
 (provide 'python-rcp)
 ;;; Commentary:

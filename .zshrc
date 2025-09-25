@@ -100,6 +100,7 @@ export EDITOR="nano"
 zshcache_time="$(date +%s%N)"
 
 autoload -Uz add-zsh-hook
+autoload -Uz zmv
 
 rehash_precmd() {
   if [[ -a /var/cache/zsh/pacman ]]; then
@@ -117,6 +118,7 @@ add-zsh-hook -Uz precmd rehash_precmd
 # PATH
 export PATH="$PATH:/home/mateidragony/bin"
 export PATH="$PATH:/home/mateidragony/.ghcup/hls/"
+export PATH="$PATH:/home/mateidragony/Applications/Xilinx/2025.1/Vivado/bin/"
 
 # omz
 alias zshconfig="geany ~/.zshrc"
@@ -152,6 +154,7 @@ alias calc='python3 -ic "from math import *"'
 alias duall='du -sh $(ls -A) | sort -hr'
 alias scratch='cd ~/scratch'
 alias em='emacs -nw'
+alias open='xdg-open'
 
 mkcd ()
 {
@@ -166,6 +169,7 @@ alias dir='ls -l'
 
 alias silo="ssh mcloteau@silo.soic.indiana.edu"
 alias shulin="ssh batei@23.125.194.231"
+alias pynq='ssh xilinx@192.168.1.238'
 
 alias clipboard="xclip -selection clipboard"
 
@@ -187,3 +191,8 @@ alias zip="~/Scripts/zip.sh"
 unsetopt PROMPT_SP
 
 [ -f "/home/mateidragony/.ghcup/env" ] && . "/home/mateidragony/.ghcup/env" # ghcup-env
+
+
+export PYENV_ROOT="$HOME/.pyenv"
+[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init - bash)"

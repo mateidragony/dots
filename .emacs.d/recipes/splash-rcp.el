@@ -181,7 +181,9 @@
       (add-hook 'window-setup-hook 'init-splash-screen)
       (setq inhibit-startup-screen  t 
             inhibit-startup-message t
-            inhibit-startup-echo-area-message t)))
+            inhibit-startup-echo-area-message t
+			server-client-instructions nil)
+	  ))
 
 (defun display-startup-echo-area-message ()
   (message nil))

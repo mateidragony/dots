@@ -9,16 +9,22 @@
 (defpoll DATE :interval "5s" `date +\"%B %d\"`)
 
 ;; weather
-(defpoll WDATA  :interval "15m" `scripts/weather_info --getdata`)
-(defpoll ICON   :interval "15m" `scripts/weather_info --icon`)
-(defpoll STAT   :interval "15m" `scripts/weather_info --stat`)
-(defpoll TEMP   :interval "15m" `scripts/weather_info --temp`)
-(defpoll HEX    :interval "15m" :initial "#fff" `scripts/weather_info --hex`)
-(defpoll QUOTE  :interval "15m" `scripts/weather_info --quote`)
-(defpoll QUOTE2 :interval "15m" `scripts/weather_info --quote2`)
+(defpoll WDATA  :interval "15m" `scripts/weather_info.sh --getdata`)
+(defpoll ICON   :interval "15m" `scripts/weather_info.sh --icon`)
+(defpoll STAT   :interval "15m" `scripts/weather_info.sh --stat`)
+(defpoll TEMP   :interval "15m" `scripts/weather_info.sh --temp`)
+(defpoll HEX    :interval "15m" :initial "#fff" `scripts/weather_info.sh --hex`)
+(defpoll QUOTE  :interval "15m" `scripts/weather_info.sh --quote`)
+(defpoll QUOTE2 :interval "15m" `scripts/weather_info.sh --quote2`)
+
+;; system information
+(defpoll CPU_USAGE  :interval "1s" `scripts/sys_info.sh --cpu`)
+(defpoll MEM_USAGE  :interval "1s" `scripts/sys_info.sh --mem`)
+(defpoll BRIGHTNESS :interval "1s" `scripts/sys_info.sh --brightness`)
+(defpoll BATTERY    :interval "5s" `scripts/sys_info.sh --bat`)
 
 ;; todo
-(defpoll TODO :interval "10s" `scripts/org-agenda.sh`)
+(defpoll TODO :interval "1m" `scripts/org_agenda.sh`)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Widgets
@@ -58,11 +64,11 @@
        (box :width 110 :orientation "h" :space-evenly "false"
 			(label :class "status ${status[1]}" :halign "center" :text "${status[0]}"))
        (box :width 30 :orientation "h" :space-evenly "false"
-			(label :class "priority ${priority[1]}" :text "${priority[0]}"))
+			(label :class "priority ${priority[1]} ${status[1]}" :text "${priority[0]}"))
        (box :width 275 :orientation "h" :space-evenly "false"
-			(label :class "title" :halign "start" :text title))
+			(label :class "title ${status[1]}" :halign "start" :text title))
        (box :width 100 :orientation "h" :space-evenly "false"
-			(label :halign "end" :class "tags" :text deadline))))
+			(label :class "tags ${status[1]}" :text deadline))))
 
 (defwidget tasks [items]
   (box :orientation "v"
@@ -74,6 +80,22 @@
                :tags     "${item.tags}"
 			   :deadline "${item.deadline}"))))
 
+;; system
+(defwidget system [] 
+	(box :class "genwin" :vexpand "false" :hexpand "false" 
+		(box :orientation "v" :spacing 20 :halign "center" :valign "center" :space-evenly "false" :vexpand "false" :hexpand "false" 
+			(box :class "cpu_bar" :orientation "h" :spacing 20 :space-evenly "false" :vexpand "false" :hexpand "false" 
+				(label :class "iconcpu" :text " ")
+				(scale :min -10 :max 100 :value CPU_USAGE :active "false"))
+			(box :class "mem_bar" :orientation "h" :spacing 20 :space-evenly "false" :vexpand "false" :hexpand "false" 
+				(label :class "iconmem" :text " ")
+				(scale :min -10 :max 100 :value MEM_USAGE :active "false"))
+			(box :class "bright_bar" :orientation "h" :spacing 20 :space-evenly "false" :vexpand "false" :hexpand "false" 
+				(label :class "iconbright" :text " ")
+				(scale :min -10 :max 100 :value BRIGHTNESS :active "false"))
+			(box :class "bat_bar" :orientation "h" :spacing 20 :space-evenly "false" :vexpand "false" :hexpand "false" 
+				(label :class "iconbat" :text " ")
+				(scale :min -10 :max 100 :value BATTERY :active "false")))));; system
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Windows
@@ -95,12 +117,17 @@
 		   (weather))
 
 ;; todo
-(defvar myjson
-  "[[1,2,3,4], [1354,23,325,42], [10,20,30,40], [11,22,33,44]]")
-
 (defwindow todo
 		   :stacking "bg"
 		   :focusable "false"
 		   :monitor 0
-		   :geometry (geometry :x 100 :y 630 :width 515)
+		   :geometry (geometry :x 100 :y 630 :width 515 :height 220)
 		   (tasks :items TODO))
+
+;; system
+(defwindow system
+		   :stacking "bg"
+		   :focusable "false"
+		   :monitor 0
+		   :geometry (geometry :x 100 :y 885 :width 360 :height 220)
+		   (system))

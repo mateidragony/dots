@@ -77,31 +77,31 @@
 	font-size: 13px;
 }
 
-.todo {
+.status.todo {
 	color: #e45649
 }
 
-.planning {
+.status.planning {
 	color: #e261cd;
 }
 
-.progress {
+.status.progress {
 	color: #3aa2e8;
 }
 
-.blocked {
+.status.blocked {
 	color: #a80d15;
 }
 
-.waiting {
+.status.waiting {
 	color: #b479f7;
 }
 
-.done {
+.status.done {
 	color: #23c436;
 }
 
-.wont {
+.status.wont {
 	color: #7f849c;
 }
 
@@ -127,8 +127,65 @@
 	font-size: 13px;
 }
 
+.title.done {
+	color: #A6E3A1;
+}
+
 .tags {
 	color: #7f849c;
 	font-style: italic;
 	font-size: 12px;
+}
+
+.tags.done {
+	color: #A6E3A1;
+}
+
+.priority.done {
+	color: transparent;
+}
+
+/** System ********************************************/
+.iconcpu, .iconmem, .iconbright, .iconbat {
+	font-size : 25px;
+	font-weight : normal;
+	font-family: feather;
+}
+.iconcpu {
+	color: #F38BA8;
+}
+.iconmem {
+	color: #A6E3A1;
+}
+.iconbright {
+	color: #E5C890;
+}
+.iconbat {
+	color: #89DCEB;
+}
+
+.cpu_bar, .mem_bar, .bright_bar, .bat_bar, scale trough {
+	all: unset;
+	background-color: #3A404C;
+	border-radius: 16px;
+	min-height: 20px;
+	min-width: 240px;
+}
+
+.cpu_bar, .mem_bar, .bright_bar, .bat_bar, scale trough highlight {
+	all: unset;
+	border-radius: 16px;
+}
+
+.cpu_bar scale trough highlight {
+	background-color: #F38BA8;
+}
+.mem_bar scale trough highlight {
+	background-color: #A6E3A1;
+}
+.bright_bar scale trough highlight {
+	background-color: #E5C890;
+}
+.bat_bar scale trough highlight {
+	background-color: #89DCEB;
 }

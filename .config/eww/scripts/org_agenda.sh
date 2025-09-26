@@ -65,6 +65,7 @@ map_priority() {
 declare -A seen
 echo "["
 first=1
+cnt=0
 while IFS= read -r line; do
     # skip empty lines
     [ -z "$line" ] && continue
@@ -75,8 +76,7 @@ while IFS= read -r line; do
 	title=$(echo "$line" | sed -E 's/^\s*(Due today|Due in [0-9]+ days)?\s*[A-Z-]+[ \t]+\[#[A-Z]\][ \t]+(.*)[ \t]+.*(:.*:)/\2/' | xargs)
 	tags=$(echo "$line" | sed -E 's/.* (:.*:)$/\1/')
 
-	if [[ -z "${seen[$title]}" ]]; then
-
+	if [[ -z "${seen[$title]}" ]] && [[ cnt -le 10 ]]; then
 		if [ $first -eq 0 ]; then
 			echo ","
 		fi
@@ -85,6 +85,7 @@ while IFS= read -r line; do
 		printf '  {"status": %s, "priority": %s, "title": "%s", "tags": "%s", "deadline": "%s"}' \
 			   "$(map_status $status)" "$(map_priority $priority)" "$title" "$tags" "$deadline"
 		seen[$title]=1
+		cnt=$((cnt+1))
 	fi
 	
 done <<< "$deadlineTasks"$'\n'"$allTasks"

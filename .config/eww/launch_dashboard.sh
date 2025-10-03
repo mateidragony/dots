@@ -15,7 +15,8 @@ run_eww() {
 	${EWW} open-many \
 		   clock \
 		   weather \
-		   todo
+		   todo \
+		   system
 }
 
 run_eww

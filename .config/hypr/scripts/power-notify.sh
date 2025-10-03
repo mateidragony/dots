@@ -48,7 +48,7 @@ notify() {
 	elif [ "$state" = "Full" ] && [ "$old_state" != "full" ]; then
 		$notify_cmd -u normal -i "$iDIR/battery-full.svg" "Battery full" "So much energy flowing in this machine right now."
 		echo "full" > $CACHE_STATE
-	elif [ "$state" = "Discharging" ]; then
+	elif [ "$state" = "Discharging" && [ $percent -gt 20 ] ]; then
 		echo "normal" > $CACHE_STATE
 	fi
 }

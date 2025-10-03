@@ -1,3 +1,17 @@
+/** Variables *******************************************/
+$foreground: #cdd6f4;
+$background: rgb(24, 24, 37, 0.75);
+$red:        #F38BA8;
+$green:      #A6E3A1;
+$blue:       #89B4FA;
+$yellow:     #E5C890;
+$teal:       #89DCEB;
+$orange:     #FAB387;
+$purple:     #CBA6F7;
+$pink:       #f5c2e7;
+$dk-gray:    #3A404C;
+$lt-gray:    #7f849c;
+
 /** Global *******************************************/
 *{
 	all: unset;
@@ -6,14 +20,14 @@
 }
 
 .genwin {
-	background-color: rgb(24, 24, 37, 0.75);
+	background-color: $background;
 	border-radius: 16px;
 }
 
 
 /** Time ***************************************/
 .time_hour, .time_min {
-	color: #89B4FA;
+	color: $blue;
 	font-size : 70px;
 	font-weight : bold;
 }
@@ -25,14 +39,14 @@
 }
 
 .time_mer {
-	color: #A6E3A1;
+	color: $green;
 	font-size : 30px;
 	font-weight : bold;
 	margin : 20px 20px 0px 0px;
 }
 
 .time_day {
-	color: #FAB387;
+	color: $orange;
 	font-size : 25px;
 	font-weight : normal;
 	margin : 0px 20px 20px -20px;
@@ -48,20 +62,20 @@
 }
 
 .label_temp {
-	color : #89DCEB;
+	color : $teal;
 	font-size : 60px;
 	font-weight : bold;
 	margin : 15px 30px 0px 0px;
 }
 
 .label_stat {
-	color : #F38BA8;
+	color : $red;
 	font-size : 30px;
 	font-weight : bold;
 }
 
 .label_quote {
-	color : #cdd6f4;
+	color : $foreground;
 	font-size : 14px;
 	font-weight : normal;
 }
@@ -75,70 +89,71 @@
 
 .status {
 	font-size: 13px;
+	font-weight: 700;
 }
 
 .status.todo {
-	color: #e45649
+	color: $red;
 }
 
 .status.planning {
-	color: #e261cd;
+	color: $pink;
 }
 
 .status.progress {
-	color: #3aa2e8;
+	color: $blue;
 }
 
 .status.blocked {
-	color: #a80d15;
+	color: $orange;
 }
 
 .status.waiting {
-	color: #b479f7;
+	color: $purple;
 }
 
 .status.done {
-	color: #23c436;
+	color: $green;
 }
 
 .status.wont {
-	color: #7f849c;
+	color: $lt-gray;
 }
 
 .urgent {
-	color: #9b0a12;	
+	color: $red;	
 }
 
 .high {
-	color: #c9431e;
+	color: $orange;
 }
 
 .low {
-	color: #088d17;
+	color: $green;
 }
 
 .bluesky {
-	color: #0076c5;
+	color: $blue;
 }
 
 
 .title {
-	color: #cdd6f4;
+	color: $foreground;
 	font-size: 13px;
 }
 
 .title.done {
-	color: #A6E3A1;
+	color: $green;
 }
 
 .tags {
-	color: #7f849c;
+	color: $lt-gray;
 	font-style: italic;
 	font-size: 12px;
 }
 
 .tags.done {
-	color: #A6E3A1;
+	color: $green;
 }
 
 .priority.done {
@@ -147,28 +162,28 @@
 
 /** System ********************************************/
 .iconcpu, .iconmem, .iconbright, .iconbat {
-	font-size : 25px;
+	font-size : 22px;
 	font-weight : normal;
 	font-family: feather;
 }
 .iconcpu {
-	color: #F38BA8;
+	color: $red;
 }
 .iconmem {
-	color: #A6E3A1;
+	color: $green;
 }
 .iconbright {
-	color: #E5C890;
+	color: $yellow;
 }
 .iconbat {
-	color: #89DCEB;
+	color: $teal;
 }
 
 .cpu_bar, .mem_bar, .bright_bar, .bat_bar, scale trough {
 	all: unset;
-	background-color: #3A404C;
+	background-color: $dk-gray;
 	border-radius: 16px;
-	min-height: 20px;
+	min-height: 8px;
 	min-width: 240px;
 }
 
@@ -178,14 +193,14 @@
 }
 
 .cpu_bar scale trough highlight {
-	background-color: #F38BA8;
+	background-color: $red;
 }
 .mem_bar scale trough highlight {
-	background-color: #A6E3A1;
+	background-color: $green;
 }
 .bright_bar scale trough highlight {
-	background-color: #E5C890;
+	background-color: $yellow;
 }
 .bat_bar scale trough highlight {
-	background-color: #89DCEB;
+	background-color: $teal;
 }

@@ -83,7 +83,7 @@
 ;; system
 (defwidget system [] 
 	(box :class "genwin" :vexpand "false" :hexpand "false" 
-		(box :orientation "v" :spacing 20 :halign "center" :valign "center" :space-evenly "false" :vexpand "false" :hexpand "false" 
+		(box :orientation "v" :spacing 15 :halign "center" :valign "center" :space-evenly "false" :vexpand "false" :hexpand "false" 
 			(box :class "cpu_bar" :orientation "h" :spacing 20 :space-evenly "false" :vexpand "false" :hexpand "false" 
 				(label :class "iconcpu" :text " ")
 				(scale :min -10 :max 100 :value CPU_USAGE :active "false"))
@@ -129,5 +129,5 @@
 		   :stacking "bg"
 		   :focusable "false"
 		   :monitor 0
-		   :geometry (geometry :x 100 :y 885 :width 360 :height 220)
+		   :geometry (geometry :x 100 :y 875 :width 360 :height 200)
 		   (system))

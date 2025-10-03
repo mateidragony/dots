@@ -66,7 +66,8 @@
 	       bookmark-save-flag                    t
 	       mode-line-format                      nil
 	       suggest-key-bindings                  nil
-	       tab-width                             2)
+	       tab-width                             2
+		   case-fold-search                      nil)
 
 
 (modify-all-frames-parameters '((width                    . 100)

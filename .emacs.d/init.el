@@ -41,6 +41,7 @@
 (require 'lsp-rcp)
 (require 'modeline-rcp)
 (require 'org-rcp)
+(require 'org-cmd-rcp)
 (require 'projectile-rcp)
 (require 'python-rcp)
 (require 'racket-rcp)

@@ -5,7 +5,7 @@
   :ensure t
   :hook (python-mode . lsp-mode)
   :custom
-  (python-indent-offset 2))
+  (python-indent-offset 4))
 
 (provide 'python-rcp)
 ;;; Commentary:

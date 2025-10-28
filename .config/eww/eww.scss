@@ -146,6 +146,10 @@ $lt-gray:    #7f849c;
 	color: $green;
 }
 
+.title.wont {
+	color: $lt-gray
+}
+
 .tags {
 	color: $lt-gray;
 	font-style: italic;
@@ -156,7 +160,11 @@ $lt-gray:    #7f849c;
 	color: $green;
 }
 
-.priority.done {
+.tags.wont {
+	color: $lt-gray;
+}
+
+.priority.done, .priority.wont {
 	color: transparent;
 }
 

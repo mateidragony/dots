@@ -29,7 +29,7 @@
   :hook
   (after-save . executable-make-buffer-file-executable-if-script-p) ;; Make shebang (#!) file executable when saved
   (kill-emacs . mc/quicksave-session)
-  (kill-emacs . live-server-kill)
+  (kill-emacs . live-server-killall)
   )
 
 (use-package window

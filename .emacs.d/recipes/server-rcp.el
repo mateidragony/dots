@@ -1,11 +1,10 @@
 ;;; server-rcp.el --- Emacs live server functions
 ;;; Code:
 
-(defvar live-server-port nil
-  "Port number of active live server")
-(defvar live-server-pid nil
-  "Process id of active live server")
+(require 'cl-lib)
 
+(defvar live-server-alist nil
+  "Alist of live server ports to pid")
 
 (defun live-server-ready-p ()
   "Return the port number from the 'Local' browser-sync line in the output buffer."
@@ -18,39 +17,62 @@
 (defun live-server-start ()
   "Start live server in current directory"
   (interactive)
-  (if live-server-pid
-	  (message "Live server already active!")
-	(progn
-	  (with-current-buffer (get-buffer-create "*live-server*")
-		(erase-buffer))
-	  (let ((proc (make-process
-				   :name "live-server"
-				   :buffer "*live-server*"
-				   :command '("browser-sync" "start" "--server" "--no-ui"
-							  "--no-open" "--watch")
-				   :noquery t
-				   :stderr nil)))
-		(setq live-server-pid (process-id proc))
-		(sleep-for 0 10)
-		(while (not live-server-port)
-		  (setq live-server-port (live-server-ready-p))
-		  (sleep-for 0 10))
-		(message live-server-port)
-		(message "Live server started at port: %s" live-server-port)
-		(browse-url (format "http://localhost:%s/%s" live-server-port (file-name-nondirectory (buffer-file-name))))))))
-
+  (let ((root (lsp-workspace-root)))
+	(if (not root)
+		(message "Impossible to create live server outside of lsp mode!")
+	  (let* ((name (file-name-nondirectory root))
+			 (pid nil)
+			 (port nil))
+		(cond
+		 ((assoc name live-server-alist) (message (format "Live server already active for %s!" name)))
+		 (t (progn
+			  (with-current-buffer (get-buffer-create "*live-server*")
+				(erase-buffer))
+			  (let ((proc (make-process
+						   :name "live-server"
+						   :buffer "*live-server*"
+						   :command (list "browser-sync" root "--no-ui" "--watch")
+						   :noquery t
+						   :stderr nil)))
+				(setq pid (process-id proc))
+				(sleep-for 0 10)
+				(while (not port)
+				  (setq port (live-server-ready-p))
+				  (sleep-for 0 10))
+				(push (list name (list pid port)) live-server-alist)
+				(message "Live server started for %s at port: %s" name port)))))))))
 
 ;;;###autoload
 (defun live-server-kill ()
   "Kill emacs live server"
   (interactive)
-  (if live-server-pid
+  (if (not live-server-alist)
+	  (message "No active live server!")
+	(let* ((default (if (lsp-workspace-root)
+						(file-name-nondirectory (lsp-workspace-root))
+					  (car (car live-server-alist))))
+		   (name (completing-read
+				  (format "Enter the server name (default %s): " default)
+				  (mapcar #'car live-server-alist)
+				  nil
+				  t
+				  nil
+				  nil
+				  default)
+				 ))
 	  (progn
-		(call-process-shell-command (format "kill %s" live-server-pid))
-		(message "Live server successfully killed"))
-	(message "No active live server!"))
-  (setq live-server-port nil)
-  (setq live-server-pid nil))
+		(call-process-shell-command (format "kill %s" (car (car (cdr (assoc name live-server-alist))))))
+		(setq live-server-alist
+			  (cl-delete name live-server-alist :key #'car :test #'equal))
+		(message (format "Live server successfully killed for %s" default))))))
+
+;;;###autoload
+(defun live-server-killall ()
+  "Kill all emacs live servers"
+  (interactive)
+  (mapcar (lambda (x)
+			(call-process-shell-command (format "kill %s" (car (car (cdr x))))))
+		  live-server-alist))
 
 (provide 'server-rcp)
 ;;; Commentary:

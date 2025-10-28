@@ -8,7 +8,12 @@ notify_cmd="notify-send -u low -h string:x-canonical-private-synchronous:brightn
 get_brightness() {
     value=`brightnessctl g`
 	max=`brightnessctl m`
-    echo "$value * 100 / $max" | bc
+	# Compute integer percentage (truncated)
+	percent=$(echo "$value * 100 / $max" | bc)
+
+	# Round to nearest 5
+	rounded=$(( ((percent + 2) / 5) * 5 ))
+    echo $rounded
 }
 
 # Notify

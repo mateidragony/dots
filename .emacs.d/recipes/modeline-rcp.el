@@ -181,9 +181,14 @@
 (defun mode-line-right ()
   (list
    ;; live server
-   (if live-server-port
-       (concat "󰀂 port: " live-server-port " | ")
-     (concat "󰯡 server off | "))
+   (if (lsp-workspace-root)
+	   (let* ((name (file-name-nondirectory (lsp-workspace-root)))
+			  (server (assoc name live-server-alist)))
+		 (if server
+			 (concat "󰀂 port: " (car (cdr (car (cdr server)))) " | ")
+		   (concat "󰯡 server off | ")))
+	 "")
+   
    ;; the current major mode
    (concat (mc/major-mode-icon-emoji) " " (mc/major-mode-name) "  ")
    ;; line column

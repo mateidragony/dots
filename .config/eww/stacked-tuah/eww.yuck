@@ -1,0 +1,374 @@
+;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Vars
+;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; time
+(defpoll HOUR  :interval "5s" `date +\"%H\"`)
+(defpoll MIN   :interval "5s" `date +\"%M\"`)
+(defpoll DAY   :interval "10h" `date +\"%A\"`)
+(defpoll DATE  :interval "10h" `date +\"%d\"`)
+(defpoll MONTH :interval "10h" `date +\"%b\"`)
+(defpoll YEAR  :interval "10h" `date +\"%Y\"`)
+
+;; weather
+(defpoll WDATA  :interval "5m" `~/.config/eww/scripts/weather_info.sh --getdata`)
+(defpoll ICON   :interval "5m" `~/.config/eww/scripts/weather_info.sh --icon`)
+(defpoll STAT   :interval "5m" `~/.config/eww/scripts/weather_info.sh --stat`)
+(defpoll TEMP   :interval "5m" `~/.config/eww/scripts/weather_info.sh --temp`)
+(defpoll HEX    :interval "5m" :initial "#fff" `~/.config/eww/scripts/weather_info.sh --hex`)
+(defpoll QUOTE  :interval "5m" `~/.config/eww/scripts/weather_info.sh --quote`)
+(defpoll QUOTE2 :interval "5m" `~/.config/eww/scripts/weather_info.sh --quote2`)
+
+;; system information
+(defpoll CPU_USAGE  :interval "1s" `~/.config/eww/scripts/sys_info.sh --cpu`)
+(defpoll MEM_USAGE  :interval "1s" `~/.config/eww/scripts/sys_info.sh --mem`)
+(defpoll BRIGHTNESS :interval "1s" `~/.config/eww/scripts/sys_info.sh --brightness`)
+(defpoll BATTERY    :interval "5s" `~/.config/eww/scripts/sys_info.sh --bat`)
+
+;; todo
+(defpoll TODO :interval "1m" `~/.config/eww/scripts/org_agenda.sh`)
+
+;; uptime
+(defpoll UPHOUR :interval "5s" `uptime -p | awk '{print $2 \" \" $3}' | sed 's/,//g'`)
+(defpoll UPMIN :interval "5s" `uptime -p | awk '{print $4 \" \" $5}'`)
+
+;; workspaces
+(deflisten WORKSPACES :initial "" `~/.config/eww/scripts/workspaces.sh`)
+
+;; wifi
+(defpoll WIFI :interval "1m" "~/.config/eww/scripts/wifi.sh")
+
+;; volume
+(defpoll VOLUME :interval "1s" "~/.config/eww/scripts/volume.sh")
+
+;; vars
+(defvar time-rev false)
+(defvar battery-rev false)
+(defvar memory-rev false)
+(defvar disk-rev false)
+(defvar wifi-rev false)
+(defvar volume-rev false)
+(defvar brightness-rev false)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Widgets
+;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; date
+(defwidget date []
+		   (box :class "genwin" :orientation "v" :space-evenly false :vexpand "false" :hexpand "false"
+				(label :class "date-num" :valign "start" :halign "center" :wrap "true" :limit-width 25 :text DATE)
+				(label :class "date-month" :valign "start" :halign "center" :wrap "true" :limit-width 25 :text MONTH)))
+
+;; weather
+(defwidget weather [] 
+		   (box :class "genwin" 
+				(box :orientation "h" :space-evenly false :vexpand "false" :hexpand "false" 
+					 (box :orientation "v" :vexpand "false" :halign "start"
+						  (label :class "weather-icon" :valign "center" :halign "start" :style "color: ${HEX};" :text ICON))
+					 (box :class "stat-box" :orientation "v" :spacing 0 :halign "end" :space-evenly "false" 
+						  (label :class "weather-temp" :halign "center" :text TEMP)
+						  (label :class "weather-stat" :text STAT)))))
+
+;; time
+(defwidget clock [] 
+		   (box :class "genwin" :orientation "v" :space-evenly false :vexpand "false" :hexpand "false" 
+				(box :class "clock-box" :orientation "h" :space-evenly true
+					 (label :class "clock-hour" :halign "center" :valign "center" :wrap "true" :limit-width 25 :text HOUR)
+					 (label :class "clock-min" :valign "center" :wrap "true" :limit-width 25 :text MIN))
+				(label :class "clock-day" :valign "center" :halign "center" :wrap "true" :limit-width 25 :text DAY)))
+
+
+;; todo
+(defwidget todo []
+		   (box :class "genwin"
+				(label :text TODO)))
+
+(defwidget task [status priority title tags deadline]
+  (box :class "task"
+       :orientation "h"
+	   :space-evenly "false"
+	   :hexpand "false"
+       (box :width 110 :orientation "h" :space-evenly "false"
+			(label :class "status ${status[1]}" :halign "center" :text "${status[0]}"))
+       (box :width 30 :orientation "h" :space-evenly "false"
+			(label :class "priority ${priority[1]} ${status[1]}" :text "${priority[0]}"))
+       (box :width 220 :orientation "h" :space-evenly "false"
+			(label :class "title ${status[1]}" :halign "start" :text title))
+       (box :width 100 :orientation "h" :space-evenly "false"
+			(label :class "tags ${status[1]}" :text deadline))))
+
+(defwidget tasks [items]
+  (box :orientation "v"
+       :class "genwin tasks"
+       (for item in items
+         (task :status   "${item.status}"
+               :priority "${item.priority}"
+               :title    "${item.title}"
+               :tags     "${item.tags}"
+			   :deadline "${item.deadline}"))))
+
+;; system
+(defwidget system [] 
+	(box :class "genwin" :vexpand "false" :hexpand "false" 
+		(box :orientation "v" :spacing 15 :halign "center" :valign "center" :space-evenly "false" :vexpand "false" :hexpand "false" 
+			(box :class "cpu_bar" :orientation "h" :spacing 20 :space-evenly "false" :vexpand "false" :hexpand "false" 
+				(label :class "iconcpu" :text " ")
+				(scale :min -10 :max 100 :value CPU_USAGE :active "false"))
+			(box :class "mem_bar" :orientation "h" :spacing 20 :space-evenly "false" :vexpand "false" :hexpand "false" 
+				(label :class "iconmem" :text " ")
+				(scale :min -10 :max 100 :value MEM_USAGE :active "false"))
+			(box :class "bright_bar" :orientation "h" :spacing 20 :space-evenly "false" :vexpand "false" :hexpand "false" 
+				(label :class "iconbright" :text " ")
+				(scale :min -10 :max 100 :value BRIGHTNESS :active "false"))
+			(box :class "bat_bar" :orientation "h" :spacing 20 :space-evenly "false" :vexpand "false" :hexpand "false" 
+				(label :class "iconbat" :text " ")
+				(scale :min -10 :max 100 :value BATTERY :active "false")))))
+
+;; uptime
+(defwidget uptime [] 
+	(box :class "genwin" 
+		(box :class "uptime-inner" :orientation "v" :halign "center" :space-evenly "true" :vexpand "false" :hexpand "false" 
+			(label :class "icontimer" :valign "center" :text "󱎫")
+			(box :orientation "v" :valign "center" :spacing 0 :space-evenly "false" :vexpand "false" :hexpand "false" 
+				(label :class "uphour" :halign "start" :wrap "true" :limit-width 25 :text UPHOUR)
+				(label :class "upmin" :halign "start" :wrap "true" :limit-width 25 :text UPMIN)))))
+
+;; topbar
+(defwidget workspaces []
+		   (box :class "workspace-container" :hexpand false :orientation "h" :valign "center" :vexpand "false" :hexpand "false" :halign "start"
+				(literal :content "${WORKSPACES}")))
+
+
+(defwidget cal []
+		   (box :class "cal barwin"
+				(calendar :class "caly"
+						  :show-heading "true"
+						  :day DATE
+						  :year YEAR)))
+
+(defwidget bar-clock []
+		   (eventbox :onhover "eww -c ~/.config/eww/stacked-tuah update time-rev=true"
+					 :onhoverlost "eww -c ~/.config/eww/stacked-tuah update time-rev=false"
+					 :cursor "pointer"
+					 :onclick "~/.config/eww/scripts/pop.sh calendar"
+					 (box :class "barwin bar-clock-container" :space-evenly "false" :orientation "h"
+						  :vexpand "false" :hexpand "false" :halign "center"
+						  (label :class "bar-clock-hour" :text HOUR )
+						  (label :class "bar-clock-sep" :text ":" )
+						  (label :class "bar-clock-min" :text MIN)
+						  (revealer :transition "slideleft"
+									:reveal time-rev
+									:duration "350ms"
+									(label :class "bar-clock-date"
+										   :text "${DAY}, ${MONTH}. ${DATE}")))))
+
+(defvar bar-battery-colors `{"normal"   : {"Discharging" : "#E5C890", "Charging" : "#FAB387", "Full" : "#FAB387"},
+                             "critical" : {"Discharging" : "#F38BA8", "Charging" : "#FAB387", "Full" : "#FAB387"}}`)
+(defwidget bar-battery []
+		   (eventbox :onhover "eww -c ~/.config/eww/stacked-tuah update battery-rev=true"
+					 :onhoverlost "eww -c ~/.config/eww/stacked-tuah update battery-rev=false"
+					 (box :class `bar-battery-container` :space-evenly "false" :orientation "h"
+						  (circular-progress :class `prog`
+											 :value {EWW_BATTERY.BAT0.capacity}
+											 :thickness 4
+											 :clockwise false
+											 :style `color: ${bar-battery-colors[EWW_BATTERY.BAT0.capacity < 20 ? "critical" : "normal"][EWW_BATTERY.BAT0.status]};`
+											 (label :class `icon`
+													:style `color: ${bar-battery-colors[EWW_BATTERY.BAT0.capacity < 20 ? "critical" : "normal"][EWW_BATTERY.BAT0.status]};`
+													:text `${EWW_BATTERY.BAT0.status == "Charging" ? "󱐋" : "󰁹"}`))
+						  (revealer :transition "slideleft"
+									:reveal battery-rev
+									:duration "350ms"
+									(label :class "percent"
+										   :text "${EWW_BATTERY.BAT0.capacity}%")))))
+
+(defwidget bar-memory []
+		   (eventbox :onhover "eww -c ~/.config/eww/stacked-tuah update memory-rev=true"
+					 :onhoverlost "eww -c ~/.config/eww/stacked-tuah update memory-rev=false"
+					 (box :class `bar-memory-container` :space-evenly "false" :orientation "h"
+						  (circular-progress :class `prog`
+											 :value MEM_USAGE
+											 :thickness 4
+											 :clockwise false
+											 (label :class `icon`
+													:text ``))
+						  (revealer :transition "slideleft"
+									:reveal memory-rev
+									:duration "350ms"
+									(label :class "percent"
+										   :text "${MEM_USAGE}%")))))
+
+(defwidget bar-disk []
+		   (eventbox :onhover "eww -c ~/.config/eww/stacked-tuah update disk-rev=true"
+					 :onhoverlost "eww -c ~/.config/eww/stacked-tuah update disk-rev=false"
+					 (box :class `bar-disk-container` :space-evenly "false" :orientation "h"
+						  (circular-progress :class `prog`
+											 :value {EWW_DISK["/"].used / EWW_DISK["/"].total * 100}
+											 :thickness 4
+											 :clockwise false
+											 (label :class `icon`
+													:text `󰆼`))
+						  (revealer :transition "slideleft"
+									:reveal disk-rev
+									:duration "350ms"
+									(label :class "percent"
+										   :text "${round(EWW_DISK["/"].free / 1024 / 1024 / 1024, 1)} GB")))))
+
+(defwidget bar-wifi []
+		   (eventbox :onhover "eww -c ~/.config/eww/stacked-tuah update wifi-rev=true"
+					 :onhoverlost "eww -c ~/.config/eww/stacked-tuah update wifi-rev=false"
+					 (box :class `bar-wifi-container` :space-evenly "false" :orientation "h"
+						  (label :class `icon ${WIFI.status}` :text "${WIFI.icon}")
+						  (revealer :transition "slideleft"
+									:reveal wifi-rev
+									:duration "350ms"
+									(label :class "essid"
+										   :text {WIFI.essid})))))
+
+
+(defvar volume-icons `["", "", " ", " "]`)
+(defwidget bar-volume []
+		   (eventbox :onhover "eww -c ~/.config/eww/stacked-tuah update volume-rev=true"
+					 :onhoverlost "eww -c ~/.config/eww/stacked-tuah update volume-rev=false"
+					 (box :class `bar-volume-container` :space-evenly "false" :orientation "h"
+						  (label :class `icon`
+								 :text `${VOLUME.muted ? " " : volume-icons[round((arraylength(volume-icons) - 1) * VOLUME.volume, 0)]}`)
+						  (revealer :transition "slideleft"
+									:reveal volume-rev
+									:duration "350ms"
+									(label :class "percentage"
+										   :text "${VOLUME.volume * 100}%")))))
+
+(defwidget bar-brightness []
+		   (eventbox :onhover "eww -c ~/.config/eww/stacked-tuah update brightness-rev=true"
+					 :onhoverlost "eww -c ~/.config/eww/stacked-tuah update brightness-rev=false"
+					 (box :class `bar-brightness-container` :space-evenly "false" :orientation "h"
+						  (label :class `icon`
+								 :text " ")
+						  (revealer :transition "slideleft"
+									:reveal brightness-rev
+									:duration "350ms"
+									(label :class "percentage"
+										   :text "${BRIGHTNESS}%")))))
+
+
+(defwidget bar-power []
+		   (eventbox :class "bar-poweroff"
+					 :cursor "pointer"
+					 :onclick "~/.config/hypr/scripts/rofi_powermenu.sh"
+					 (label :text " ")))
+
+(defwidget bar-separator []
+		   (label :class "bar-separator" :text "|"))
+
+(defwidget topbar []
+		   (box :orientation "h" :space-evenly "true"
+				(box :class "barwin" :orientation "h" :vexpand "false" :hexpand "false" :halign "start"
+					 :space-evenly "false"
+					 (workspaces))
+				(bar-clock)
+				(box :class "barwin" :orientation "h" :vexpand "false" :hexpand "false" :halign "end"
+					 :space-evenly "false" :spacing "10"
+					 (bar-brightness)
+					 (bar-volume)
+					 (bar-wifi)
+
+					 (bar-separator)
+
+					 (bar-disk)
+					 (bar-battery)
+					 (bar-memory)
+
+					 (bar-separator)
+
+					 (bar-power))))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Windows
+;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; date
+(defwindow date
+		   :stacking "bg"
+		   :focusable "false"
+		   :monitor "0"
+		   :geometry (geometry :x 100
+							   :y 125
+							   :width 125
+							   :height 125)
+		   (date))
+
+;; weather
+(defwindow weather
+		   :stacking "bg"
+		   :focusable "false"
+		   :monitor 0
+	       :geometry (geometry :x {100 + 125 + 25}
+							   :y 125
+							   :width {500 - 250 + 100}
+							   :height 125)
+		   (weather))
+
+;; clock
+(defwindow clock
+		   :stacking "bg"
+		   :focusable "false"
+		   :monitor 0
+	       :geometry (geometry :x 100
+							   :y {125 + 125 + 25}
+							   :width 500
+							   :height 200)
+		   (clock))
+
+;; todo
+(defwindow todo
+		   :stacking "bg"
+		   :focusable "false"
+		   :monitor 0
+		   :geometry (geometry :x 100
+							   :y {125 + 125 + 200 + 2 * 25}
+							   :width 500
+							   :height 220)
+		   (tasks :items TODO))
+
+;; system
+(defwindow system
+		   :stacking "bg"
+		   :focusable "false"
+		   :monitor 0
+		   :geometry (geometry :x 100
+							   :y {125 + 125 + 200 + 220 + 3 * 25}
+							   :width 275
+							   :height 210)
+		   (system))
+
+;; uptime
+(defwindow uptime
+		   :stacking "bg"
+		   :focusable "false"
+		   :monitor 0
+		   :geometry (geometry :x {100 + 275 + 25}
+							   :y {125 + 125 + 200 + 220 + 3 * 25}
+							   :width {500 - 275 - 25}
+							   :height 210)
+		   (uptime))
+
+(defwindow topbar
+		   :monitor 0
+		   :geometry (geometry :y "5"
+							   :width "99%"
+							   :height "40"
+							   :anchor "top center")
+		   :exclusive true
+		   (topbar))
+
+
+(defwindow calendar
+		   :monitor 0
+		   :geometry (geometry :x "0" 
+							   :y "10px" 
+							   :anchor "top center"
+							   :width "270px" 
+							   :height "60px")
+		   (cal))

@@ -217,7 +217,7 @@ get_weather_data() {
 			echo "${night_colors[$weather_description]}"    > ${cache_weather_hex}
 		fi
 	else
-		echo "Weather Unavailable" > ${cache_weather_stat}
+		echo "Unavailable" > ${cache_weather_stat}
 		echo " " > ${cache_weather_icon}
 		echo -e "Ah well, no weather huh? \nEven if there's no weather, it's gonna be a great day!" > ${cache_weather_quote}
 		echo "-""°C" > ${cache_weather_degree}

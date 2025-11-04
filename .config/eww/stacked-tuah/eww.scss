@@ -1,0 +1,454 @@
+/** Variables *******************************************/
+$foreground: #cdd6f4;
+$background: rgb(24, 24, 37, 0.9);
+$black:      #181825;
+$red:        #F38BA8;
+$green:      #A6E3A1;
+$blue:       #89B4FA;
+$yellow:     #E5C890;
+$teal:       #89DCEB;
+$orange:     #FAB387;
+$purple:     #CBA6F7;
+$pink:       #f5c2e7;
+$magenta:    #f29deb;
+$dk-gray:    #3A404C;
+$gray:       #4b505b;
+$lt-gray:    #7f849c;
+
+/** Global *******************************************/
+*{
+	all: unset;
+	font-family: feather;
+	font-family: 'JetBrains Mono';
+}
+
+.genwin, .barwin {
+	background-color: $background;
+	border-bottom: solid $black 5px;
+}
+
+.genwin {
+	border-radius: 16px;
+}
+
+.barwin {
+	padding: 0 10px;
+	border-radius: 8px;
+	font-size: 15px;
+}
+
+tooltip.background {
+    background-color: $black;
+    font-size: 12px;
+    border-radius: 4px;
+    color: $foreground;
+}
+
+tooltip label {
+    margin: 2px 6px;
+}
+
+
+/** Date *******************************************/
+.date-num {
+	margin-top: 10px;
+	margin-bottom: -5px;
+	
+	color: $blue;
+	font-size: 50px;
+	font-weight: bold;
+}
+
+.date-month {
+	margin-bottom: 0px;
+	
+	color: $orange;
+	font-size: 25px;
+	font-weight: bold;
+}
+
+/** Weather ***************************************/
+.weather-box {
+	// padding: 0 30px;
+}
+
+.weather-icon {
+	font-family: Iosevka Nerd Font;
+	font-size : 80px;
+	font-weight : normal;
+	margin: 0 20px 0 30px;
+}
+
+.stat-box {
+	min-width: 210px;
+}
+
+.weather-temp {
+	color : $teal;
+	font-size : 35px;
+	font-weight : bold;
+	margin-top: 20px;
+}
+
+.weather-stat {
+	color : $red;
+	font-size : 20px;
+	font-weight : bold;
+}
+
+/** Time ***************************************/
+.clock-box {
+	padding: 0 120px;
+	margin: 20px 0 0px;
+}
+
+.clock-hour, .clock-min {
+	font-size : 80px;
+	font-weight : bold;
+}
+
+.clock-hour {
+	color: $purple;
+}
+.clock-min {
+	color: $blue;
+}
+
+.clock-day {
+	color: $green;
+	font-size : 30px;
+	font-weight : bold;
+}
+
+/** Todo ***************************************/
+
+.tasks {
+	padding: 10px 20px;
+}
+
+.status {
+	font-size: 13px;
+	font-weight: 700;
+}
+
+.status.todo {
+	color: $red;
+}
+
+.status.planning {
+	color: $pink;
+}
+
+.status.progress {
+	color: $blue;
+}
+
+.status.blocked {
+	color: $orange;
+}
+
+.status.waiting {
+	color: $purple;
+}
+
+.status.done {
+	color: $green;
+}
+
+.status.wont {
+	color: $lt-gray;
+}
+
+.urgent {
+	color: $red;	
+}
+
+.high {
+	color: $orange;
+}
+
+.low {
+	color: $green;
+}
+
+.bluesky {
+	color: $blue;
+}
+
+
+.title {
+	color: $foreground;
+	font-size: 13px;
+}
+
+.title.done {
+	color: $green;
+}
+
+.title.wont {
+	color: $lt-gray
+}
+
+.tags {
+	color: $lt-gray;
+	font-style: italic;
+	font-size: 12px;
+}
+
+.tags.done {
+	color: $green;
+}
+
+.tags.wont {
+	color: $lt-gray;
+}
+
+.priority.done, .priority.wont {
+	color: transparent;
+}
+
+/** System ********************************************/
+.iconcpu, .iconmem, .iconbright, .iconbat {
+	font-size : 22px;
+	font-weight : normal;
+	font-family: feather;
+}
+.iconcpu {
+	color: $red;
+}
+.iconmem {
+	color: $green;
+}
+.iconbright {
+	color: $yellow;
+}
+.iconbat {
+	color: $teal;
+}
+
+.cpu_bar, .mem_bar, .bright_bar, .bat_bar, scale trough {
+	all: unset;
+	background-color: $dk-gray;
+	border-radius: 16px;
+	min-height: 10px;
+	min-width: 180px;
+}
+
+.cpu_bar, .mem_bar, .bright_bar, .bat_bar, scale trough highlight {
+	all: unset;
+	border-radius: 16px;
+}
+
+.cpu_bar scale trough highlight {
+	background-color: $red;
+}
+.mem_bar scale trough highlight {
+	background-color: $green;
+}
+.bright_bar scale trough highlight {
+	background-color: $yellow;
+}
+.bat_bar scale trough highlight {
+	background-color: $teal;
+}
+
+/** Uptime ********************************************/
+.uptime-inner {
+	padding: 20px 0;
+}
+
+.icontimer {
+	color: $purple;
+	font-size : 70px;
+	margin-right: 8px;
+	font-weight : normal;
+}
+
+.uphour {
+	color: $foreground;
+	font-size : 25px;
+	font-weight : bold;
+}
+
+.upmin {
+	color: $foreground;
+	font-size : 18px;
+	font-weight : bold;
+}
+
+/** Tobar ********************************************/
+
+.workspace-container {
+	.workspace, .workspace-active, .workspace-empty {
+		padding: 3px 9px;
+	}
+	
+	.workspace {
+		color: $blue;
+	}
+
+	.workspace-active {
+		background-color: $blue;
+		color: $black;
+		border-radius: 8px;
+	}
+
+	.workspace-urgent {
+		color: $red;
+	}
+
+	.workspace-empty {
+		color: $gray;
+	}
+}
+
+
+.bar-clock-container {
+	.bar-clock-sep, .bar-clock-min, .bar-clock-hour {
+		font-weight: bold;
+	}
+	
+	.bar-clock-hour {
+		color: $purple;
+		margin-right: 3px;
+	}
+
+	.bar-clock-sep {
+		color: $foreground;
+	}
+
+	.bar-clock-min {
+		color: $blue;
+		margin-left: 3px;
+	}
+
+	.bar-clock-date {
+		color: $foreground;
+		margin-left: 20px;
+		font-size: 13px;
+	}
+}
+
+
+.cal {
+	font-family: JetBrainsMono Nerd Font;
+	font-size: 13px;
+	font-weight: normal;
+
+	padding: 10px 15px;
+	
+	color: $foreground;
+
+	calendar {
+		.highlight {
+			color: $blue;
+		}
+
+		:selected {
+			color: $red;
+			font-weight: bold;
+		}
+
+		.header {
+			color: $orange;
+		}
+
+		
+	}
+}
+
+.bar-battery-container, .bar-memory-container, .bar-disk-container {
+
+	padding: 0 5px;
+	
+	.percent {
+		color: $foreground;
+		margin-left: 10px;
+		font-size: 13px;
+	}
+
+	.prog {
+		background-color: #38384d;
+
+		.icon {
+			margin: 10px;
+			font-size: 10px;
+		}
+	}
+}
+
+.bar-memory-container {
+	.prog {
+		color: $magenta;
+		
+		.icon {
+			margin-right: 12px;
+			font-size: 8px;
+		}
+	}
+}
+
+.bar-disk-container {
+	.prog {
+		color: $purple;
+	}
+}
+
+.bar-separator {
+	color: $gray;
+	font-weight: bold;
+	font-size: 18px;
+
+	margin: 0 1px;
+}
+
+.bar-wifi-container {
+	color: $foreground;
+
+	.icon {
+		margin-top: 2px;
+		padding-left: 8px;
+		font-size: 18px;
+	}
+	
+	.icon.connected {
+		color: $teal;
+	}
+
+	.icon.disconnected {
+		color: $red;
+	}
+
+	.essid {
+		margin-left: 6px;
+		font-size: 13px;
+	}
+}
+
+.bar-volume-container, .bar-brightness-container {
+	color: $foreground;
+
+	.icon {
+		margin-top: 2px;
+		padding-left: 8px;
+		font-size: 18px;
+	}
+	.percentage {
+		margin-left: 10px;
+		font-size: 13px;
+	}
+}
+
+.bar-volume-container .icon {
+	color: $green;
+}
+
+.bar-brightness-container .icon {
+	color: $orange;
+}
+
+.bar-poweroff {
+	color: $red;
+	font-size: 16px;
+	font-weight: bold;
+}

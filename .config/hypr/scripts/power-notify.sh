@@ -37,14 +37,20 @@ notify() {
 	time_full=$(format_time $hours_full)
 	
 	if [ "$state" = "Charging" ] && [ "$old_state" != "charging" ]; then
-		$notify_cmd -u normal -i "$iDIR/battery-bolt.svg" "Battery charging" "Time to full: $time_full"
-		echo "charging" > $CACHE_STATE
+		if (( $(echo "$hours_full < 50.0" | bc -l) )); then
+			$notify_cmd -u normal -i "$iDIR/battery-bolt.svg" "Battery charging" "Time to full: $time_full"
+			echo "charging" > $CACHE_STATE
+		fi
 	elif [ "$state" = "Discharging" ] && [ $percent -lt 20 ] && [ "$old_state" != "low battery" ]; then
-		$notify_cmd -u critical -i "$iDIR/battery-slash.svg" "BATTERY LOW" "Time to empty: $time_empty"
-		echo "low battery" > $CACHE_STATE
+		if (( $(echo "$hours_empty < 50.0" | bc -l) )); then
+			$notify_cmd -u critical -i "$iDIR/battery-slash.svg" "BATTERY LOW" "Time to empty: $time_empty"
+			echo "low battery" > $CACHE_STATE
+		fi
 	elif [ "$state" = "Discharging" ] && [ "$old_state" = "charging" ]; then
-		$notify_cmd -u normal -i "$iDIR/battery-mid.svg" "Battery discharging" "Time to empty: $time_empty"
-		echo "normal" > $CACHE_STATE
+		if (( $(echo "$hours_empty < 50.0" | bc -l) )); then
+			$notify_cmd -u normal -i "$iDIR/battery-mid.svg" "Battery discharging" "Time to empty: $time_empty"
+			echo "normal" > $CACHE_STATE
+		fi
 	elif [ "$state" = "Full" ] && [ "$old_state" != "full" ]; then
 		$notify_cmd -u normal -i "$iDIR/battery-full.svg" "Battery full" "So much energy flowing in this machine right now."
 		echo "full" > $CACHE_STATE

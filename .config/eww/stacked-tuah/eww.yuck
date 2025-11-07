@@ -49,6 +49,7 @@
 (defvar wifi-rev false)
 (defvar volume-rev false)
 (defvar brightness-rev false)
+(defvar temp-rev false)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Widgets
@@ -252,6 +253,20 @@
 									(label :class "percentage"
 										   :text "${BRIGHTNESS}%")))))
 
+(defwidget bar-temp []
+		   (eventbox :onhover "eww -c ~/.config/eww/stacked-tuah update temp-rev=true"
+					 :onhoverlost "eww -c ~/.config/eww/stacked-tuah update temp-rev=false"
+					 (box :class `bar-temp-container` :space-evenly "false" :orientation "h"
+						  (label :class `icon`
+								 :text `${EWW_TEMPS["K10TEMP_TCTL"] < 55 ? "" :
+                                          EWW_TEMPS["K10TEMP_TCTL"] < 80 ? "" : ""}`
+								 :style `color: ${EWW_TEMPS["K10TEMP_TCTL"] < 55 ? "#89B4FA" :
+                                                  EWW_TEMPS["K10TEMP_TCTL"] < 80 ? "#E5C890" : "#F38BA8"}`)
+						  (revealer :transition "slideleft"
+									:reveal temp-rev
+									:duration "350ms"
+									(label :class "percentage"
+										   :text `${round(EWW_TEMPS["K10TEMP_TCTL"], 0)}°C`)))))
 
 (defwidget bar-power []
 		   (eventbox :class "bar-poweroff"
@@ -269,7 +284,8 @@
 					 (workspaces))
 				(bar-clock)
 				(box :class "barwin" :orientation "h" :vexpand "false" :hexpand "false" :halign "end"
-					 :space-evenly "false" :spacing "10"
+					 :space-evenly "false" :spacing "10"					 
+					 (bar-temp)
 					 (bar-brightness)
 					 (bar-volume)
 					 (bar-wifi)
@@ -372,3 +388,6 @@
 							   :width "270px" 
 							   :height "60px")
 		   (cal))
+
+;; AMDGPU_EDGE, k10temp-pci-00c3
+;; K10TEMP_TCTL

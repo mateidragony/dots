@@ -425,7 +425,7 @@ tooltip label {
 	}
 }
 
-.bar-volume-container, .bar-brightness-container {
+.bar-volume-container, .bar-brightness-container, .bar-temp-container {
 	color: $foreground;
 
 	.icon {
@@ -446,6 +446,10 @@ tooltip label {
 .bar-brightness-container .icon {
 	color: $orange;
 }
+
+// .bar-temp-container .icon {
+// 	color: $blue;
+// }
 
 .bar-poweroff {
 	color: $red;

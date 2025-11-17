@@ -137,7 +137,11 @@ If RETURN-P, return the message as a string instead of displaying it."
 	  (mc/close-shell))
 	 (t (mc/open-shell)))))
 
-
+;;;###autoload
+(defun mc/clear-buffer ()
+  (interactive)
+  (let ((comint-buffer-maximum-size 0))
+    (comint-truncate-buffer)))
 
 (provide 'custom-functions)
 ;;; Commentary:

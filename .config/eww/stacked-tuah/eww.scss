@@ -1,6 +1,7 @@
 /** Variables *******************************************/
 $foreground: #cdd6f4;
 $background: rgb(24, 24, 37, 0.9);
+$lt-bg:      #424266;
 $black:      #181825;
 $red:        #F38BA8;
 $green:      #A6E3A1;
@@ -24,7 +25,7 @@ $lt-gray:    #7f849c;
 
 .genwin, .barwin {
 	background-color: $background;
-	border-bottom: solid $black 5px;
+	border-bottom: solid $lt-bg 5px;
 }
 
 .genwin {
@@ -35,6 +36,7 @@ $lt-gray:    #7f849c;
 	padding: 0 10px;
 	border-radius: 8px;
 	font-size: 15px;
+	border-bottom-width: 3px;
 }
 
 tooltip.background {

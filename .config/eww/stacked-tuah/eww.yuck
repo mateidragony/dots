@@ -83,7 +83,9 @@
 ;; todo
 (defwidget todo []
 		   (box :class "genwin"
-				(label :text TODO)))
+				(eventbox :onlick "~/.config/hypr/scripts/emacs.sh --org-agenda"
+						  :cursor "pointer"
+						  (label :text TODO))))
 
 (defwidget task [status priority title tags deadline]
   (box :class "task"
@@ -100,14 +102,16 @@
 			(label :class "tags ${status[1]}" :text deadline))))
 
 (defwidget tasks [items]
-  (box :orientation "v"
-       :class "genwin tasks"
-       (for item in items
-         (task :status   "${item.status}"
-               :priority "${item.priority}"
-               :title    "${item.title}"
-               :tags     "${item.tags}"
-			   :deadline "${item.deadline}"))))
+		   (eventbox :onclick "~/.config/hypr/scripts/emacs.sh --org-agenda"
+					 :cursor "pointer"
+					 (box :orientation "v"
+						  :class "genwin tasks"
+						  (for item in items
+							   (task :status   "${item.status}"
+									 :priority "${item.priority}"
+									 :title    "${item.title}"
+									 :tags     "${item.tags}"
+									 :deadline "${item.deadline}")))))
 
 ;; system
 (defwidget system [] 

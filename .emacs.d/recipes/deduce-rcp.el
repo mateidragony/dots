@@ -2,12 +2,16 @@
 ;;; Code:
 
 (require 'lsp-mode)
+(require 'agda-input)
+(agda-input-setup)
 
 (use-package deduce-mode
   :init
   (setq deduce-path "~/Projects/deduce-stuff/deduce/deduce.py")
   :mode ("\\.pf\\'" "\\.thm\\'")
   )
+
+(add-hook 'deduce-mode-hook (lambda () (activate-input-method "Agda")))
 
 (require 'lsp-mode)
 

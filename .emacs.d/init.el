@@ -33,6 +33,7 @@
 (require 'coq-rcp)
 (require 'css-rcp)
 (require 'deduce-rcp)
+(require 'ess-rcp)
 (require 'eww-rcp)
 (require 'java-rcp)
 (require 'js-rcp)

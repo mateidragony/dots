@@ -3,13 +3,13 @@
 
 (use-package js
   :ensure t
-  :hook ((js-mode . lsp-mode)
+  :hook ((js-mode . eglot-ensure)
 		 (js-mode . hs-minor-mode))
   )
 
 (use-package typescript-mode
   :ensure t
-  :hook ((typescript-mode . lsp-mode)
+  :hook ((typescript-mode . eglot-ensure)
 		 (typescript-mode . hs-minor-mode))
   )
 

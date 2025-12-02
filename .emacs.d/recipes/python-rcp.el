@@ -3,7 +3,7 @@
 
 (use-package python
   :ensure t
-  :hook (python-mode . lsp-mode)
+  :hook ((python-mode . eglot-ensure))
   :custom
   (python-indent-offset 4))
 

@@ -3,21 +3,22 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; time
-(defpoll HOUR  :interval "5s" `date +\"%H\"`)
-(defpoll MIN   :interval "5s" `date +\"%M\"`)
-(defpoll DAY   :interval "10h" `date +\"%A\"`)
-(defpoll DATE  :interval "10h" `date +\"%d\"`)
-(defpoll MONTH :interval "10h" `date +\"%b\"`)
-(defpoll YEAR  :interval "10h" `date +\"%Y\"`)
+(defpoll HOUR   :interval "5s" `date +\"%H\"`)
+(defpoll MIN    :interval "5s" `date +\"%M\"`)
+(defpoll DAY    :interval "10h" `date +\"%A\"`)
+(defpoll DATE   :interval "10h" `date +\"%d\"`)
+(defpoll MONTH  :interval "10h" `date +\"%b\"`)
+(defpoll MONTHN :interval "10h" `date +\"%m\"`)
+(defpoll YEAR   :interval "10h" `date +\"%Y\"`)
 
 ;; weather
-(defpoll WDATA  :interval "5m" `~/.config/eww/scripts/weather_info.sh --getdata`)
-(defpoll ICON   :interval "5m" `~/.config/eww/scripts/weather_info.sh --icon`)
-(defpoll STAT   :interval "5m" `~/.config/eww/scripts/weather_info.sh --stat`)
-(defpoll TEMP   :interval "5m" `~/.config/eww/scripts/weather_info.sh --temp`)
-(defpoll HEX    :interval "5m" :initial "#fff" `~/.config/eww/scripts/weather_info.sh --hex`)
-(defpoll QUOTE  :interval "5m" `~/.config/eww/scripts/weather_info.sh --quote`)
-(defpoll QUOTE2 :interval "5m" `~/.config/eww/scripts/weather_info.sh --quote2`)
+(defpoll WDATA  :interval "1m" `~/.config/eww/scripts/weather_info.sh --getdata`)
+(defpoll ICON   :interval "1m" `~/.config/eww/scripts/weather_info.sh --icon`)
+(defpoll STAT   :interval "1m" `~/.config/eww/scripts/weather_info.sh --stat`)
+(defpoll TEMP   :interval "1m" `~/.config/eww/scripts/weather_info.sh --temp`)
+(defpoll HEX    :interval "1m" :initial "#fff" `~/.config/eww/scripts/weather_info.sh --hex`)
+(defpoll QUOTE  :interval "1m" `~/.config/eww/scripts/weather_info.sh --quote`)
+(defpoll QUOTE2 :interval "1m" `~/.config/eww/scripts/weather_info.sh --quote2`)
 
 ;; system information
 (defpoll CPU_USAGE  :interval "1s" `~/.config/eww/scripts/sys_info.sh --cpu`)
@@ -150,6 +151,7 @@
 				(calendar :class "caly"
 						  :show-heading "true"
 						  :day DATE
+						  :month MONTHN
 						  :year YEAR)))
 
 (defwidget bar-clock []

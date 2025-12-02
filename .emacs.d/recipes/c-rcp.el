@@ -2,7 +2,7 @@
 ;;; Code:
 
 (use-package c-mode
-  :hook (c-mode . lsp-mode)
+  :hook (c-mode . eglot-ensure)
   :custom
   (comment-start "//")
   (comment-end "")
@@ -13,10 +13,10 @@
   )
 
 (use-package c++-mode
-  :hook (c++-mode . lsp-mode))
+  :hook (c++-mode . eglot-ensure))
 
 (use-package objc-mode
-  :hook (objc-mode . lsp-mode))
+  :hook (objc-mode . eglot-ensure))
 
 (provide 'c-rcp)
 ;;; Commentary:

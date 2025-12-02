@@ -3,7 +3,7 @@
 
 (use-package css
   :mode ("\\.rasi\\'" . css-mode)
-  :hook ((css-mode . lsp-mode)
+  :hook ((css-mode . eglot-ensure)
 		 (css-mode . hs-minor-mode))
   :config
   (yas-minor-mode nil)

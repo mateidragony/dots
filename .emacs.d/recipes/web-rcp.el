@@ -12,7 +12,7 @@
   :ensure t
   :mode ("\\.html\\'" . web-mode)
   :hook ((web-mode . emmet-mode)
-		 (web-mode . lsp-mode)
+		 (web-mode . eglot-ensure)
 		 (web-mode . auto-rename-tag-mode))
   :custom
   (web-mode-enable-auto-indentation nil)

@@ -1,6 +1,7 @@
 #!/bin/bash
 
-key_file="$HOME/.config/eww/scripts/weather_key.private"
+weather_key_file="$HOME/.config/eww/scripts/weather_key.private"
+ip_key_file="$HOME/.config/eww/scripts/ip_key.private"
 cache_dir="$HOME/.cache/eww/weather"
 cache_weather_stat=${cache_dir}/weather-stat
 cache_weather_degree=${cache_dir}/weather-degree
@@ -8,8 +9,7 @@ cache_weather_quote=${cache_dir}/weather-quote
 cache_weather_hex=${cache_dir}/weather-hex
 cache_weather_icon=${cache_dir}/weather-icon
 
-KEY=$(cat "$key_file")
-COORD=$(curl -s ipinfo.io | jq -r '.loc')
+WEATHER_KEY=$(cat "$weather_key_file")
 
 declare -A day_icons
 day_icons["Sunny"]=" "
@@ -176,8 +176,10 @@ get_weather_description() {
 		"Moderate Or Heavy Showers Of Ice Pellets")    echo "Moderate ice";;
 		"Ice Pellets")                                 echo "Heavy ice";;
 		"Thundery Outbreaks In Nearby")                echo "Thunder";;
+		"Thundery Outbreaks Possible")                 echo "Thunder";;
 		"Patchy Light Rain In Area With Thunder")      echo "Thunder";;
 		"Moderate Or Heavy Rain In Area With Thunder") echo "Thunder";;
+		"Moderate Or Heavy Rain With Thunder")         echo "Thunder";;
 		"Patchy Light Snow In Area With Thunder")      echo "Thunder";;
 		"Moderate Or Heavy Snow In Area With Thunder") echo "Thunder";;
 		*)                                             echo $1;;
@@ -194,9 +196,9 @@ is_daytime() {
 }
 
 get_weather_data() {
-	# weather=`cat $cache_dir/weather`
-	url="http://api.weatherapi.com/v1/current.json?key=$KEY&q=$COORD"
-	weather=`curl -sf $url`
+	weather_url="http://api.weatherapi.com/v1/current.json?key=$WEATHER_KEY&q=auto:ip"
+	weather=`curl -sf $weather_url`
+	echo $weather > $cache_dir/weather
 
 	if [ ! -z "$weather" ]; then
 		weather_temp=`echo "$weather" | jq ".current.temp_c" | cut -d "." -f 1`

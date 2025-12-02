@@ -1,7 +1,7 @@
 ;;; java-rcp.el --- Java configuration
 ;;; Code:
 
-(add-hook 'java-mode-hook 'lsp-mode)
+(add-hook 'java-mode-hook 'eglot-ensure)
 
 (provide 'java-rcp)
 ;;; Commentary:

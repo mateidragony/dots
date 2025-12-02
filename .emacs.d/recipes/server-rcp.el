@@ -17,9 +17,9 @@
 (defun live-server-start ()
   "Start live server in current directory"
   (interactive)
-  (let ((root (lsp-workspace-root)))
+  (let ((root (project-root (project-current nil))))
 	(if (not root)
-		(message "Impossible to create live server outside of lsp mode!")
+		(message "Impossible to create live server outside of a project!")
 	  (let* ((name (file-name-nondirectory root))
 			 (pid nil)
 			 (port nil))

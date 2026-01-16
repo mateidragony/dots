@@ -77,7 +77,7 @@
 	 ))
 
   (org-agenda-todo-keyword-format "%-12s")
-  (org-agenda-deadline-leaders '("Due today" "Due in %d days" ""))
+  (org-agenda-deadline-leaders '("Due today" "Due in %d days" "Overdue %d days"))
   (org-agenda-scheduled-leaders '("For today" "%d days from now"))
   (org-agenda-prefix-format   
    '((agenda . "  %-16s %?-14t ")

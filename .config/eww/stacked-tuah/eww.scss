@@ -183,6 +183,10 @@ tooltip label {
 	font-size: 13px;
 }
 
+.title.now {
+	color: $red;
+}
+
 .title.done {
 	color: $green;
 }
@@ -195,6 +199,10 @@ tooltip label {
 	color: $lt-gray;
 	font-style: italic;
 	font-size: 12px;
+}
+
+.tags.now {
+	color: $red;
 }
 
 .tags.done {

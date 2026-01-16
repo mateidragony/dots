@@ -155,9 +155,22 @@ alias duall='du -sh $(ls -A) | sort -hr'
 alias scratch='cd ~/scratch'
 alias em='emacs -nw'
 alias open='xdg-open'
+# alias wifi='nmcli dev wifi connect'
 
-mkcd ()
-{
+wifi() {
+  nmcli dev wifi connect "$1" --ask
+}
+
+# Custom completion for wifi function
+_wifi_completion() {
+  local ssids
+  ssids=(${(f)"$(nmcli -f SSID device wifi | tail -n +2 | sed 's/[[:space:]]*$//')"})
+  _describe 'SSID' ssids
+}
+
+compdef _wifi_completion wifi
+
+mkcd () {
     mkdir -p -- "$1" &&
        cd -P -- "$1"
 }

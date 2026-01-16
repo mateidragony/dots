@@ -80,27 +80,19 @@
 					 (label :class "clock-min" :valign "center" :wrap "true" :limit-width 25 :text MIN))
 				(label :class "clock-day" :valign "center" :halign "center" :wrap "true" :limit-width 25 :text DAY)))
 
-
-;; todo
-(defwidget todo []
-		   (box :class "genwin"
-				(eventbox :onlick "~/.config/hypr/scripts/emacs.sh --org-agenda"
-						  :cursor "pointer"
-						  (label :text TODO))))
-
 (defwidget task [status priority title tags deadline]
   (box :class "task"
        :orientation "h"
 	   :space-evenly "false"
 	   :hexpand "false"
        (box :width 110 :orientation "h" :space-evenly "false"
-			(label :class "status ${status[1]}" :halign "center" :text "${status[0]}"))
+			(label :class "status ${status[1]} ${deadline[1]}" :halign "center" :text "${status[0]}"))
        (box :width 30 :orientation "h" :space-evenly "false"
-			(label :class "priority ${priority[1]} ${status[1]}" :text "${priority[0]}"))
+			(label :class "priority ${priority[1]} ${status[1]} ${deadline[1]}" :text "${priority[0]}"))
        (box :width 220 :orientation "h" :space-evenly "false"
-			(label :class "title ${status[1]}" :halign "start" :text title))
+			(label :class "title ${status[1]} ${deadline[1]}" :halign "start" :text title))
        (box :width 100 :orientation "h" :space-evenly "false"
-			(label :class "tags ${status[1]}" :text deadline))))
+			(label :class "tags ${status[1]} ${deadline[1]}" :text "${deadline[0]}"))))
 
 (defwidget tasks [items]
 		   (eventbox :onclick "~/.config/hypr/scripts/emacs.sh --org-agenda"

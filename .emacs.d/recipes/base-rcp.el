@@ -26,6 +26,10 @@
   ("C-`"            . mc/toggle-shell)
   ("C-x <left>"     . switch-to-prev-buffer)
   ("C-x <right>"    . switch-to-next-buffer)
+  ("C-<wheel-up>"   . nil)
+  ("C-<wheel-down>" . nil)
+  ("C-="            . text-scale-increase)
+  ("C--"            . text-scale-decrease)
   :hook
   (after-save . executable-make-buffer-file-executable-if-script-p) ;; Make shebang (#!) file executable when saved
   (kill-emacs . mc/quicksave-session)
@@ -72,6 +76,10 @@
 (use-package shell
   :config
   (setq comint-process-echoes t))
+
+(require 'elcord)
+(elcord-mode)
+
 
 (provide 'base-rcp)
 ;;; Commentary:

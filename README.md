@@ -12,29 +12,30 @@ that looks cool. Please enjoy!
 - **ColorScheme**: My own (check out [this file](./.emacs.d/themes/colorful-dark-theme.el)).
 - **Cursor Theme**: [Notwaita Cursor](https://github.com/ful1e5/notwaita-cursor/)
 - **Icon Theme**: [Candy Icon Theme](https://github.com/EliverLara/candy-icons)
-- **Launcher/PowerMenu**: Modified Rofi Themes Taken From Here: Adi1090x Rofi Themes
-- **Bar**: Waybar
-- **Notification Center**: Dunst
+- **Launcher/PowerMenu**: Modified Rofi Themes Taken From Here: [Adi1090x Rofi Themes](https://github.com/adi1090x/rofi)
+- **Bar/Widgets**: Eww
+- **Notification Center**: Swaync
 - **LockScreen**: Hyprlock
 - **SDDM Theme**: [Catppuccin mocha sddm](https://github.com/catppuccin/sddm)
 - **Fetch**: CatNap
 - **Idle Daemon**: Hypridle
 - **Terminal**: Alacritty
-- **Wallpaper Daemon**: Hyprpaper
+- **Wallpaper Daemon**: awww
+- **Text Editor**: Emacs (obvi)
 
 ## 🦄 Preview
 
 Desktop:
-![](https://i.imgur.com/uuecJrg.png)
+![](https://i.imgur.com/52eyLK3.png)
 
-Htop, fetch, emacs splash:
-![](https://i.imgur.com/OrOA6nj.png)
+Htop, fetch, emacs splash, org agenda:
+![](https://i.imgur.com/pV5K1nl.png)
 
 emacs:
-![](https://i.imgur.com/JklUNUw.png)
+![](https://i.imgur.com/wM8uqIN.png)
 
 Rofi launcher:
-![](https://i.imgur.com/hhGdjr2.png)
+![](https://i.imgur.com/ZMwrtp9.png)
 
 Rofi powermenu:
-![](https://i.imgur.com/CBuO3eq.png)
+![](https://i.imgur.com/jb4l7xm.png)

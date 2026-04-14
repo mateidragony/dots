@@ -183,8 +183,12 @@ tooltip label {
 	font-size: 13px;
 }
 
-.title.now {
+.title.overdue {
 	color: $red;
+}
+
+.title.now {
+	color: $yellow;
 }
 
 .title.done {
@@ -201,8 +205,12 @@ tooltip label {
 	font-size: 12px;
 }
 
-.tags.now {
+.tags.overdue {
 	color: $red;
+}
+
+.tags.now {
+	color: $yellow;
 }
 
 .tags.done {
@@ -211,6 +219,10 @@ tooltip label {
 
 .tags.wont {
 	color: $lt-gray;
+}
+
+.priority {
+	font-size: 15px;
 }
 
 .priority.done, .priority.wont {

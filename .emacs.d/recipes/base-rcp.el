@@ -78,7 +78,8 @@
   (setq comint-process-echoes t))
 
 (require 'elcord)
-(elcord-mode)
+(unless (daemonp)
+  (elcord-mode))
 
 
 (provide 'base-rcp)

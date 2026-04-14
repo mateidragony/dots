@@ -20,7 +20,9 @@
   (let ((root (project-root (project-current nil))))
 	(if (not root)
 		(message "Impossible to create live server outside of a project!")
-	  (let* ((name (file-name-nondirectory root))
+	  (let* ((name (file-name-nondirectory
+					(directory-file-name
+					 (file-name-directory (expand-file-name root)))))
 			 (pid nil)
 			 (port nil))
 		(cond
@@ -48,11 +50,14 @@
   (interactive)
   (if (not live-server-alist)
 	  (message "No active live server!")
-	(let* ((default (if (lsp-workspace-root)
-						(file-name-nondirectory (lsp-workspace-root))
+	(let* ((root (project-root (project-current nil)))
+		   (default (if root
+						(file-name-nondirectory
+						 (directory-file-name
+						  (file-name-directory (expand-file-name root))))
 					  (car (car live-server-alist))))
 		   (name (completing-read
-				  (format "Enter the server name (default %s): " default)
+				  (format "Enter the server name to kill (default %s): " default)
 				  (mapcar #'car live-server-alist)
 				  nil
 				  t
@@ -72,7 +77,8 @@
   (interactive)
   (mapcar (lambda (x)
 			(call-process-shell-command (format "kill %s" (car (car (cdr x))))))
-		  live-server-alist))
+		  live-server-alist)
+  (setq live-server-alist nil))
 
 (provide 'server-rcp)
 ;;; Commentary:

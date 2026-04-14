@@ -1,6 +1,10 @@
 ;;; tex-rcp.el --- Tex configuration
 ;;; Code:
 
+(add-to-list 'load-path "~/.emacs.d/site-lisp/emacs-application-framework/")
+(require 'eaf)
+(require 'eaf-pdf-viewer)
+
 (use-package auctex
   :defer t)
 
@@ -21,7 +25,8 @@
   (TeX-PDF-mode t)
   (TeX-auto-save t)
   (TeX-parse-self t)
-  (TeX-view-program-selection '((output-pdf "PDF Tools")))
+  (TeX-view-program-list '(("eaf" eaf-pdf-synctex-forward-view)))
+  (TeX-view-program-selection '((output-pdf "eaf")))
   (TeX-source-correlate-start-server t)
   (TeX-command-extra-options (concat "-output-directory=" TeX-output-dir))
   (TeX-view-file (concat TeX-output-dir "/" (file-name-sans-extension (TeX-master-file)) ".pdf"))
@@ -42,6 +47,11 @@
 		  (lambda ()
 			(when (equal major-mode 'LaTeX-mode)
 			  (TeX-command "LaTeX" 'TeX-master-file))))
+
+;; (add-to-list 'TeX-command-list '("XeLaTeX" "%`xelatex --synctex=1%(mode)%' %t" TeX-run-TeX nil t))
+;; (add-to-list 'TeX-view-program-list '("eaf" eaf-pdf-synctex-forward-view))
+;; (add-to-list 'TeX-view-program-selection '(output-pdf "eaf"))
+
 
 (provide 'tex-rcp)
 ;;; Commentary:

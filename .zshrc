@@ -140,6 +140,9 @@ alias gc='git commit -m'
 alias gp='git push'
 alias gu='git pull'
 alias gch='git checkout'
+alias gd='git diff'
+alias grst='git restore'
+alias gr='git remote'
 
 # my shit
 alias cls='clear'
@@ -186,13 +189,15 @@ alias pynq='ssh xilinx@192.168.1.238'
 
 alias clipboard="xclip -selection clipboard"
 
-alias class="cd ~/Projects/Class-Notes/FA24/"
+alias grep="rg -uuu"
 
+alias wine32="~/wine32/usr/bin/wine"
 
 alias deduce="python ~/Projects/deduce-stuff/deduce/deduce.py"
 
 alias zip="~/Scripts/zip.sh"
 
+alias specials="~/Scripts/cp-no-git.sh ~/Projects/Gen-IDS/specials"
 
 # BEGIN opam configuration
 # This is useful if you're using opam as it adds:

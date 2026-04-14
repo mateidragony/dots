@@ -5,11 +5,11 @@
 ;; time
 (defpoll HOUR   :interval "5s" `date +\"%H\"`)
 (defpoll MIN    :interval "5s" `date +\"%M\"`)
-(defpoll DAY    :interval "10h" `date +\"%A\"`)
-(defpoll DATE   :interval "10h" `date +\"%d\"`)
-(defpoll MONTH  :interval "10h" `date +\"%b\"`)
-(defpoll MONTHN :interval "10h" `date +\"%m\"`)
-(defpoll YEAR   :interval "10h" `date +\"%Y\"`)
+(defpoll DAY    :interval "5s" `date +\"%A\"`)
+(defpoll DATE   :interval "5s" `date +\"%d\"`)
+(defpoll MONTH  :interval "5s" `date +\"%b\"`)
+(defpoll MONTHN :interval "5s" `date +\"%m\"`)
+(defpoll YEAR   :interval "5s" `date +\"%Y\"`)
 
 ;; weather
 (defpoll WDATA  :interval "1m" `~/.config/eww/scripts/weather_info.sh --getdata`)
@@ -143,7 +143,6 @@
 				(calendar :class "caly"
 						  :show-heading "true"
 						  :day DATE
-						  :month MONTHN
 						  :year YEAR)))
 
 (defwidget bar-clock []
@@ -223,7 +222,8 @@
 									:reveal wifi-rev
 									:duration "350ms"
 									(label :class "essid"
-										   :text {WIFI.essid})))))
+										   :text `${WIFI.status == "disconnected" ? "Not connected" : WIFI.essid}`)))))
+
 
 
 (defvar volume-icons `["", "", " ", " "]`)

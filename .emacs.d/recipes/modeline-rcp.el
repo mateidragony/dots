@@ -147,6 +147,15 @@
     (t                        (downcase mode-name))))
 
 
+(defun mc/make-clickable (str command &optional help-echo)
+  "Make STR clickable, running COMMAND on mouse-1."
+  (let ((map (make-sparse-keymap)))
+    (define-key map [mode-line mouse-1] command)
+    (propertize str
+                'local-map map
+                'mouse-face 'mode-line-highlight
+                'help-echo (or help-echo (symbol-name command)))))
+
 
 (defun mode-line-left ()
   (list
@@ -181,13 +190,22 @@
 (defun mode-line-right ()
   (list
    ;; live server
-   (if (lsp-workspace-root)
-	   (let* ((name (file-name-nondirectory (lsp-workspace-root)))
-			  (server (assoc name live-server-alist)))
-		 (if server
-			 (concat "󰀂 port: " (car (cdr (car (cdr server)))) " | ")
-		   (concat "󰯡 server off | ")))
-	 "")
+   (let ((root (project-root (project-current nil))))
+	 (if root
+		 (let* ((name (file-name-nondirectory
+					   (directory-file-name
+						(file-name-directory (expand-file-name root)))))
+				(server (assoc name live-server-alist)))
+		   (if server
+			   (mc/make-clickable
+				(concat "󰀂 port: " (car (cdr (car (cdr server)))) " | ")
+				'live-server-kill
+				"mouse-1: stop live server")
+			 (mc/make-clickable
+			  (concat "󰯡 server off | ")
+			  'live-server-start
+			  "mouse-1: start live server")))
+	   ""))
    
    ;; the current major mode
    (concat (mc/major-mode-icon-emoji) " " (mc/major-mode-name) "  ")

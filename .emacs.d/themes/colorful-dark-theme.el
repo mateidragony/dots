@@ -33,7 +33,7 @@
   (cd-lt-lt-gray   "#a6adc8")
   (cd-lt-gray      "#9399b2")
   (cd-gray         "#7f849c")
-  (cd-dk-gray      "#45475a")
+  (cd-dk-gray      "#353054")
   (cd-lt-pink      "#ef92e0")
   (cd-pink         "#e261cd")
   (cd-lt-blue      "#c0dded")
@@ -144,7 +144,7 @@
   (completions-common-part                        (:foreground cd-blue))
 
   ;; coq
-  (coq-solve-tacticd-face                         (:foreground cd-red))
+  (coq-solve-tactics-face                         (:foreground cd-red))
   (coq-cheat-face                                 (:background cd-dk-orange))
   (company-coq-features/code-folding-bullet-face  (:underline nil))
 
@@ -288,6 +288,7 @@
   ;; proof
   (proof-queue-face                   (:inherit 'region))
   (proof-locked-face                  (:inherit 'lazy-highlight :underline nil))
+  (proof-warning-face                 (:inherit 'coq-cheat-face :foreground cd-white))
   (proof-tacticd-name-face            (:foreground cd-orange :underline nil))
 
   ;; racket

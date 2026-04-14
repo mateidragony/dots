@@ -7,14 +7,11 @@ EWW=`which eww`
 THEME=$(cat $EWW_DIR/theme)
 # cp $EWW_DIR/$THEME/* $EWW_DIR/
 
-# run eww if not already running otherwise reload
+# run eww if not already running
 if [[ ! `pidof eww` ]]; then
-	${EWW} -c "$EWW_DIR/$THEME/" daemon
-	sleep 1
 	WINDOWS=$(cat $EWW_DIR/$THEME/windows)
 	${EWW} -c "$EWW_DIR/$THEME/" open-many $WINDOWS
 fi
 
 # get weather data
 $EWW_DIR/scripts/weather_info.sh --getdata
-sleep 1

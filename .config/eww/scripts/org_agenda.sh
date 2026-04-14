@@ -66,7 +66,7 @@ map_deadline() {
 	if [ "$1" == "Due today" ]; then
 		echo "[\"$1\", \"now\"]"
     elif [[ "$1" =~ ^Overdue\ [0-9]+\ days$ ]]; then
-		echo "[\"$1\", \"now\"]"
+		echo "[\"$1\", \"overdue\"]"
 	else
 		echo "[\"$1\", \"later\"]"
 	fi

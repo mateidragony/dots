@@ -28,7 +28,7 @@ that looks cool. Please enjoy!
 Desktop:
 ![](https://i.imgur.com/52eyLK3.png)
 
-Htop, fetch, emacs splash, org agenda:
+Org agenda, htop, fetch, emacs splash:
 ![](https://i.imgur.com/pV5K1nl.png)
 
 emacs:

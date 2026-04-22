@@ -57,7 +57,6 @@
 (require 'web-rcp)
 (require 'yas-rcp)
 
-
 (setq mc/emacs-init-time (float-time (time-subtract (current-time) before-init-time)))
 
 ;;; Commentary:
